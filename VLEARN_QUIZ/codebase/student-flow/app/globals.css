@@ -1709,6 +1709,32 @@ textarea:focus-visible {
   letter-spacing: 0.04em;
 }
 
+.citation-open-btn {
+  float: right;
+  margin: 0 0 8px 10px;
+  padding: 4px 8px;
+  border: 1px solid #b8c8ef;
+  border-radius: 6px;
+  background: var(--ui-primary-soft);
+  color: var(--ui-primary-dark);
+  font-size: 0.68rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.citation-open-btn:hover {
+  border-color: var(--ui-primary);
+}
+
+.report-btn[data-reported="true"] {
+  font-size: 0;
+}
+
+.report-btn[data-reported="true"]::after {
+  content: "Đã lưu trong phiên này · chưa gửi lên máy chủ ✓";
+  font-size: 0.7rem;
+}
+
 .citation-quote {
   color: #3b4658;
   font-size: 0.78rem;
@@ -1982,6 +2008,39 @@ textarea:focus-visible {
   color: var(--ui-text);
   font-size: 0.73rem;
   font-weight: 700;
+}
+
+.btn-export-excel:disabled,
+.btn-review-topic:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.btn-review-topic {
+  padding: 7px 10px;
+  border: 1px solid var(--ui-border-strong);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--ui-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dashboard-empty {
+  padding: 22px;
+  border: 1px dashed var(--ui-border-strong);
+  border-radius: 9px;
+  background: var(--ui-surface-subtle);
+  color: var(--ui-muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.modal-error {
+  margin: 12px 0 0;
+  color: var(--ui-danger);
+  font-size: 0.75rem;
 }
 
 .kpi-grid {

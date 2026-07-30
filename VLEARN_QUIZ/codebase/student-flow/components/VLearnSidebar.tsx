@@ -20,7 +20,7 @@ type Props = {
     lessonTitle: string;
     hasExplanation: boolean;
     autoGenerateQuizNow: boolean;
-  }) => void;
+  }) => Promise<void>;
   collapsed: boolean;
   onToggleCollapse: () => void;
   curriculumList: VLearnDay[];
@@ -50,6 +50,8 @@ export default function VLearnSidebar({
   const [lessonTitle, setLessonTitle] = useState("");
   const [hasExplanation, setHasExplanation] = useState(true);
   const [autoGenerateQuizNow, setAutoGenerateQuizNow] = useState(false); // Tuỳ chọn sinh Quiz ngay hay xem slide trước
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   function toggleDay(dayId: string) {
     setExpandedDays((prev) => ({ ...prev, [dayId]: !prev[dayId] }));
@@ -60,22 +62,32 @@ export default function VLearnSidebar({
     if (f) {
       setSelectedFile(f);
       setLessonTitle(f.name.replace(/\.[^/.]+$/, ""));
+      setUploadError(null);
       setShowUploadModal(true);
+      e.target.value = "";
     }
   }
 
-  function handleConfirmUpload(e: React.FormEvent) {
+  async function handleConfirmUpload(e: React.FormEvent) {
     e.preventDefault();
-    if (!selectedFile) return;
-    onUploadSlide({
-      file: selectedFile,
-      lessonTitle: lessonTitle.trim() || selectedFile.name,
-      hasExplanation,
-      autoGenerateQuizNow,
-    });
-    setShowUploadModal(false);
-    setSelectedFile(null);
-    setLessonTitle("");
+    if (!selectedFile || isUploading) return;
+    setIsUploading(true);
+    setUploadError(null);
+    try {
+      await onUploadSlide({
+        file: selectedFile,
+        lessonTitle: lessonTitle.trim() || selectedFile.name,
+        hasExplanation,
+        autoGenerateQuizNow,
+      });
+      setShowUploadModal(false);
+      setSelectedFile(null);
+      setLessonTitle("");
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "Không thể tải tài liệu.");
+    } finally {
+      setIsUploading(false);
+    }
   }
 
   return (
@@ -279,13 +291,15 @@ export default function VLearnSidebar({
                   type="button"
                   className="btn btn-ghost"
                   onClick={() => setShowUploadModal(false)}
+                  disabled={isUploading}
                 >
                   Hủy
                 </button>
-                <button type="submit" className="btn btn-primary">
-                  🚀 Tải Lên & Xem Slide Trước
+                <button type="submit" className="btn btn-primary" disabled={isUploading}>
+                  {isUploading ? "Đang tải và xử lý…" : "🚀 Tải lên & xem tài liệu"}
                 </button>
               </div>
+              {uploadError && <p className="modal-error" role="alert">{uploadError}</p>}
             </form>
           </div>
         </div>

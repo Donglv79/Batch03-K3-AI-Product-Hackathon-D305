@@ -16,6 +16,7 @@ import {
   USER_ACCOUNTS,
   UserAccount,
   VLEARN_CURRICULUM,
+  StudentSubmission,
   VLearnDay,
   VLearnDocument,
 } from "@/lib/vlearnData";
@@ -61,6 +62,7 @@ export default function App() {
   const [generationError, setGenerationError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sessionSubmissions, setSessionSubmissions] = useState<StudentSubmission[]>([]);
 
   // Switch Account Handler
   function handleSwitchAccount(acc: UserAccount) {
@@ -143,7 +145,7 @@ export default function App() {
     } catch (err) {
       URL.revokeObjectURL(fileUrl);
       setGenerationError(err instanceof Error ? err.message : "Backend ingestion chưa sẵn sàng.");
-      return;
+      throw err;
     }
 
     const sourceIds = realDoc
@@ -186,6 +188,14 @@ export default function App() {
           numQuestions: questionCount,
           difficulty,
         });
+        if (role3Quiz.status === "rejected" || role3Quiz.questions.length === 0) {
+          setQuiz(null);
+          setGenerationError(
+            role3Quiz.warnings.join(" ") || "Nguồn chưa đủ chắc chắn để tạo quiz có căn cứ."
+          );
+          setActiveTab("quiz");
+          return;
+        }
         setQuiz(adaptGeneratedQuiz(role3Quiz, realDoc));
         setCurrentIndex(0);
         setAnswers({});
@@ -217,8 +227,37 @@ export default function App() {
     if (currentIndex < quiz.questions.length - 1) {
       setCurrentIndex((i) => i + 1);
     } else {
+      recordCurrentSubmission();
       setIsSubmitted(true);
     }
+  }
+
+  function recordCurrentSubmission() {
+    if (!quiz || activeAccount.role !== "student") return;
+    const scored = quiz.questions.filter((question) => question.citation);
+    const correctCount = scored.filter(
+      (question) => answers[question.id] === question.correctOptionId
+    ).length;
+    const scorePct = scored.length ? Math.round((correctCount / scored.length) * 100) : 0;
+    const weakTopics = Array.from(
+      new Set(
+        scored
+          .filter((question) => answers[question.id] !== question.correctOptionId)
+          .map((question) => question.topic)
+      )
+    );
+    const submission: StudentSubmission = {
+      id: `${activeAccount.id}-${Date.now()}`,
+      studentName: activeAccount.name,
+      studentCode: activeAccount.code,
+      submittedAt: new Date().toLocaleString("vi-VN"),
+      scorePct,
+      correctCount,
+      totalCount: scored.length,
+      status: scorePct >= 80 ? "Excellence" : scorePct >= 50 ? "Good" : "Needs Review",
+      weakTopics,
+    };
+    setSessionSubmissions((previous) => [submission, ...previous]);
   }
 
   function handlePrev() {
@@ -231,6 +270,33 @@ export default function App() {
     setReported({});
     setFeedbackFormOpen(false);
     setIsSubmitted(false);
+  }
+
+  function handleRetakeWrong(questionIds: string[]) {
+    if (!quiz || questionIds.length === 0) return;
+    const retryIds = new Set(questionIds);
+    setQuiz({
+      ...quiz,
+      id: `${quiz.id}-retry-${Date.now()}`,
+      title: `${quiz.title} · Luyện lại câu sai`,
+      questions: quiz.questions.filter((question) => retryIds.has(question.id)),
+    });
+    setCurrentIndex(0);
+    setAnswers({});
+    setReported({});
+    setIsSubmitted(false);
+  }
+
+  function handleOpenCitation(page: number) {
+    setCurrentPage(Math.max(1, page));
+    setActiveTab("reader");
+  }
+
+  function handleOpenQuizForReview() {
+    if (!quiz) return;
+    setCurrentIndex(0);
+    setIsSubmitted(false);
+    setActiveTab("quiz");
   }
 
   function handleReport(questionId: string) {
@@ -348,6 +414,8 @@ export default function App() {
                   feedbackFormOpen={feedbackFormOpen}
                   feedbackLog={feedbackLog}
                   onRetake={handleRetake}
+                  onRetakeWrong={handleRetakeWrong}
+                  onOpenCitation={handleOpenCitation}
                   onToggleFeedbackForm={handleToggleFeedbackForm}
                   onSubmitFeedback={handleSubmitFeedback}
                 />
@@ -361,6 +429,7 @@ export default function App() {
                   onReport={handleReport}
                   onNext={handleNext}
                   onPrev={handlePrev}
+                  onOpenCitation={handleOpenCitation}
                 />
               )}
             </div>
@@ -368,7 +437,11 @@ export default function App() {
 
           {/* TAB 3: Teacher Dashboard (Chỉ Giảng viên mới mở được) */}
           {activeTab === "dashboard" && activeAccount.role === "teacher" && (
-            <TeacherDashboard activeDocumentTitle={selectedDocument ? selectedDocument.title : "Tất cả bài giảng"} />
+            <TeacherDashboard
+              activeDocumentTitle={selectedDocument ? selectedDocument.title : "Tất cả bài giảng"}
+              submissions={sessionSubmissions}
+              onOpenQuizForReview={quiz ? handleOpenQuizForReview : undefined}
+            />
           )}
         </main>
       </div>

@@ -48,7 +48,8 @@ export default function SlideViewer({
           </div>
           <iframe
             className="pdf-reader-frame"
-            src={`${document.fileUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+            key={`${document.id}-${currentPage}`}
+            src={`${document.fileUrl}#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
             title={cleanTitle}
           />
         </div>

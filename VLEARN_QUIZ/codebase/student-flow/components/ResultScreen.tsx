@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { FeedbackEntry, Quiz, statusForScorePct, ungroundedIdsFor } from "@/lib/mockQuiz";
+import {
+  conciseExplanation,
+  FeedbackEntry,
+  pageNumberForCitation,
+  Quiz,
+  statusForScorePct,
+  ungroundedIdsFor,
+} from "@/lib/mockQuiz";
 
 type CSSVarStyle = React.CSSProperties & Record<`--${string}`, string | number>;
 
@@ -11,6 +18,8 @@ type Props = {
   feedbackFormOpen: boolean;
   feedbackLog: FeedbackEntry[];
   onRetake: () => void;
+  onRetakeWrong: (questionIds: string[]) => void;
+  onOpenCitation: (page: number) => void;
   onToggleFeedbackForm: () => void;
   onSubmitFeedback: (entry: { who: string; role: string; comment: string }) => void;
 };
@@ -21,6 +30,8 @@ export default function ResultScreen({
   feedbackFormOpen,
   feedbackLog,
   onRetake,
+  onRetakeWrong,
+  onOpenCitation,
   onToggleFeedbackForm,
   onSubmitFeedback,
 }: Props) {
@@ -72,6 +83,14 @@ export default function ResultScreen({
           </div>
         </div>
         <div className="result-actions">
+          {wrongOnes.length > 0 && (
+            <button
+              className="btn btn-ghost"
+              onClick={() => onRetakeWrong(wrongOnes.map((q) => q.id))}
+            >
+              Luyện lại {wrongOnes.length} câu sai
+            </button>
+          )}
           <button className="btn btn-ghost" onClick={onRetake}>
             ↻ Làm lại bài này
           </button>
@@ -138,7 +157,7 @@ export default function ResultScreen({
               <div className="gap-card" key={q.id}>
                 <div className="gap-card-title">⚠️ Lỗ hổng cần ôn lại: {q.topic}</div>
                 <div className="gap-chunk">Mã trích dẫn: [{q.citation?.chunkId}]</div>
-                <p>{q.explanation}</p>
+                <p>{conciseExplanation(q.explanation)}</p>
               </div>
             ))
           )}
@@ -152,6 +171,7 @@ export default function ResultScreen({
           const userOption = q.options.find((o) => o.id === answers[q.id]);
           const correctOption = q.options.find((o) => o.id === q.correctOptionId)!;
           const isCorrect = answers[q.id] === q.correctOptionId;
+          const citationPage = pageNumberForCitation(q.citation);
           return (
             <div className="review-item" key={q.id}>
               <div className="muted">
@@ -173,6 +193,15 @@ export default function ResultScreen({
               )}
               {q.citation ? (
                 <div className="citation-block">
+                  {citationPage && (
+                    <button
+                      type="button"
+                      className="citation-open-btn"
+                      onClick={() => onOpenCitation(citationPage)}
+                    >
+                      Mở đúng trang {citationPage} →
+                    </button>
+                  )}
                   <div className="citation-quote">
                     &quot;{q.citation.quote}&quot; — [{q.citation.chunkId}]
                   </div>

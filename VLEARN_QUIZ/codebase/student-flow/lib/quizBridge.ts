@@ -1,4 +1,4 @@
-import { Difficulty, Quiz } from "@/lib/mockQuiz";
+import { conciseExplanation, Difficulty, Quiz } from "@/lib/mockQuiz";
 
 export type Role2Chunk = {
   source_id: string;
@@ -77,7 +77,7 @@ export function adaptGeneratedQuiz(response: Role3Quiz, document: Role2Document)
         text: option.text,
       })),
       correctOptionId: question.correct_option_id.toLowerCase(),
-      explanation: question.explanation,
+      explanation: conciseExplanation(question.explanation),
       citation: question.citation
         ? {
             chunkId: question.citation.source_id,

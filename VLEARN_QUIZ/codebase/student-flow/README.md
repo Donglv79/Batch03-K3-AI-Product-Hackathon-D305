@@ -10,6 +10,8 @@ Giao diện Next.js cho lát cắt chính của VLearn Quiz: tải PDF bài gi�
 4. Quiz engine kiểm tra nguồn, gọi Gemini, validate schema và chỉ giữ câu có quote nguyên văn khớp source.
 5. UI hiển thị cảnh báo nếu nguồn bị từ chối hoặc không còn câu hợp lệ; không tự thay bằng quiz mock.
 6. Học viên làm bài, xem giải thích, điểm và các topic cần ôn.
+7. Từ câu trả lời hoặc màn hình kết quả, học viên có thể mở đúng trang PDF được mã citation chỉ ra và luyện lại riêng các câu sai.
+8. Kết quả nộp trong phiên được tổng hợp ở dashboard giáo viên; có thể tìm kiếm, xem chủ đề yếu và xuất CSV mở bằng Excel.
 
 ## Chạy
 
@@ -31,6 +33,8 @@ Mở `http://localhost:3000`. Kiểm tra production build bằng `npm run build`
 ## Phần chưa phải production
 
 - Account, danh sách lớp và dashboard giáo viên dùng dữ liệu demo.
+- Báo lỗi câu hỏi chỉ được ghi nhận trong phiên hiện tại và UI hiển thị rõ là chưa gửi lên máy chủ.
+- Dashboard chỉ tổng hợp dữ liệu của phiên trình duyệt hiện tại; tải lại trang sẽ xóa các lượt nộp.
 - Feedback chưa persist vào database.
 - Chưa có auth, rate limit, object storage hoặc deployment.
 - Chỉ PDF có text; chưa OCR tài liệu scan.

@@ -31,8 +31,8 @@
 
 | Feedback # | Thay đổi | File/commit | Trạng thái |
 |---|---|---|---|
-| 1 | Làm rõ nút mở đoạn nguồn và deep-link tới đúng slide/chunk | `codebase/student-flow/components/SlideViewer.tsx` | Cần sửa và kiểm tra lại |
-| 2 | Rút gọn phần giải thích xuống nội dung đọc nhanh | `codebase/student-flow/components/QuizScreen.tsx` | Cần sửa và kiểm tra lại |
-| 3 | Thêm luồng làm lại riêng câu sai | `codebase/student-flow/components/ResultScreen.tsx` | Backlog |
-| 4 | Hiển thị trạng thái phản hồi đã được gửi hay mới chỉ là demo | `codebase/student-flow/components/QuizScreen.tsx` | Backlog |
-| 5 | Giữ Knowledge Gap Dashboard; làm rõ dữ liệu dashboard hiện là mock | `codebase/student-flow/components/TeacherDashboard.tsx` | Giữ nguyên, cần gắn nhãn rõ |
+| 1 | Làm rõ nút mở đoạn nguồn và deep-link tới đúng slide/chunk | `codebase/student-flow/components/QuizScreen.tsx`, `SlideViewer.tsx` | Đã triển khai; cần usability test lại |
+| 2 | Rút gọn phần giải thích xuống nội dung đọc nhanh | `codebase/student-flow/lib/mockQuiz.ts`, `QuizScreen.tsx` | Đã triển khai; cần usability test lại |
+| 3 | Thêm luồng làm lại riêng câu sai | `codebase/student-flow/components/ResultScreen.tsx`, `App.tsx` | Đã triển khai; cần usability test lại |
+| 4 | Hiển thị trạng thái phản hồi đã được gửi hay mới chỉ là demo | `codebase/student-flow/components/QuizScreen.tsx` | Đã triển khai: ghi rõ chỉ lưu trong phiên, chưa gửi máy chủ |
+| 5 | Giữ Knowledge Gap Dashboard; làm rõ dữ liệu dashboard hiện là mock | `codebase/student-flow/components/TeacherDashboard.tsx` | Đã tổng hợp lượt nộp trong phiên, tìm kiếm và xuất CSV; chưa nối dữ liệu lớp thật |

@@ -263,3 +263,24 @@ export type FeedbackEntry = {
   comment: string;
   ts: string;
 };
+
+/** Resolve the first PDF page encoded in ingestion/eval citation ids. */
+export function pageNumberForCitation(citation: Citation): number | null {
+  if (!citation) return null;
+  const candidates = [citation.source, citation.chunkId];
+  for (const value of candidates) {
+    const match = value.match(/(?:slide|page)[_\s#:-]*(\d+)/i);
+    if (match) return Number.parseInt(match[1], 10);
+  }
+  return null;
+}
+
+/** Keep answer feedback readable in roughly two UI lines. */
+export function conciseExplanation(value: string, maxChars = 220): string {
+  const normalized = value.replace(/\s+/g, " ").trim();
+  const firstTwoSentences = normalized.match(/[^.!?]+[.!?]+/g)?.slice(0, 2).join(" ") || normalized;
+  if (firstTwoSentences.length <= maxChars) return firstTwoSentences;
+  const clipped = firstTwoSentences.slice(0, maxChars + 1);
+  const lastSpace = clipped.lastIndexOf(" ");
+  return `${clipped.slice(0, lastSpace > maxChars * 0.6 ? lastSpace : maxChars).trim()}…`;
+}

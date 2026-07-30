@@ -1,4 +1,4 @@
-import { DIFFICULTY_LABEL, Quiz } from "@/lib/mockQuiz";
+import { conciseExplanation, DIFFICULTY_LABEL, pageNumberForCitation, Quiz } from "@/lib/mockQuiz";
 
 type Props = {
   quiz: Quiz;
@@ -9,6 +9,7 @@ type Props = {
   onReport: (questionId: string) => void;
   onNext: () => void;
   onPrev: () => void;
+  onOpenCitation: (page: number) => void;
 };
 
 export default function QuizScreen({
@@ -20,6 +21,7 @@ export default function QuizScreen({
   onReport,
   onNext,
   onPrev,
+  onOpenCitation,
 }: Props) {
   const q = quiz.questions[currentIndex];
   const total = quiz.questions.length;
@@ -28,6 +30,7 @@ export default function QuizScreen({
   const answered = selectedOptionId !== undefined;
   const isUngrounded = !q.citation;
   const isReported = !!reported[q.id];
+  const citationPage = pageNumberForCitation(q.citation);
 
   function optionClass(optionId: string) {
     let cls = "option";
@@ -100,9 +103,18 @@ export default function QuizScreen({
               ? "✓ Chính xác!"
               : "✕ Chưa chính xác!"}
           </div>
-          <div className="feedback-body">{q.explanation}</div>
+          <div className="feedback-body">{conciseExplanation(q.explanation)}</div>
           {q.citation && (
             <div className="citation-block">
+              {citationPage && (
+                <button
+                  type="button"
+                  className="citation-open-btn"
+                  onClick={() => onOpenCitation(citationPage)}
+                >
+                  Mở đúng trang {citationPage} →
+                </button>
+              )}
               <div className="citation-label">
                 Trích dẫn nguyên văn · [{q.citation.chunkId}]
               </div>
@@ -112,6 +124,7 @@ export default function QuizScreen({
           <button
             className="report-btn"
             data-reported={isReported}
+            aria-label={isReported ? "Đã lưu trong phiên này, chưa gửi lên máy chủ" : undefined}
             disabled={isReported}
             onClick={() => onReport(q.id)}
           >
