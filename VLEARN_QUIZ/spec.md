@@ -38,11 +38,13 @@ Ví dụ nguyên văn:
 
 ## §2. Impact & quyết định chọn
 
-| Ứng viên | Bằng chứng quy mô | Tần suất quan sát | Tổn thất mỗi lần | Khả thi trong hackathon | Quyết định |
-|---|---|---|---|---|---|
-| Cải thiện câu trả lời giải thích của tutor | 437 lượt / 196 user | 34,66% student messages | Phải hỏi lại hoặc đọc câu dài; khó cô lập lỗi hiểu | Trung bình, phạm vi rộng và phụ thuộc tutor hiện hữu | Loại |
-| Tóm tắt bài giảng có citation | 131 lượt / 92 user | 10,39% student messages | Có thể bỏ sót nội dung trọng tâm; 287 lượt gặp thiếu nguồn | Cao | Loại vì đã gần với năng lực tutor hiện tại |
-| Quiz kiểm tra hiểu bài có citation + gap map | 23 lượt / 19 user yêu cầu trực tiếp; chỉ 3/1.261 lượt tutor kiểm tra hiểu | Khoảng trống xuất hiện xuyên suốt mọi buổi học | Lỗ hổng không được phát hiện, học sai hoặc phải ôn lại toàn bài | Cao: ingestion, quiz engine và UI đã có | **Chọn** |
+| Ứng viên | Bao nhiêu người | Tần suất quan sát/người | Tổn thất đo được mỗi lần | Tổng đơn vị tổn thất quan sát | Khả thi | Quyết định |
+|---|---:|---:|---|---:|---|---|
+| Cải thiện câu trả lời giải thích của tutor | 196 user | `437 / 196 = 2,23` lượt yêu cầu/user | Mỗi lần người học phải tạo **1 request-turn chủ động** để xin giải thích, thay vì được kiểm tra/chỉ dẫn sẵn | `196 × 2,23 × 1 ≈ 437 request-turn` | Trung bình; phạm vi rộng và phụ thuộc tutor hiện hữu | Loại |
+| Tóm tắt bài giảng có citation | 92 user | `131 / 92 = 1,42` lượt yêu cầu/user | Mỗi lần người học phải tạo **1 request-turn chủ động** để xin tóm tắt; rủi ro nguồn là vấn đề có thật vì toàn tập có 287 lượt tutor báo thiếu/không tìm thấy nguồn, nhưng 287 lượt này không được gán riêng cho intent tóm tắt | `92 × 1,42 × 1 ≈ 131 request-turn` | Cao | Loại vì đã gần với năng lực tutor hiện tại |
+| Quiz kiểm tra hiểu bài có citation + gap map | 369 user trong tập; 19 user yêu cầu quiz trực tiếp | Chỉ `3/1.261 = 0,24%` tutor reply chủ động kiểm tra hiểu; tương đương `1.258/369 = 3,41` lượt không kiểm tra/user trong tập. Intent trực tiếp: `23/19 = 1,21` lượt/user | Mỗi tutor reply không kiểm tra tạo **1 missed-check turn**: phiên hỏi–đáp kết thúc mà hệ thống chưa tạo phép kiểm tra chủ động để phát hiện lỗ hổng | `369 × 3,41 × 1 ≈ 1.258 missed-check turn`; đồng thời có 23 request-turn yêu cầu quiz rõ ràng | Cao: ingestion, quiz engine và UI đã có | **Chọn** |
+
+**Cách đọc con số:** nhóm dùng `request-turn` và `missed-check turn` làm cost proxy vì chatlog không có dữ liệu đáng tin về số phút, tiền hoặc điểm số mất đi. Đây là đơn vị hành vi đếm lại được từ `mining_chatlog.py`, không phải ước lượng thời gian. Vì vậy nhóm không tuyên bố “mất X phút/lần” khi chưa đo bằng user study.
 
 **Lý do chọn:** nhu cầu trực tiếp nhỏ hơn intent giải thích, nhưng hành vi kiểm tra hiểu gần như chưa được phục vụ (0,24%) và lát cắt đủ hẹp để đo được. Sai citation có cost-of-error cao nên feature chỉ cho câu đã xác minh đi vào bài quiz.
 
@@ -176,3 +178,4 @@ Ví dụ nguyên văn:
 | 2026-07-30 | Chốt strict baseline | 27/30 (90%), hard/edge 100%, 0 bad citation; giữ 3 coverage failure |
 | 2026-07-30 | Manual semantic review | 27/27 câu grounded và có một đáp án rõ ràng; Nguyễn Viết Huy và Đàm Lê Minh Quân đã xác nhận độc lập 5 ca khó |
 | 2026-07-30 | Ghi nhận 5 phiên user validation | Xác nhận giá trị của quiz/gap map; phát hiện nhu cầu xem đúng đoạn nguồn, rút gọn giải thích và làm lại câu sai |
+| 2026-07-31 | Định lượng cost-of-friction trong impact table | Bổ sung công thức người × tần suất × cost proxy; chỉ dùng đơn vị tương tác quan sát được, không tự suy diễn số phút hoặc tiền |
