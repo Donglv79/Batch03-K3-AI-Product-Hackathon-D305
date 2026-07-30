@@ -2,29 +2,69 @@
 
 import { useRef, useState } from "react";
 
-const ACCEPTED_TYPES = ".pptx,.pdf";
+type Props = {
+  busy: boolean;
+  statusText: string;
+  summary?: {
+    documentId: string;
+    title: string;
+    chunkCount: number;
+    totalCharacters: number;
+  } | null;
+  onUpload: (payload: {
+    files: File[];
+    title: string;
+    documentId: string;
+    sourcePrefix: string;
+  }) => Promise<void>;
+};
 
-export default function UploadSlidePanel() {
-  const [fileName, setFileName] = useState<string | null>(null);
+const ACCEPTED_TYPES = ".pdf";
+
+export default function UploadSlidePanel({ busy, statusText, summary, onUpload }: Props) {
   const [isDragOver, setIsDragOver] = useState(false);
+  const [fileNames, setFileNames] = useState<string[]>([]);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [title, setTitle] = useState("Bai giang 01");
+  const [documentId, setDocumentId] = useState("slides_batch_01");
+  const [sourcePrefix, setSourcePrefix] = useState("slide");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function acceptFile(file: File | undefined) {
-    if (!file) return;
-    const isValidExt = /\.(pptx|pdf)$/i.test(file.name);
-    if (!isValidExt) return;
-    setFileName(file.name);
+  function acceptFiles(files: FileList | null) {
+    if (!files?.length) return;
+    const validFiles = Array.from(files).filter((file) => /\.pdf$/i.test(file.name));
+    if (!validFiles.length) return;
+    setFileNames(validFiles.map((file) => file.name));
+    setSelectedFiles(validFiles);
   }
 
   function handleDrop(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault();
     setIsDragOver(false);
-    acceptFile(e.dataTransfer.files?.[0]);
+    acceptFiles(e.dataTransfer.files);
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const files = selectedFiles.length
+      ? selectedFiles
+      : inputRef.current?.files
+        ? Array.from(inputRef.current.files)
+        : [];
+    if (!files.length) {
+      return;
+    }
+    await onUpload({
+      files,
+      title,
+      documentId,
+      sourcePrefix,
+    });
   }
 
   return (
-    <div className="sidebar-section">
-      <div className="sidebar-title">📤 TẢI SLIDE BÀI GIẢNG MỚI</div>
+    <form className="sidebar-section" onSubmit={handleSubmit}>
+      <div className="sidebar-title">📤 Tải slide bài giảng mới</div>
       <div
         className={`upload-dropzone${isDragOver ? " drag-over" : ""}`}
         onClick={() => inputRef.current?.click()}
@@ -40,27 +80,48 @@ export default function UploadSlidePanel() {
           type="file"
           accept={ACCEPTED_TYPES}
           className="hidden"
-          onChange={(e) => acceptFile(e.target.files?.[0])}
+          multiple
+          onChange={(e) => acceptFiles(e.target.files)}
         />
         <div className="upload-icon">📄</div>
         <div className="upload-text">
-          {fileName ? (
-            <strong>{fileName}</strong>
+          {fileNames.length ? (
+            <strong>{fileNames.length} file đã chọn</strong>
           ) : (
             <>
-              Kéo thả file <strong>.pptx</strong> hoặc <strong>.pdf</strong> vào đây,
+              Kéo thả file <strong>.pdf</strong> vào đây,
               <br />
               hoặc bấm để chọn file
             </>
           )}
         </div>
       </div>
-      <button className="btn" disabled style={{ width: "100%", marginTop: 10 }}>
-        ⏳ Tải lên &amp; Trích xuất (sắp có)
+      <div className="field">
+        <label>Tiêu đề:</label>
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      </div>
+      <div className="field">
+        <label>Document ID:</label>
+        <input value={documentId} onChange={(e) => setDocumentId(e.target.value)} />
+      </div>
+      <div className="field">
+        <label>Slide prefix:</label>
+        <input value={sourcePrefix} onChange={(e) => setSourcePrefix(e.target.value)} />
+      </div>
+      <button className="btn btn-primary" disabled={busy} style={{ width: "100%", marginTop: 10 }}>
+        {busy ? "Đang tải lên..." : "Tải lên & Sinh quiz"}
       </button>
       <p className="muted" style={{ marginTop: 8, marginBottom: 0 }}>
-        Khung giao diện — xử lý PPTX/PDF thật do Người 2 (Nạp dữ liệu) đảm nhiệm.
+        {statusText || "Xử lý PDF qua Role 2 và sinh quiz qua Role 3."}
       </p>
-    </div>
+      {summary && (
+        <div className="upload-summary">
+          <div className="upload-summary-title">{summary.title}</div>
+          <div className="muted">
+            {summary.documentId} · {summary.chunkCount} chunks · {summary.totalCharacters} ký tự
+          </div>
+        </div>
+      )}
+    </form>
   );
 }

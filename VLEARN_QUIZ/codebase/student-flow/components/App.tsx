@@ -8,6 +8,12 @@ import {
   Quiz,
   buildQuiz,
 } from "@/lib/mockQuiz";
+import {
+  adaptGeneratedQuiz,
+  generateRole3Quiz,
+  Role2Document,
+  uploadRole2Document,
+} from "@/lib/quizBridge";
 import Sidebar from "./Sidebar";
 import QuizScreen from "./QuizScreen";
 import ResultScreen from "./ResultScreen";
@@ -32,8 +38,42 @@ export default function App() {
   const [reported, setReported] = useState<Record<string, boolean>>({});
   const [feedbackLog, setFeedbackLog] = useState<FeedbackEntry[]>([]);
   const [feedbackFormOpen, setFeedbackFormOpen] = useState(false);
+  const [uploadBusy, setUploadBusy] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState("Sẵn sàng nhận slide PDF.");
+  const [uploadedDocument, setUploadedDocument] = useState<Role2Document | null>(null);
+  const [activeFlow, setActiveFlow] = useState<"mock" | "uploaded">("mock");
 
-  function handleGenerate() {
+  async function runGeneratedQuiz(document: Role2Document) {
+    setUploadStatus("Đang gọi Gemini để sinh quiz...");
+    const quizResponse = await generateRole3Quiz({
+      document,
+      numQuestions: questionCount,
+      difficulty,
+    });
+    const built = adaptGeneratedQuiz(quizResponse, document);
+    setQuiz(built);
+    setCurrentIndex(0);
+    setAnswers({});
+    setReported({});
+    setFeedbackFormOpen(false);
+    setActiveFlow("uploaded");
+    setScreen("quiz");
+    setUploadStatus(`Đã tạo quiz từ ${document.document_id}.`);
+  }
+
+  async function handleGenerate() {
+    if (uploadedDocument) {
+      setUploadBusy(true);
+      try {
+        await runGeneratedQuiz(uploadedDocument);
+      } catch (error) {
+        setUploadStatus(error instanceof Error ? error.message : "Quiz generation failed");
+      } finally {
+        setUploadBusy(false);
+      }
+      return;
+    }
+
     const built = buildQuiz(selectedLectureId, questionCount, difficulty);
     if (!built) {
       setScreen("unavailable");
@@ -45,7 +85,28 @@ export default function App() {
     setAnswers({});
     setReported({});
     setFeedbackFormOpen(false);
+    setActiveFlow("mock");
     setScreen("quiz");
+  }
+
+  async function handleUpload(payload: {
+    files: File[];
+    title: string;
+    documentId: string;
+    sourcePrefix: string;
+  }) {
+    setUploadBusy(true);
+    setUploadStatus("Đang tải slide lên...");
+    try {
+      const document = await uploadRole2Document(payload);
+      setUploadedDocument(document);
+      setUploadStatus(`Đã nạp ${document.statistics.total_chunks} chunks, đang sinh quiz...`);
+      await runGeneratedQuiz(document);
+    } catch (error) {
+      setUploadStatus(error instanceof Error ? error.message : "Upload failed");
+    } finally {
+      setUploadBusy(false);
+    }
   }
 
   function handleSelectOption(questionId: string, optionId: string) {
@@ -84,12 +145,19 @@ export default function App() {
   function handleSubmitFeedback(entry: { who: string; role: string; comment: string }) {
     const full: FeedbackEntry = { ...entry, ts: new Date().toLocaleString("vi-VN") };
     setFeedbackLog((prev) => [full, ...prev]);
-    // Ghi ra console theo đúng cột scaffold validation/ log (guide §4.2) để copy thủ công.
     console.log("[validation-log]", full);
     setFeedbackFormOpen(false);
   }
 
   const selectedLecture = LECTURES.find((l) => l.id === selectedLectureId);
+  const uploadSummary = uploadedDocument
+    ? {
+        documentId: uploadedDocument.document_id,
+        title: uploadedDocument.title,
+        chunkCount: uploadedDocument.statistics.total_chunks,
+        totalCharacters: uploadedDocument.statistics.total_characters,
+      }
+    : null;
 
   return (
     <>
@@ -118,9 +186,30 @@ export default function App() {
           difficulty={difficulty}
           onDifficultyChange={(d) => setDifficulty(d as "all" | Difficulty)}
           onGenerate={handleGenerate}
+          uploadBusy={uploadBusy}
+          uploadStatus={uploadStatus}
+          uploadSummary={uploadSummary}
+          onUpload={handleUpload}
         />
 
         <main className="main-panel">
+          {uploadedDocument && (
+            <div className="card upload-result-card">
+              <div className="quiz-head">
+                <span className="muted">Nguồn đã nạp</span>
+                <span className="pill pill-outline">
+                  {activeFlow === "uploaded" ? "Role 2 + 3" : "Role 2"}
+                </span>
+              </div>
+              <h2>{uploadedDocument.title}</h2>
+              <p className="muted">
+                {uploadedDocument.document_id} · {uploadedDocument.original_filename} ·{" "}
+                {uploadedDocument.statistics.total_chunks} chunks ·{" "}
+                {uploadedDocument.statistics.total_characters} ký tự
+              </p>
+            </div>
+          )}
+
           {screen === "unavailable" && (
             <UnavailableScreen lectureTitle={selectedLecture ? selectedLecture.title : ""} />
           )}
@@ -152,3 +241,4 @@ export default function App() {
     </>
   );
 }
+

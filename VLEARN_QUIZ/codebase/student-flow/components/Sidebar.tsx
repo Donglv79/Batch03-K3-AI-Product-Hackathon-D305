@@ -9,6 +9,20 @@ type Props = {
   difficulty: string;
   onDifficultyChange: (d: string) => void;
   onGenerate: () => void;
+  uploadBusy: boolean;
+  uploadStatus: string;
+  uploadSummary?: {
+    documentId: string;
+    title: string;
+    chunkCount: number;
+    totalCharacters: number;
+  } | null;
+  onUpload: (payload: {
+    files: File[];
+    title: string;
+    documentId: string;
+    sourcePrefix: string;
+  }) => Promise<void>;
 };
 
 export default function Sidebar({
@@ -19,13 +33,22 @@ export default function Sidebar({
   difficulty,
   onDifficultyChange,
   onGenerate,
+  uploadBusy,
+  uploadStatus,
+  uploadSummary,
+  onUpload,
 }: Props) {
   return (
     <aside className="sidebar">
-      <UploadSlidePanel />
+      <UploadSlidePanel
+        busy={uploadBusy}
+        statusText={uploadStatus}
+        summary={uploadSummary}
+        onUpload={onUpload}
+      />
 
       <div className="sidebar-section">
-        <div className="sidebar-title">📖 CHỌN BÀI GIẢNG ĐÃ HỌC</div>
+        <div className="sidebar-title">📖 Chọn bài giảng đã học</div>
         {LECTURES.map((l) => {
           const selected = l.id === selectedLectureId;
           const unavailable = !l.quizId;
@@ -37,7 +60,12 @@ export default function Sidebar({
             .filter(Boolean)
             .join(" ");
           return (
-            <button key={l.id} className={classes} onClick={() => onSelectLecture(l.id)}>
+            <button
+              key={l.id}
+              type="button"
+              className={classes}
+              onClick={() => onSelectLecture(l.id)}
+            >
               <div className="day-tag">{l.dayTag}</div>
               <div className="lecture-title">{l.title}</div>
               <div className="lecture-meta">
@@ -50,7 +78,7 @@ export default function Sidebar({
       </div>
 
       <div className="sidebar-section">
-        <div className="sidebar-title">⚙️ TÙY CHỌN QUIZ AI</div>
+        <div className="sidebar-title">⚙️ Tùy chọn quiz AI</div>
         <div className="field">
           <label>Số lượng câu hỏi:</label>
           <select
@@ -74,7 +102,7 @@ export default function Sidebar({
             ))}
           </select>
         </div>
-        <button className="btn btn-primary" onClick={onGenerate}>
+        <button type="button" className="btn btn-primary" onClick={onGenerate}>
           🪄 AI Sinh Quiz Ngay
         </button>
       </div>

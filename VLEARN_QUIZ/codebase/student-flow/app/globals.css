@@ -88,6 +88,11 @@ button, select { font-family: inherit; }
 }
 
 .sidebar { display: flex; flex-direction: column; gap: 18px; }
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .sidebar-section {
   background: var(--surface-1);
   border: 1px solid var(--border);
@@ -132,6 +137,18 @@ button, select { font-family: inherit; }
 .upload-icon { font-size: 1.6rem; }
 .upload-text { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
 .upload-text strong { color: var(--text-primary); }
+.upload-summary {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.upload-summary-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
 
 .field { margin-bottom: 12px; }
 .field label { display: block; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 6px; }
