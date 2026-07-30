@@ -42,6 +42,51 @@ def call_gemini(prompt: str, model: str | None = None, timeout: int = 60) -> dic
         raise GeminiClientError("GEMINI_API_KEY is not set")
 
     selected_model = model or os.environ.get("MODEL") or DEFAULT_MODEL
+
+    api_base = os.environ.get("GEMINI_API_BASE") or os.environ.get("API_BASE")
+    if api_base:
+        # OpenAI-compatible endpoint route (e.g. 9Router)
+        url = f"{api_base.rstrip('/')}/chat/completions"
+        payload = {
+            "model": selected_model,
+            "messages": [
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 0.2,
+            "response_format": {"type": "json_object"}
+        }
+
+        request = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}"
+            },
+            method="POST",
+        )
+
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                response_text = response.read().decode("utf-8")
+                try:
+                    raw = json.loads(response_text)
+                except json.JSONDecodeError as exc:
+                    raise GeminiClientError(f"Failed to parse JSON from API Base. Raw response: {response_text}") from exc
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode("utf-8", errors="replace")
+            raise GeminiClientError(f"API Base HTTP {exc.code}: {body}") from exc
+        except urllib.error.URLError as exc:
+            raise GeminiClientError(f"API Base network error: {exc}") from exc
+
+        try:
+            text = raw["choices"][0]["message"]["content"]
+        except (KeyError, IndexError, TypeError) as exc:
+            raise GeminiClientError(f"Unexpected API Base response shape: {raw}") from exc
+
+        return {"model": selected_model, "text": text, "raw": raw}
+
+    # Direct Gemini API route
     encoded_key = urllib.parse.quote(api_key)
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"

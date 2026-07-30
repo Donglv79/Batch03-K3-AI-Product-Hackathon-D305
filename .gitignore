@@ -1,7 +1,11 @@
 .DS_Store
 node_modules/
+.next/
+*.log
 *.env
 .venv/
+venv/
 __pycache__/
 *.pyc
 VLEARN_QUIZ/codebase/role2_ingestion/backend/data/processed/*.json
+/data/processed/

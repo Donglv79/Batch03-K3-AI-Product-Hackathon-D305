@@ -1,0 +1,2 @@
+# PDF text extraction for the ingestion module.
+pypdf>=5,<7
