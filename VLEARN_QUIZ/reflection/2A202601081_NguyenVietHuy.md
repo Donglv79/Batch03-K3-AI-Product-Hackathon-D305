@@ -1,32 +1,29 @@
-# Bài Thu Hoạch Cá Nhân (Reflection)
+# Reflection — Nguyễn Viết Huy · 2A202601081
 
-- **Họ và tên**: Nguyễn Viết Huy
-- **Mã học viên**: 2A202601081
-- **Vai trò trong nhóm**: Đánh giá & Kiểm thử (Eval) & User Validation
-- **Sản phẩm nhóm**: VLearn Quiz Engine & Teacher Knowledge Gap Map
+## Vai trò và phần tôi chịu trách nhiệm
 
----
+Tôi phụ trách Đánh giá & Kiểm thử (Eval) & User Validation trong nhóm làm VLearn Quiz Engine & Teacher Knowledge Gap Map. Phần việc chính của tôi là xây dựng bộ test đo chất lượng đầu ra AI, thiết kế giao diện Teacher Knowledge Gap Dashboard và chạy eval bằng API thật để đối chiếu với Quality Bar của nhóm.
 
-## 1. Bài học lớn nhất rút ra từ sự kiện
+## Tôi đã làm gì
 
-Qua 1.5 ngày làm việc liên tục trong đợt Hackathon này, bài học đắt giá nhất mà mình rút ra được là **tư duy làm sản phẩm AI hoàn toàn khác biệt so với làm phần mềm truyền thống**. 
+Tôi xây dựng bộ Golden Set 20 test cases bám sát 100% kiến thức 3 môn học (Deep Learning, Computer Vision, Machine Learning), trong đó có 10 câu lấy nguyên văn từ quan sát thực tế (chatlog VLearn, Discord và quote phỏng vấn) chứ không tự bịa tình huống test. Tôi thiết kế giao diện Teacher Knowledge Gap Dashboard trực quan, giúp giảng viên phát hiện ngay các câu sinh viên sai. Tôi cũng tích hợp thành công script chạy eval tự động, nạp API Key thật của Gemini 3.5 và đo lường tỷ lệ % Đạt đối chiếu với Quality Bar, thay vì chỉ đánh giá cảm tính.
 
-Khi xây dựng một tính năng dựa trên LLM, mình không thể chỉ viết prompt rồi hy vọng AI sẽ luôn trả ra kết quả đúng. Nếu không có một bộ test kiên cố (Golden Set) với các tình huống bẫy thực tế (như văn bản bị mơ hồ, câu hỏi ngoài phạm vi hay các khái niệm chuyên ngành dễ nhầm lẫn), sản phẩm rất dễ "vỡ" ngay khi trao vào tay người dùng thật. Việc tự tay thiết kế 20 test cases, nạp API Key thật của Gemini 3.5 và đo lường tỷ lệ % Đạt đối chiếu với Quality Bar giúp mình hiểu rằng **bằng chứng đo lường thực tế mới là thước đo duy nhất cho chất lượng của một sản phẩm AI**.
+## AI đã hỗ trợ thế nào
 
----
+Qua 1,5 ngày làm việc liên tục trong đợt Hackathon này, tôi nhận ra tư duy làm sản phẩm AI hoàn toàn khác biệt so với làm phần mềm truyền thống: không thể chỉ viết prompt rồi hy vọng AI sẽ luôn trả ra kết quả đúng. Việc tự tay thiết kế 20 test case với các tình huống bẫy thực tế — văn bản bị mơ hồ, câu hỏi ngoài phạm vi, khái niệm chuyên ngành dễ nhầm lẫn — rồi cho chạy thật qua Gemini 3.5 API, giúp tôi hiểu rằng bằng chứng đo lường thực tế mới là thước đo duy nhất cho chất lượng của một sản phẩm AI, chứ không phải cảm giác "prompt đã viết đủ tốt".
 
-## 2. Điều đã làm tốt nhất & Điều lẽ ra nên làm khác đi
+Tôi không coi một lượt chạy eval là đáng tin nếu chưa đối chiếu với Quality Bar đã chốt trước, và không chấp nhận đánh giá dựa trên vài ví dụ xem qua thay vì chạy hết bộ Golden Set.
 
-* **Điều mình làm tốt nhất**:
-  * Xây dựng bộ Golden Set 20 test cases bám sát 100% kiến thức 3 môn học (*Deep Learning, Computer Vision, Machine Learning*), trong đó có 10 câu lấy nguyên văn từ quan sát thực tế (chatlog VLearn, Discord và quote phỏng vấn).
-  * Thiết kế giao diện Teacher Knowledge Gap Dashboard trực quan, giúp giảng viên phát hiện ngay các câu sinh viên sai.
-  * Tích hợp thành công script chạy eval tự động với API Gemini 3.5 thật.
+## Failure thật và bài học
 
-* **Điều lẽ ra nên làm khác đi**:
-  * Trong các lượt chạy test đầu tiên, mình chưa lường trước hết giới hạn Rate Limit (5 lượt gọi/phút) của bản Free Tier Gemini API, dẫn đến việc bị dính lỗi 429 và mất thời gian ngồi gỡ. Nếu làm lại, mình sẽ cài đặt cơ chế giãn cách thời gian (pacing delay 13s) và retry exponential backoff ngay từ dòng code đầu tiên để quá trình eval diễn ra mượt mà hơn.
+Failure đáng nhớ nhất là trong các lượt chạy test đầu tiên. Trigger là tôi chưa lường trước hết giới hạn Rate Limit (5 lượt gọi/phút) của bản Free Tier Gemini API. Biểu hiện là script bị dính lỗi 429 liên tục khi gọi API dồn dập, khiến tôi mất thời gian ngồi gỡ thay vì tập trung vào việc đọc kết quả eval.
 
----
+Tôi sửa bằng cách cài đặt cơ chế giãn cách thời gian (pacing delay 13 giây) và retry exponential backoff cho script eval, giúp quá trình chạy 20 test case diễn ra mượt mà mà không bị chặn API giữa chừng.
 
-## 3. Nhận xét về sự phối hợp trong nhóm
+Bài học của tôi là khi thiết kế bất kỳ script nào gọi API thật, giới hạn rate limit của tier đang dùng phải được tính vào thiết kế ngay từ đầu, không phải xử lý phát sinh sau khi đã dính lỗi. Ở lần sau, tôi sẽ cài pacing/retry ngay từ dòng code đầu tiên thay vì viết xong vòng lặp gọi API rồi mới thêm cơ chế chống rate limit.
 
-Mình cảm thấy rất may mắn khi được làm việc cùng các thành viên trong nhóm. Mọi người làm việc cực kỳ có trách nhiệm và tôn trọng cam kết chung. Nhờ chốt cứng hợp đồng dữ liệu JSON (schema contract) ngay từ mốc CP2, việc mình lấy output từ Quiz Engine của Người 3 để gắn vào Teacher Dashboard và chạy Runner Eval diễn ra rất trơn tru, hầu như không bị xung đột code. Cả nhóm đã hỗ trợ nhau đổi chéo test sản phẩm và chuẩn bị kịch bản thuyết trình rất nhịp nhàng cho buổi Demo.
+## Điều tôi giải thích được khi bị hỏi
+
+Tôi có thể giải thích vì sao 10 trong 20 test case của Golden Set phải lấy nguyên văn từ chatlog/Discord/phỏng vấn thay vì tự bịa: để đảm bảo bộ test phản ánh đúng tình huống người dùng thật sẽ gặp, không chỉ những case dễ mà AI luôn trả lời đúng.
+
+Nhờ chốt cứng hợp đồng dữ liệu JSON (schema contract) ngay từ mốc CP2, tôi có thể giải thích cách mình lấy output từ Quiz Engine của Người 3 để gắn vào Teacher Dashboard và chạy Runner Eval mà hầu như không bị xung đột code với phần của người khác. Tôi cũng có thể giải thích vì sao tỷ lệ % Đạt phải đối chiếu với Quality Bar đã thống nhất trước, thay vì tự đặt ngưỡng "đạt" sau khi đã thấy kết quả.
