@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "document_id": "transcript_01",
+  "title": "Bai giang 01",
+  "source_type": "transcript",
+  "original_filename": "transcript-01-clean.md",
+  "status": "ready",
+  "created_at": "2026-07-30T10:00:00.000Z",
+  "statistics": {
+    "total_chunks": 3,
+    "total_characters": 1361
+  },
+  "chunks": [
+    {
+      "source_id": "T01-001",
+      "parent_source_id": "T01-001",
+      "chunk_index": 1,
+      "text": "Mot trong nhung ky nang quan trong la kha nang xac dinh ra mot bai toan tu mot yeu cau rat mo ho, hoac khi tham gia vao mot doanh nghiep thi tim duoc bai toan dang de lam, sau day boc tach no ra cho team development phat trien."
+    },
+    {
+      "source_id": "T01-002-C01",
+      "parent_source_id": "T01-002",
+      "chunk_index": 1,
+      "text": "Van de o day la nguoi dat ra de bai lai khong co. Khong co ai chi ra duoc trong rat nhieu viec phai lam moi ngay, cai gi nen dua vao lam truoc, cai gi nen lam de tao ra thanh qua ngay dau tien."
+    },
+    {
+      "source_id": "T01-004",
+      "parent_source_id": "T01-004",
+      "chunk_index": 1,
+      "text": "Cong nghe sinh ra de giai quyet mot van de nao day. Dau tien phai biet van de la gi, sau day cong nghe moi la cong cu de giai quyet no."
+    }
+  ]
+}
