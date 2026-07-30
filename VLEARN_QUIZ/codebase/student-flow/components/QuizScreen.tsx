@@ -48,22 +48,28 @@ export default function QuizScreen({
     <div className="card">
       <div className="quiz-head">
         <span className="muted">
-          Câu {currentIndex + 1}/{total}
+          Câu {currentIndex + 1} / {total}
         </span>
-        <span className="pill pill-outline">{q.topic}</span>
+        <span className="pill pill-outline">{q.topic || "Machine Learning"}</span>
       </div>
+
       <div className="progress-track">
         <div className="progress-fill" style={{ width: `${progressPct}%` }} />
       </div>
+
       <div className="tag-row">
-        <span className="pill pill-accent">{DIFFICULTY_LABEL[q.difficulty]}</span>
+        <span className="pill pill-accent">
+          {DIFFICULTY_LABEL[q.difficulty] || "Hiểu bản chất"}
+        </span>
         {q.citation ? (
           <span className="pill pill-chunk">🔖 Mã đoạn: [{q.citation.chunkId}]</span>
         ) : (
           <span className="pill pill-warning">⚠️ Chưa có căn cứ nguồn</span>
         )}
       </div>
-      <div className="question-text">{q.question}</div>
+
+      <h2 className="question-text">{q.question}</h2>
+
       <div className="option-list">
         {q.options.map((opt) => (
           <button
@@ -72,7 +78,7 @@ export default function QuizScreen({
             onClick={() => onSelectOption(q.id, opt.id)}
           >
             <span className="opt-badge">{opt.id.toUpperCase()}</span>
-            <span>{opt.text}</span>
+            <span style={{ flex: 1 }}>{opt.text}</span>
           </button>
         ))}
       </div>
@@ -88,7 +94,11 @@ export default function QuizScreen({
               isUngrounded ? "is-warning" : correct ? "is-correct" : "is-incorrect"
             }`}
           >
-            {isUngrounded ? "⚠️ Chưa xác minh nguồn" : correct ? "✓ Chính xác!" : "✕ Chưa chính xác!"}
+            {isUngrounded
+              ? "⚠️ Chưa xác minh nguồn"
+              : correct
+              ? "✓ Chính xác!"
+              : "✕ Chưa chính xác!"}
           </div>
           <div className="feedback-body">{q.explanation}</div>
           {q.citation && (
@@ -116,7 +126,6 @@ export default function QuizScreen({
         </button>
         <button
           className="btn btn-primary"
-          style={{ width: "auto" }}
           onClick={onNext}
           disabled={!answered}
         >
