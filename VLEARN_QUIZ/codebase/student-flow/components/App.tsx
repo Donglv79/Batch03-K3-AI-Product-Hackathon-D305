@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   Difficulty,
   FeedbackEntry,
-  LECTURES,
   Quiz,
   buildQuiz,
 } from "@/lib/mockQuiz";
@@ -14,99 +13,182 @@ import {
   Role2Document,
   uploadRole2Document,
 } from "@/lib/quizBridge";
-import Sidebar from "./Sidebar";
+import {
+  USER_ACCOUNTS,
+  UserAccount,
+  VLEARN_CURRICULUM,
+  VLearnDay,
+  VLearnDocument,
+} from "@/lib/vlearnData";
+
+import VLearnHeader from "./VLearnHeader";
+import VLearnSidebar from "./VLearnSidebar";
+import SlideViewer from "./SlideViewer";
+import TeacherDashboard from "./TeacherDashboard";
 import QuizScreen from "./QuizScreen";
 import ResultScreen from "./ResultScreen";
-import UnavailableScreen from "./UnavailableScreen";
-
-type Screen = "quiz" | "result" | "unavailable";
 
 const DEFAULT_LECTURE_ID = "t04";
 const DEFAULT_QUESTION_COUNT = 3;
 const DEFAULT_DIFFICULTY: "all" | Difficulty = "all";
 
 export default function App() {
+  // Account & Role State
+  const [activeAccount, setActiveAccount] = useState<UserAccount>(USER_ACCOUNTS[0]);
+  const [activeTab, setActiveTab] = useState<"reader" | "quiz" | "dashboard">("reader");
+
+  // Dynamic Curriculum State
+  const [curriculumList, setCurriculumList] = useState<VLearnDay[]>(VLEARN_CURRICULUM);
+
+  // Document & Sidebar State
+  const [selectedDocument, setSelectedDocument] = useState<VLearnDocument | null>(null);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  // Real Ingestion Data State
+  const [uploadedRole2Doc, setUploadedRole2Doc] = useState<Role2Document | null>(null);
+
+  // Viewer State
+  const [toolMode, setToolMode] = useState<"read" | "pen" | "highlight">("read");
+  const [zoomLevel, setZoomLevel] = useState(100);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Quiz Engine State
   const [selectedLectureId, setSelectedLectureId] = useState(DEFAULT_LECTURE_ID);
   const [questionCount, setQuestionCount] = useState(DEFAULT_QUESTION_COUNT);
   const [difficulty, setDifficulty] = useState<"all" | Difficulty>(DEFAULT_DIFFICULTY);
-  const [screen, setScreen] = useState<Screen>("quiz");
-  const [quiz, setQuiz] = useState<Quiz | null>(() =>
-    buildQuiz(DEFAULT_LECTURE_ID, DEFAULT_QUESTION_COUNT, DEFAULT_DIFFICULTY)
-  );
+  const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [reported, setReported] = useState<Record<string, boolean>>({});
   const [feedbackLog, setFeedbackLog] = useState<FeedbackEntry[]>([]);
   const [feedbackFormOpen, setFeedbackFormOpen] = useState(false);
-  const [uploadBusy, setUploadBusy] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState("Sẵn sàng nhận slide PDF.");
-  const [uploadedDocument, setUploadedDocument] = useState<Role2Document | null>(null);
-  const [activeFlow, setActiveFlow] = useState<"mock" | "uploaded">("mock");
 
-  async function runGeneratedQuiz(document: Role2Document) {
-    setUploadStatus("Đang gọi Gemini để sinh quiz...");
-    const quizResponse = await generateRole3Quiz({
-      document,
-      numQuestions: questionCount,
-      difficulty,
-    });
-    const built = adaptGeneratedQuiz(quizResponse, document);
-    setQuiz(built);
-    setCurrentIndex(0);
-    setAnswers({});
-    setReported({});
-    setFeedbackFormOpen(false);
-    setActiveFlow("uploaded");
-    setScreen("quiz");
-    setUploadStatus(`Đã tạo quiz từ ${document.document_id}.`);
+  // Switch Account Handler
+  function handleSwitchAccount(acc: UserAccount) {
+    setActiveAccount(acc);
+    if (acc.role === "student" && activeTab === "dashboard") {
+      setActiveTab("reader");
+    }
   }
 
-  async function handleGenerate() {
-    if (uploadedDocument) {
-      setUploadBusy(true);
+  // Document Selection Handler
+  function handleSelectDocument(doc: VLearnDocument, dayTag: string) {
+    setSelectedDocument(doc);
+    setCurrentPage(1);
+  }
+
+  // Quiz Generation Handler (Gọi Gemini sinh Quiz trực tiếp từ văn bản slide nạp thật)
+  async function handleGenerateQuiz() {
+    if (uploadedRole2Doc) {
       try {
-        await runGeneratedQuiz(uploadedDocument);
-      } catch (error) {
-        setUploadStatus(error instanceof Error ? error.message : "Quiz generation failed");
-      } finally {
-        setUploadBusy(false);
+        const role3Quiz = await generateRole3Quiz({
+          document: uploadedRole2Doc,
+          numQuestions: questionCount,
+          difficulty,
+        });
+        const adapted = adaptGeneratedQuiz(role3Quiz, uploadedRole2Doc);
+        setQuiz(adapted);
+        setCurrentIndex(0);
+        setAnswers({});
+        setReported({});
+        setFeedbackFormOpen(false);
+        setActiveTab("quiz");
+        return;
+      } catch (err) {
+        console.warn("Chưa gọi được Backend Gemini real-time, chuyển sang bộ sinh Quiz mẫu.", err);
       }
-      return;
     }
 
     const built = buildQuiz(selectedLectureId, questionCount, difficulty);
-    if (!built) {
-      setScreen("unavailable");
-      setQuiz(null);
-      return;
-    }
     setQuiz(built);
     setCurrentIndex(0);
     setAnswers({});
     setReported({});
     setFeedbackFormOpen(false);
-    setActiveFlow("mock");
-    setScreen("quiz");
+    setActiveTab("quiz");
   }
 
-  async function handleUpload(payload: {
-    files: File[];
-    title: string;
-    documentId: string;
-    sourcePrefix: string;
+  // Upload & Process Ingestion Slide Handler
+  async function handleUploadSlidePayload({
+    file,
+    lessonTitle,
+    hasExplanation,
+    autoGenerateQuizNow,
+  }: {
+    file: File;
+    lessonTitle: string;
+    hasExplanation: boolean;
+    autoGenerateQuizNow: boolean;
   }) {
-    setUploadBusy(true);
-    setUploadStatus("Đang tải slide lên...");
+    const docId = `DOC_${Date.now()}`;
+    let realDoc: Role2Document | null = null;
+    const fileUrl = URL.createObjectURL(file);
+
     try {
-      const document = await uploadRole2Document(payload);
-      setUploadedDocument(document);
-      setUploadStatus(`Đã nạp ${document.statistics.total_chunks} chunks, đang sinh quiz...`);
-      await runGeneratedQuiz(document);
-    } catch (error) {
-      setUploadStatus(error instanceof Error ? error.message : "Upload failed");
-    } finally {
-      setUploadBusy(false);
+      realDoc = await uploadRole2Document({
+        files: [file],
+        title: lessonTitle,
+        documentId: docId,
+        sourcePrefix: "SLIDE",
+      });
+      setUploadedRole2Doc(realDoc);
+    } catch (err) {
+      console.warn("Backend server chưa khởi chạy API, thực hiện Client-side Ingestion.", err);
     }
+
+    const sourceIds = realDoc
+      ? new Set(realDoc.chunks.map((chunk) => chunk.parent_source_id || chunk.source_id))
+      : null;
+    const totalPages = sourceIds && sourceIds.size > 0 ? sourceIds.size : 1;
+    const dayIndex = curriculumList.length + 1;
+    const newDocId = realDoc ? realDoc.document_id : docId;
+
+    const newDoc: VLearnDocument = {
+      id: newDocId,
+      title: lessonTitle,
+      pages: totalPages,
+      status: "STUDYING",
+      filename: file.name,
+      fileUrl,
+      fileType: file.type,
+      hasExplanation,
+      uploadedAt: new Date().toLocaleString("vi-VN"),
+    };
+
+    const newDayId = `day-${Date.now()}`;
+    const newDay: VLearnDay = {
+      id: newDayId,
+      dayTag: `Bài ${dayIndex}`,
+      title: lessonTitle,
+      documents: [newDoc],
+    };
+
+    setCurriculumList((prev) => [...prev, newDay]);
+    setSelectedDocument(newDoc);
+    setCurrentPage(1);
+    setActiveTab("reader");
+    if (autoGenerateQuizNow && realDoc) {
+      try {
+        const role3Quiz = await generateRole3Quiz({
+          document: realDoc,
+          numQuestions: questionCount,
+          difficulty,
+        });
+        setQuiz(adaptGeneratedQuiz(role3Quiz, realDoc));
+        setCurrentIndex(0);
+        setAnswers({});
+        setReported({});
+        setFeedbackFormOpen(false);
+        setActiveTab("quiz");
+      } catch (err) {
+        console.warn("Không thể sinh quiz tự động ngay sau upload.", err);
+      }
+    }
+  }
+
+  // Zoom Handler
+  function handleZoomChange(delta: number) {
+    setZoomLevel((prev) => Math.min(150, Math.max(70, prev + delta)));
   }
 
   function handleSelectOption(questionId: string, optionId: string) {
@@ -118,7 +200,7 @@ export default function App() {
     if (currentIndex < quiz.questions.length - 1) {
       setCurrentIndex((i) => i + 1);
     } else {
-      setScreen("result");
+      setActiveTab("quiz");
     }
   }
 
@@ -131,7 +213,6 @@ export default function App() {
     setAnswers({});
     setReported({});
     setFeedbackFormOpen(false);
-    setScreen("quiz");
   }
 
   function handleReport(questionId: string) {
@@ -145,100 +226,115 @@ export default function App() {
   function handleSubmitFeedback(entry: { who: string; role: string; comment: string }) {
     const full: FeedbackEntry = { ...entry, ts: new Date().toLocaleString("vi-VN") };
     setFeedbackLog((prev) => [full, ...prev]);
-    console.log("[validation-log]", full);
     setFeedbackFormOpen(false);
   }
 
-  const selectedLecture = LECTURES.find((l) => l.id === selectedLectureId);
-  const uploadSummary = uploadedDocument
-    ? {
-        documentId: uploadedDocument.document_id,
-        title: uploadedDocument.title,
-        chunkCount: uploadedDocument.statistics.total_chunks,
-        totalCharacters: uploadedDocument.statistics.total_characters,
-      }
-    : null;
-
   return (
-    <>
-      <div className="topbar">
-        <div className="brand">
-          <div className="brand-icon">🎓</div>
-          <div>
-            <div className="brand-name">
-              VLearn <span>Quiz AI</span>
-            </div>
-            <span className="pill pill-muted">CP3 Prototype Working</span>
-          </div>
-        </div>
-        <div className="topbar-right">
-          <span className="pill pill-outline">🔑 API: Sẵn sàng (Mock/Gemini)</span>
-          <span className="pill pill-outline">🤖 Học viên AI Thực Chiến</span>
-        </div>
-      </div>
+    <div className="vlearn-app-wrapper">
+      {/* 1. Topbar Header Chuẩn VLearn */}
+      <VLearnHeader
+        currentDocumentTitle={selectedDocument ? selectedDocument.title : "Chưa chọn tài liệu"}
+        activeAccount={activeAccount}
+        onSwitchAccount={handleSwitchAccount}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        toolMode={toolMode}
+        onToolModeChange={setToolMode}
+        zoomLevel={zoomLevel}
+        onZoomChange={handleZoomChange}
+        currentPage={currentPage}
+        totalPages={selectedDocument ? selectedDocument.pages : 1}
+        onPageChange={setCurrentPage}
+      />
 
-      <div className="layout">
-        <Sidebar
-          selectedLectureId={selectedLectureId}
-          onSelectLecture={setSelectedLectureId}
+      {/* 2. Body Main Layout */}
+      <div className="vlearn-main-layout">
+        {/* Sidebar Accordion Bên Trái */}
+        <VLearnSidebar
+          activeRole={activeAccount.role}
+          selectedDocument={selectedDocument}
+          onSelectDocument={handleSelectDocument}
           questionCount={questionCount}
           onQuestionCountChange={setQuestionCount}
           difficulty={difficulty}
-          onDifficultyChange={(d) => setDifficulty(d as "all" | Difficulty)}
-          onGenerate={handleGenerate}
-          uploadBusy={uploadBusy}
-          uploadStatus={uploadStatus}
-          uploadSummary={uploadSummary}
-          onUpload={handleUpload}
+          onDifficultyChange={(d) => setDifficulty(d)}
+          onGenerateQuiz={handleGenerateQuiz}
+          onUploadSlide={handleUploadSlidePayload}
+          collapsed={sidebarCollapsed}
+          onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
+          curriculumList={curriculumList}
         />
 
-        <main className="main-panel">
-          {uploadedDocument && (
-            <div className="card upload-result-card">
-              <div className="quiz-head">
-                <span className="muted">Nguồn đã nạp</span>
-                <span className="pill pill-outline">
-                  {activeFlow === "uploaded" ? "Role 2 + 3" : "Role 2"}
-                </span>
+        {/* Dynamic Center Panel */}
+        <main className="vlearn-center-content">
+          {/* TAB 1: Slide Reader Viewer */}
+          {activeTab === "reader" && (
+            selectedDocument ? (
+              <SlideViewer
+                document={selectedDocument}
+                uploadedRole2Doc={uploadedRole2Doc}
+                currentPage={currentPage}
+                totalPages={selectedDocument.pages}
+                zoomLevel={zoomLevel}
+                toolMode={toolMode}
+                onPageChange={setCurrentPage}
+                onOpenQuiz={handleGenerateQuiz}
+              />
+            ) : (
+              <div className="empty-state-container">
+                <div className="empty-state-card">
+                  <span className="empty-icon">📤</span>
+                  <h2>Chưa Có Bài Giảng Nào Được Nạp</h2>
+                  <p>
+                    {activeAccount.role === "teacher"
+                      ? "Vui lòng bấm vào nút 'Nạp Slide Giảng Dạy' ở cột bên trái để tải lên slide PDF/PPTX đầu tiên của bạn."
+                      : "Vui lòng chuyển sang tài khoản Giảng viên để nạp bài giảng mới vào hệ thống VLearn."}
+                  </p>
+                </div>
               </div>
-              <h2>{uploadedDocument.title}</h2>
-              <p className="muted">
-                {uploadedDocument.document_id} · {uploadedDocument.original_filename} ·{" "}
-                {uploadedDocument.statistics.total_chunks} chunks ·{" "}
-                {uploadedDocument.statistics.total_characters} ký tự
-              </p>
+            )
+          )}
+
+          {/* TAB 2: Quiz AI Execution & Results */}
+          {activeTab === "quiz" && (
+            <div className="quiz-tab-wrapper">
+              {!quiz ? (
+                <div className="empty-state-card">
+                  <span className="empty-icon">🪄</span>
+                  <h2>Chưa Có Bài Quiz Nào Được Khởi Tạo</h2>
+                  <p>Vui lòng nạp slide bài giảng và bấm nút 'Tạo Bài Quiz Từ Slide Này' để bắt đầu làm bài.</p>
+                </div>
+              ) : Object.keys(answers).length === quiz.questions.length && currentIndex === quiz.questions.length - 1 ? (
+                <ResultScreen
+                  quiz={quiz}
+                  answers={answers}
+                  feedbackFormOpen={feedbackFormOpen}
+                  feedbackLog={feedbackLog}
+                  onRetake={handleRetake}
+                  onToggleFeedbackForm={handleToggleFeedbackForm}
+                  onSubmitFeedback={handleSubmitFeedback}
+                />
+              ) : (
+                <QuizScreen
+                  quiz={quiz}
+                  currentIndex={currentIndex}
+                  answers={answers}
+                  reported={reported}
+                  onSelectOption={handleSelectOption}
+                  onReport={handleReport}
+                  onNext={handleNext}
+                  onPrev={handlePrev}
+                />
+              )}
             </div>
           )}
 
-          {screen === "unavailable" && (
-            <UnavailableScreen lectureTitle={selectedLecture ? selectedLecture.title : ""} />
-          )}
-          {screen === "quiz" && quiz && (
-            <QuizScreen
-              quiz={quiz}
-              currentIndex={currentIndex}
-              answers={answers}
-              reported={reported}
-              onSelectOption={handleSelectOption}
-              onReport={handleReport}
-              onNext={handleNext}
-              onPrev={handlePrev}
-            />
-          )}
-          {screen === "result" && quiz && (
-            <ResultScreen
-              quiz={quiz}
-              answers={answers}
-              feedbackFormOpen={feedbackFormOpen}
-              feedbackLog={feedbackLog}
-              onRetake={handleRetake}
-              onToggleFeedbackForm={handleToggleFeedbackForm}
-              onSubmitFeedback={handleSubmitFeedback}
-            />
+          {/* TAB 3: Teacher Dashboard (Chỉ Giảng viên mới mở được) */}
+          {activeTab === "dashboard" && activeAccount.role === "teacher" && (
+            <TeacherDashboard activeDocumentTitle={selectedDocument ? selectedDocument.title : "Tất cả bài giảng"} />
           )}
         </main>
       </div>
-    </>
+    </div>
   );
 }
-

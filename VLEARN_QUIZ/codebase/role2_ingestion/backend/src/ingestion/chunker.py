@@ -169,10 +169,10 @@ def chunk_page_texts(
 ) -> list[dict[str, Any]]:
     chunks: list[dict[str, Any]] = []
     for page_index, page_text in enumerate(page_texts, start=1):
-        cleaned = normalize_whitespace(page_text)
+        cleaned = page_text.strip()
         if not cleaned:
             continue
-        base_id = f"{source_prefix}_{page_index:02d}"
+        base_id = f"SLIDE_{page_index:02d}"
         page_chunks = pack_segments_into_chunks(base_id, [cleaned], max_chars=max_chars)
         chunks.extend(page_chunks)
     return chunks
