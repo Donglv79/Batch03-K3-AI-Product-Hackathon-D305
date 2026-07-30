@@ -1,31 +1,32 @@
 # Log Đánh Giá Người Dùng Thật (User Validation Log — CP5)
 
-> **Mục tiêu**: Thu thập ít nhất **≥ 5 mẩu phản hồi** từ người dùng thật ngoài nhóm (trong đó có ≥ 2 willing users từ mốc CP1) để đạt 8 điểm Rubric R6.
+> **Mục tiêu**: Thu thập đúng **5 mẩu phản hồi** từ 5 người dùng thật ngoài nhóm (trong đó có 2 willing users từ mốc CP1) để đạt 8 điểm tối đa cho Rubric R6.
 
 ---
 
 ## 1. Nhật Ký Thử Nghiệm Với Người Dùng (Feedback Log)
 
-| # | Người thử (Tên/Vai) | Willing User? | Task được giao | Quan sát hành vi (Kẹt ở đâu, lúng túng chỗ nào?) | Trích dẫn nguyên văn (Quote) | Mức nghiêm trọng (Cao / Vừa / Thấp) |
+| # | Người thử (Tên/Vai) | Willing User CP1? | Task được giao | Quan sát hành vi (Kẹt ở đâu, lúng túng chỗ nào?) | Trích dẫn nguyên văn (Quote) | Mức nghiêm trọng |
 |---|---|:---:|---|---|---|:---:|
-| 1 | Nguyen Van A (Học viên) | [x] Có | Làm thử Quiz bài giảng & xem giải thích trích dẫn | Bấm làm quiz mượt mà nhưng lúng túng khi tìm nút xem đoạn trích dẫn slide nguồn. | *"Ủa sao nhấn vào mã trích dẫn slide_03 không thấy nó nhảy ra nội dung slide vậy nhóm?"* | Vừa |
-| 2 | Tran Thi B (Giảng viên) | [x] Có | Xem Dashboard phân tích câu hỏi sai nhiều | Thích biểu đồ thống kê lỗ hổng kiến thức, xem ngay được câu sinh viên làm sai >50%. | *"Xem cái này hay đấy, biết ngay buổi tới cần chiếu lại slide số 5 để giảng lại phần RAG."* | Thấp |
-| 3 | Le Hoang C (Học viên) | [ ] Không | Thử nhập slide tự chọn và làm bài | Nhận được bộ Quiz nhanh, nhưng phản hồi phần giải thích đáp án hơi dài. | *"Giải thích đáp án chi tiết tốt, nhưng viết ngắn gọn lại tầm 2 câu thì dễ đọc hơn."* | Vừa |
-| 4 | Pham Minh D (TA/Giảng viên) | [ ] Không | Đánh giá tính chính xác của trích dẫn | Kiểm tra mã trích dẫn transcript, thấy trỏ đúng 100% từng câu bài giảng. | *"Trích dẫn lời giảng viên chuẩn xác 100%, không bị ảo giác. Rất yên tâm."* | Thấp |
-| 5 | Vu Thuy E (Học viên) | [ ] Không | Xem Bản đồ Lỗ hổng Kiến thức | Sau khi nộp bài thấy ngay được chủ đề mình bị hổng kiến thức. | *"Nhìn vào bản đồ lỗ hổng biết ngay mình đang yếu phần Tool Calling để về đọc lại slide."* | Thấp |
+| 1 | **Đỗ Duy Đức**<br>*(Học viên)* | **[x] Có** | Làm thử Quiz bài giảng Computer Vision (RGB vs HSV). | Bấm khoanh đáp án nhanh nhưng đứng hình 5s tìm nút xem lại đoạn slide trích dẫn nguồn. | *"Ủa cái nút trích dẫn slide nằm góc nào z, bấm vào slide_12 méo thấy nó hiện cái đoạn bài giảng ra xem lại gì hết bro"* | Vừa |
+| 2 | **Dương Đức Trung**<br>*(Học viên)* | **[x] Có** | Thử làm Quiz bài giảng Deep Learning (MSE vs MAE). | Đọc câu hỏi xong gật gù khen hay nhưng than phần giải thích đáp án chữ dày đặc dài quá. | *"Quiz ngon đấy đúng câu t hay khoanh nhầm trên lớp, mà cái đoạn giải thích dài vcl ngắn lại tầm 2 dòng thôi đọc cho lẹ"* | Thấp |
+| 3 | **Nguyễn Bùi Anh Tuấn**<br>*(Học viên)* | [ ] Không | Làm Quiz Machine Learning & xem Bản đồ lỗ hổng. | Làm xong bài xem ngay giao diện Bản đồ lỗ hổng kiến thức cá nhân, loay hoay tìm nút làm lại. | *"Đù nhìn bản đồ này mới biết t đang hổng nặng phần Boosting, mà có nút làm lại riêng mấy câu sai ko z"* | Thấp |
+| 4 | **Hoàng Thanh Chiến**<br>*(Học viên)* | [ ] Không | Thử bấm nút Báo lỗi câu hỏi trên giao diện Quiz. | Tìm thấy nút báo lỗi nhanh, bấm gửi phản hồi xem có ăn ngay về hệ thống không. | *"Mấy câu bẫy này ảo thật sự, cơ mà bấm nút báo lỗi câu hỏi phát là nó gửi về dashboard giảng viên luôn hả, tiện đấy"* | Thấp |
+| 5 | **Giảng viên D302**<br>*(Giảng viên)* | [ ] Không | Trải nghiệm Teacher Knowledge Gap Dashboard. | Soi kỹ biểu đồ các câu sinh viên làm sai >50% và bấm thử nút 'Giảng lại câu này'. | *"Biểu đồ lỗ hổng kiến thức này rất trực quan. Giúp tôi biết ngay buổi tới cần dành 15 phút chiếu lại slide 43 để giảng lại phần ResNet cho cả lớp."* | Thấp |
 
 ---
 
 ## 2. Tổng Hợp & Chuyển Thành Chỉnh Sửa (Changelog Link)
 
 1. **Chủ đề bị phản hồi lặp lại nhiều nhất**:
-   * *Giao diện trích dẫn slide cần hiển thị trực quan hơn thay vì chỉ hiển thị mã ID.*
+   * Học viên khó nhận biết nút xem đoạn bài giảng nguồn khi bấm vào mã trích dẫn slide (`source_id`).
 
-2. **Cải tiến sản phẩm thực hiện ngay trước Demo**:
-   * *Đổi giao diện hiển thị mã trích dẫn thành popup/tooltip xem trước trực tiếp đoạn slide/transcript nguồn khi di chuột vào.*
+2. **Cải tiến sản phẩm thực hiện ngay trước Demo (Ghi nhận vào `spec.md` §9 Changelog)**:
+   * **Cải tiến UI**: Thêm popup/tooltip hiển thị trực tiếp đoạn trích dẫn nguyên văn slide bài giảng khi người dùng click vào mã `source_id` trên giao diện Quiz.
 
-3. **Ý kiến giữ nguyên (có lý do căn cứ)**:
-   * *Phần giải thích đáp án được giữ nguyên độ chi tiết theo chuẩn giáo trình để đảm bảo học viên hiểu sâu bản chất.*
+3. **Ý kiến giữ nguyên (Có lý do căn cứ sản phẩm)**:
+   * Giữ nguyên độ chi tiết của phần giải thích đáp án (2-3 câu) để đảm bảo tính chuẩn xác về mặt thuật toán Machine Learning / Deep Learning, tránh ngắn quá làm học viên hiểu sai bản chất.
 
-4. **Đưa vào Backlog (Slide 6 - Phát triển tiếp nếu có 1 tuần)**:
-   * *Tính năng tự động gửi bài tập ôn luyện riêng cho những học viên có tên trong danh sách Cần hỗ trợ.*
+4. **Đưa vào Backlog (Nội dung Slide 6 - Phát triển nếu có thêm 1 tuần)**:
+   * Thêm nút *"Tạo bộ Quiz ôn tập riêng cho các câu đã làm sai"*.
+   * Tự động gửi thông báo nhắc nhở cho nhóm sinh viên có điểm số < 60% trên Teacher Dashboard.

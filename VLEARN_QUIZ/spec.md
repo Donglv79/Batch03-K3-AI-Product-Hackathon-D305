@@ -23,3 +23,9 @@ Loại: [x] Tính năng mới trên VLearn
   * **Tỷ lệ Đạt tổng thể**: `100.0%` (Vượt Quality Bar 80%).
   * **Tỷ lệ Đạt 4 Lớp chỗ khó**: `100.0%` (10/10 cases khó).
   * **Trích dẫn nguồn & Grounding**: 100% chính xác, không ảo giác.
+
+## §9. Changelog (Thay đổi từ User Validation — CP5)
+
+- **Feedback nguồn**: Phản hồi từ học viên Đỗ Duy Đức (*"Bấm vào mã slide_12 không thấy nó hiện đoạn bài giảng ra xem lại..."*).
+- **Thay đổi thực hiện**: Bổ sung Popup/Tooltip hiển thị trực tiếp đoạn trích dẫn bài giảng nguyên văn khi người dùng tương tác với mã `source_id` trên giao diện Quiz.
+- **Trạng thái**: Đã cập nhật vào prototype cho mốc nộp CP5.
