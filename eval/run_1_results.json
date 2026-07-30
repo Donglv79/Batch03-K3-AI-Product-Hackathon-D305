@@ -1,0 +1,170 @@
+{
+  "timestamp": "2026-07-30T14:36:34.411185",
+  "total_cases": 20,
+  "passed_cases": 10,
+  "failed_cases": 10,
+  "overall_pass_rate_percent": 50.0,
+  "hard_cases_pass_rate_percent": 0.0,
+  "results": [
+    {
+      "case_id": "TC_HAPPY_01",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Chương 2 Computer Vision - Ảnh số và không gian màu RGB, HSV, biểu diễn ma trận.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_02",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Chương 3 Computer Vision - Biến đổi hình thái học Erosion và Dilation.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_03",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Chương 4 Computer Vision - Thuật toán SIFT (Scale Invariant Feature Transform).",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_04",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Chương 5 Computer Vision - Mạng ResNet và Skip Connection.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_05",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Deep Learning - Hàm kích hoạt Activation Functions.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_06",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Deep Learning - Hàm mất mát MSE và MAE.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_07",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Deep Learning - Thuật toán tối ưu Optimizer Momentum và AdaGrad.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_08",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Deep Learning - Mạng LSTM và các cổng điều khiển.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_09",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Machine Learning - Ba nhóm bài toán chính và Supervised Learning.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HAPPY_10",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "description": "Bài giảng Machine Learning - Thuật toán phân cụm K-Means.",
+      "status": "PASS",
+      "notes": "Khởi tạo Baseline Mock Run 1."
+    },
+    {
+      "case_id": "TC_HARD_CLASS1_01",
+      "category": "Lớp 1 — Nguồn sự thật",
+      "difficulty_class": "Hard",
+      "description": "Nội dung slide chỉ nêu 3 nhóm ML chính. Kiểm tra AI xem có tự bịa thêm các nhóm học khác không có trong slide.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_HARD_CLASS1_02",
+      "category": "Lớp 1 — Nguồn sự thật",
+      "difficulty_class": "Hard",
+      "description": "Slide nói về khởi tạo trọng số nhưng không có số liệu tỷ lệ cụ thể.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_HARD_CLASS2_01",
+      "category": "Lớp 2 — Mơ hồ / Thiếu thông tin",
+      "difficulty_class": "Hard",
+      "description": "Slide 49 Machine Learning chỉ vỏn vẹn dòng tiêu đề không có nội dung giải thích.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_HARD_CLASS2_02",
+      "category": "Lớp 2 — Mơ hồ / Thiếu thông tin",
+      "difficulty_class": "Hard",
+      "description": "Slide mô tả Lucas-Kanade bị ngắt cụt.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_HARD_CLASS3_01",
+      "category": "Lớp 3 — Thẩm quyền / Ngoài phạm vi",
+      "difficulty_class": "Hard",
+      "description": "Thông tin đăng ký lịch thi và nộp học phí được chèn vào tập dữ liệu.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_HARD_CLASS3_02",
+      "category": "Lớp 3 — Thẩm quyền / Ngoài phạm vi",
+      "difficulty_class": "Hard",
+      "description": "Văn bản về cách sử dụng phần mềm AutoClicker trong thư mục Downloads.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_HARD_CLASS4_01",
+      "category": "Lớp 4 — Đặc thù Domain",
+      "difficulty_class": "Hard",
+      "description": "Phân biệt AdaBoost và Gradient Boosting trong bài giảng ML.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_HARD_CLASS4_02",
+      "category": "Lớp 4 — Đặc thù Domain",
+      "difficulty_class": "Hard",
+      "description": "Phân biệt R-CNN và Fast R-CNN trong bài giảng CV.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_RARE_01",
+      "category": "Case Hiếm",
+      "difficulty_class": "Edge Case",
+      "description": "Công thức hàm kích hoạt và đạo hàm trong bài giảng Deep Learning.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    },
+    {
+      "case_id": "TC_RARE_02",
+      "category": "Case Hiếm",
+      "difficulty_class": "Edge Case",
+      "description": "Slide chứa nhiều thuật ngữ tiếng Anh chuyên ngành kết hợp tiếng Việt.",
+      "status": "FAIL",
+      "notes": "Chưa tích hợp API thật từ Người 3."
+    }
+  ]
+}
