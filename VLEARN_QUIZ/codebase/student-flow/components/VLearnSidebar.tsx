@@ -13,6 +13,8 @@ type Props = {
   difficulty: "all" | Difficulty;
   onDifficultyChange: (d: "all" | Difficulty) => void;
   onGenerateQuiz: () => void;
+  isGenerating: boolean;
+  canGenerateQuiz: boolean;
   onUploadSlide: (payload: {
     file: File;
     lessonTitle: string;
@@ -33,6 +35,8 @@ export default function VLearnSidebar({
   difficulty,
   onDifficultyChange,
   onGenerateQuiz,
+  isGenerating,
+  canGenerateQuiz,
   onUploadSlide,
   collapsed,
   onToggleCollapse,
@@ -79,11 +83,11 @@ export default function VLearnSidebar({
       <aside className={`vlearn-sidebar ${collapsed ? "collapsed" : ""}`}>
         <div className="sidebar-header-box">
           <div className="sidebar-title-wrap">
-            <span className="sidebar-icon">📚</span>
+            <span className="sidebar-icon" aria-hidden="true">▤</span>
             {!collapsed && (
               <div>
-                <h3 className="sidebar-title">Học liệu môn học</h3>
-                <p className="sidebar-sub">Chương, slide và tài liệu đã upload</p>
+                <h3 className="sidebar-title">Tài liệu học tập</h3>
+                <p className="sidebar-sub">Nguồn dùng để tạo quiz</p>
               </div>
             )}
           </div>
@@ -102,8 +106,8 @@ export default function VLearnSidebar({
             {activeRole === "teacher" && (
               <div className="teacher-upload-card">
                 <div className="teacher-upload-title">
-                  <span>📤 Nạp Slide Giảng Dạy</span>
-                  <span className="pill-teacher-badge">Đặc quyền GV</span>
+                  <span>Tải tài liệu mới</span>
+                  <span className="pill-teacher-badge">PDF</span>
                 </div>
                 <label className="sidebar-upload-dropzone">
                   <input
@@ -112,8 +116,8 @@ export default function VLearnSidebar({
                     onChange={handleFileChange}
                     style={{ display: "none" }}
                   />
-                  <span className="upload-icon">📄</span>
-                  <span className="upload-lbl">Tải slide PDF mới lên hệ thống</span>
+                  <span className="upload-icon" aria-hidden="true">+</span>
+                  <span className="upload-lbl">Chọn tệp PDF</span>
                 </label>
               </div>
             )}
@@ -151,14 +155,14 @@ export default function VLearnSidebar({
                                 onClick={() => onSelectDocument(doc, day.dayTag)}
                               >
                                 <div className="doc-item-left">
-                                  <span className="doc-type-icon">📄</span>
+                                  <span className="doc-type-icon" aria-hidden="true">PDF</span>
                                   <div className="doc-item-meta">
                                     <span className="doc-item-title">{doc.title}</span>
                                     <span className="doc-item-pages">{doc.pages} trang</span>
                                   </div>
                                 </div>
                                 {doc.status === "STUDYING" && (
-                                  <span className="status-studying-badge">STUDYING</span>
+                                  <span className="status-studying-badge">Đang học</span>
                                 )}
                               </button>
                             );
@@ -175,21 +179,21 @@ export default function VLearnSidebar({
             {curriculumList.length > 0 && (
               <div className="quiz-generator-box">
                 <div className="generator-title">
-                  <span>🪄 Sinh Quiz AI Tự Động</span>
+                  <span>Thiết lập quiz</span>
                 </div>
                 <div className="sidebar-field">
-                  <label>Số lượng câu hỏi:</label>
+                  <label>Số câu hỏi</label>
                   <select
                     value={questionCount}
                     onChange={(e) => onQuestionCountChange(Number(e.target.value))}
                   >
-                    <option value={3}>3 câu hỏi (Nhanh)</option>
-                    <option value={5}>5 câu hỏi (Tiêu chuẩn)</option>
-                    <option value={10}>10 câu hỏi (Chuyên sâu)</option>
+                    <option value={3}>3 câu · Nhanh</option>
+                    <option value={5}>5 câu · Tiêu chuẩn</option>
+                    <option value={10}>10 câu · Chuyên sâu</option>
                   </select>
                 </div>
                 <div className="sidebar-field">
-                  <label>Độ khó bài test:</label>
+                  <label>Độ khó</label>
                   <select
                     value={difficulty}
                     onChange={(e) => onDifficultyChange(e.target.value as "all" | Difficulty)}
@@ -200,9 +204,20 @@ export default function VLearnSidebar({
                     <option value="apply">Vận dụng cao</option>
                   </select>
                 </div>
-                <button className="btn-generate-quiz" onClick={onGenerateQuiz}>
-                  ⚡ Tạo Bài Quiz Từ Slide Này
+                <button
+                  className="btn-generate-quiz"
+                  onClick={onGenerateQuiz}
+                  disabled={!canGenerateQuiz || isGenerating}
+                >
+                  {isGenerating ? "Đang tạo quiz…" : "Tạo quiz từ tài liệu"}
                 </button>
+                {!canGenerateQuiz && (
+                  <p className="generator-hint">
+                    {selectedDocument
+                      ? "Tài liệu mẫu chưa có dữ liệu nguồn. Hãy tải một PDF mới."
+                      : "Chọn một tài liệu để tiếp tục."}
+                  </p>
+                )}
               </div>
             )}
           </>

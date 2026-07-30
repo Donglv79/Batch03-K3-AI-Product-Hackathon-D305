@@ -1,0 +1,110 @@
+{
+  "document_id": "Deep_Learning_Bai_Giang_pptx_Slide37",
+  "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide37_20260730T142811.630302Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 2 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Deep_Learning_Bai_Giang_pptx_Slide37\",\n  \"title\": \"Deep_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide37\",\n      \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide37\",\n      \"chunk_index\": 1,\n      \"text\": \"BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"LSTM gates\",\"difficulty\":\"medium\",\"question\":\"Trong mạng LSTM, thành phần nào quyết định phần thông tin từ quá trình trước sẽ bị bỏ qua?\",\"options\":[{\"id\":\"A\",\"text\":\"Cell state C_t\"},{\"id\":\"B\",\"text\":\"Forget Gate\"},{\"id\":\"C\",\"text\":\"Input Gate\"},{\"id\":\"D\",\"text\":\"Long Short-Term Memory\"}],\"correct_option_id\":\"B\",\"explanation\":\"Nguồn nêu rõ Forget Gate quyết định thông tin nào từ quá trình trước sẽ bị bỏ qua.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"quote\":\"BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"LSTM update\",\"difficulty\":\"medium\",\"question\":\"Theo tài liệu, vai trò của Input Gate trong LSTM là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Bỏ qua thông tin từ quá trình trước\"},{\"id\":\"B\",\"text\":\"Lưu toàn bộ trạng thái ô nhớ mà không thay đổi\"},{\"id\":\"C\",\"text\":\"Cập nhật thông tin mới\"},{\"id\":\"D\",\"text\":\"Đổi tên Cell state thành C_t\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguồn ghi trực tiếp rằng Input Gate dùng để cập nhật thông tin mới.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"quote\":\"BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới.\"}}]}",
+  "raw_response": {
+    "id": "resp_02cbed91ff855212016a6b5f715d688191820bff3390dd8f19",
+    "object": "chat.completion",
+    "created": 1785421681,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"LSTM gates\",\"difficulty\":\"medium\",\"question\":\"Trong mạng LSTM, thành phần nào quyết định phần thông tin từ quá trình trước sẽ bị bỏ qua?\",\"options\":[{\"id\":\"A\",\"text\":\"Cell state C_t\"},{\"id\":\"B\",\"text\":\"Forget Gate\"},{\"id\":\"C\",\"text\":\"Input Gate\"},{\"id\":\"D\",\"text\":\"Long Short-Term Memory\"}],\"correct_option_id\":\"B\",\"explanation\":\"Nguồn nêu rõ Forget Gate quyết định thông tin nào từ quá trình trước sẽ bị bỏ qua.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"quote\":\"BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"LSTM update\",\"difficulty\":\"medium\",\"question\":\"Theo tài liệu, vai trò của Input Gate trong LSTM là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Bỏ qua thông tin từ quá trình trước\"},{\"id\":\"B\",\"text\":\"Lưu toàn bộ trạng thái ô nhớ mà không thay đổi\"},{\"id\":\"C\",\"text\":\"Cập nhật thông tin mới\"},{\"id\":\"D\",\"text\":\"Đổi tên Cell state thành C_t\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguồn ghi trực tiếp rằng Input Gate dùng để cập nhật thông tin mới.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide37\",\"quote\":\"BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3082,
+      "completion_tokens": 484,
+      "total_tokens": 3566
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Deep_Learning_Bai_Giang_pptx_Slide37",
+    "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide37_20260730T142811.630302Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:28:11.630302Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 2,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "LSTM gates",
+        "difficulty": "medium",
+        "question": "Trong mạng LSTM, thành phần nào quyết định phần thông tin từ quá trình trước sẽ bị bỏ qua?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Cell state C_t"
+          },
+          {
+            "id": "B",
+            "text": "Forget Gate"
+          },
+          {
+            "id": "C",
+            "text": "Input Gate"
+          },
+          {
+            "id": "D",
+            "text": "Long Short-Term Memory"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Nguồn nêu rõ Forget Gate quyết định thông tin nào từ quá trình trước sẽ bị bỏ qua.",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+          "quote": "BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q2",
+        "type": "single_choice",
+        "topic": "LSTM update",
+        "difficulty": "medium",
+        "question": "Theo tài liệu, vai trò của Input Gate trong LSTM là gì?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Bỏ qua thông tin từ quá trình trước"
+          },
+          {
+            "id": "B",
+            "text": "Lưu toàn bộ trạng thái ô nhớ mà không thay đổi"
+          },
+          {
+            "id": "C",
+            "text": "Cập nhật thông tin mới"
+          },
+          {
+            "id": "D",
+            "text": "Đổi tên Cell state thành C_t"
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "Nguồn ghi trực tiếp rằng Input Gate dùng để cập nhật thông tin mới.",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+          "quote": "BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

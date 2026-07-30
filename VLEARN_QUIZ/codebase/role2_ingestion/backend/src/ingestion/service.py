@@ -161,11 +161,10 @@ class IngestionService:
         )
 
     def save_processed_document(self, document: dict[str, Any]) -> Path:
-        processed_dir = (
-            Path(__file__).resolve().parents[6]
-            / "data"
-            / "processed"
-        )
+        # Keep generated ingestion artifacts inside the backend workspace.  The
+        # previous parents[6] path escaped to the repository root and disagreed
+        # with both the documented layout and .gitignore.
+        processed_dir = Path(__file__).resolve().parents[2] / "data" / "processed"
         processed_dir.mkdir(parents=True, exist_ok=True)
         path = processed_dir / f"{document['document_id']}.json"
         path.write_text(json.dumps(document, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -1,0 +1,110 @@
+{
+  "document_id": "Computer_Vision_Bai_Giang_pptx_Slide25",
+  "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide25_20260730T142139.953440Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 2 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Computer_Vision_Bai_Giang_pptx_Slide25\",\n  \"title\": \"Computer_Vision_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide25\",\n      \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide25\",\n      \"chunk_index\": 1,\n      \"text\": \"CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"phep co\",\"difficulty\":\"medium\",\"question\":\"Trong ảnh nhị phân, phép co (Erosion) có tác dụng nào sau đây?\",\"options\":[{\"id\":\"A\",\"text\":\"Thu nhỏ vùng đối tượng foreground, loại bỏ nhiễu nhỏ và tách các đối tượng dính liền\"},{\"id\":\"B\",\"text\":\"Làm mở rộng vùng đối tượng foreground\"},{\"id\":\"C\",\"text\":\"Biến ảnh nhị phân thành ảnh xám\"},{\"id\":\"D\",\"text\":\"Tăng độ sáng toàn bộ ảnh\"}],\"correct_option_id\":\"A\",\"explanation\":\"Quote nêu rõ Erosion thu nhỏ vùng foreground, loại bỏ nhiễu nhỏ và tách các đối tượng dính liền.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"quote\":\"CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"phep gian\",\"difficulty\":\"medium\",\"question\":\"Nếu mục tiêu là làm mở rộng vùng đối tượng trong ảnh, nên dùng phép nào?\",\"options\":[{\"id\":\"A\",\"text\":\"Erosion (Phép co)\"},{\"id\":\"B\",\"text\":\"Dilation (Phép giãn)\"},{\"id\":\"C\",\"text\":\"Lọc trung bình\"},{\"id\":\"D\",\"text\":\"Cân bằng histogram\"}],\"correct_option_id\":\"B\",\"explanation\":\"Theo quote, Dilation là phép làm mở rộng vùng đối tượng.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"quote\":\"CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng.\"}}]}",
+  "raw_response": {
+    "id": "resp_05b2cdb083f54f6c016a6b5de7762881918c642890365f2382",
+    "object": "chat.completion",
+    "created": 1785421287,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"phep co\",\"difficulty\":\"medium\",\"question\":\"Trong ảnh nhị phân, phép co (Erosion) có tác dụng nào sau đây?\",\"options\":[{\"id\":\"A\",\"text\":\"Thu nhỏ vùng đối tượng foreground, loại bỏ nhiễu nhỏ và tách các đối tượng dính liền\"},{\"id\":\"B\",\"text\":\"Làm mở rộng vùng đối tượng foreground\"},{\"id\":\"C\",\"text\":\"Biến ảnh nhị phân thành ảnh xám\"},{\"id\":\"D\",\"text\":\"Tăng độ sáng toàn bộ ảnh\"}],\"correct_option_id\":\"A\",\"explanation\":\"Quote nêu rõ Erosion thu nhỏ vùng foreground, loại bỏ nhiễu nhỏ và tách các đối tượng dính liền.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"quote\":\"CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"phep gian\",\"difficulty\":\"medium\",\"question\":\"Nếu mục tiêu là làm mở rộng vùng đối tượng trong ảnh, nên dùng phép nào?\",\"options\":[{\"id\":\"A\",\"text\":\"Erosion (Phép co)\"},{\"id\":\"B\",\"text\":\"Dilation (Phép giãn)\"},{\"id\":\"C\",\"text\":\"Lọc trung bình\"},{\"id\":\"D\",\"text\":\"Cân bằng histogram\"}],\"correct_option_id\":\"B\",\"explanation\":\"Theo quote, Dilation là phép làm mở rộng vùng đối tượng.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide25\",\"quote\":\"CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3092,
+      "completion_tokens": 533,
+      "total_tokens": 3625
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Computer_Vision_Bai_Giang_pptx_Slide25",
+    "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide25_20260730T142139.953440Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:21:39.953440Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 2,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "phep co",
+        "difficulty": "medium",
+        "question": "Trong ảnh nhị phân, phép co (Erosion) có tác dụng nào sau đây?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Thu nhỏ vùng đối tượng foreground, loại bỏ nhiễu nhỏ và tách các đối tượng dính liền"
+          },
+          {
+            "id": "B",
+            "text": "Làm mở rộng vùng đối tượng foreground"
+          },
+          {
+            "id": "C",
+            "text": "Biến ảnh nhị phân thành ảnh xám"
+          },
+          {
+            "id": "D",
+            "text": "Tăng độ sáng toàn bộ ảnh"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Quote nêu rõ Erosion thu nhỏ vùng foreground, loại bỏ nhiễu nhỏ và tách các đối tượng dính liền.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+          "quote": "CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q2",
+        "type": "single_choice",
+        "topic": "phep gian",
+        "difficulty": "medium",
+        "question": "Nếu mục tiêu là làm mở rộng vùng đối tượng trong ảnh, nên dùng phép nào?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Erosion (Phép co)"
+          },
+          {
+            "id": "B",
+            "text": "Dilation (Phép giãn)"
+          },
+          {
+            "id": "C",
+            "text": "Lọc trung bình"
+          },
+          {
+            "id": "D",
+            "text": "Cân bằng histogram"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Theo quote, Dilation là phép làm mở rộng vùng đối tượng.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+          "quote": "CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

@@ -6,5 +6,6 @@ citations against source chunks, and returns a normalized quiz JSON.
 """
 
 from .engine import generate_quiz
+from .source_guard import SourceIssue, inspect_source
 
-__all__ = ["generate_quiz"]
+__all__ = ["SourceIssue", "generate_quiz", "inspect_source"]

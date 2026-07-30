@@ -1,0 +1,1628 @@
+{
+  "timestamp": "2026-07-30T14:37:57.925807Z",
+  "total_cases": 30,
+  "passed_cases": 27,
+  "failed_cases": 3,
+  "overall_pass_rate_percent": 90.0,
+  "hard_cases_pass_rate_percent": 100.0,
+  "quality_bar_passed": true,
+  "results": [
+    {
+      "case_id": "TC_HAPPY_01",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "FAIL",
+      "failures": [
+        "missing required topics: ['RGB vs HSV', 'Grayscale matrix 0-255']"
+      ],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Computer_Vision_Bai_Giang_pptx_Slide12-13",
+        "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide12-13_20260730T143244.282105Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:32:44.282105Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 3,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "mo hinh mau",
+            "difficulty": "medium",
+            "question": "Theo nguồn, mô hình nào tách biệt thông tin màu sắc và độ sáng?",
+            "options": [
+              {
+                "id": "A",
+                "text": "RGB"
+              },
+              {
+                "id": "B",
+                "text": "HSV"
+              },
+              {
+                "id": "C",
+                "text": "Grayscale"
+              },
+              {
+                "id": "D",
+                "text": "Tensor 3 chiều"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Nguồn nêu rõ HSV tách biệt thông tin màu sắc và độ sáng.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+              "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "anh xam",
+            "difficulty": "medium",
+            "question": "Theo nguồn, ảnh xám được biểu diễn theo cách nào?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Bằng tensor 3 chiều"
+              },
+              {
+                "id": "B",
+                "text": "Bằng mô hình cộng màu"
+              },
+              {
+                "id": "C",
+                "text": "Bằng ma trận 2 chiều"
+              },
+              {
+                "id": "D",
+                "text": "Bằng thành phần Hue và Saturation"
+              }
+            ],
+            "correct_option_id": "C",
+            "explanation": "Nguồn nói ảnh xám được biểu diễn bằng ma trận 2 chiều.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+              "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q3",
+            "type": "single_choice",
+            "topic": "anh mau",
+            "difficulty": "medium",
+            "question": "Điểm khác nhau về biểu diễn giữa ảnh xám và ảnh màu trong nguồn là gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Ảnh xám dùng tensor 3 chiều, ảnh màu dùng ma trận 2 chiều"
+              },
+              {
+                "id": "B",
+                "text": "Ảnh xám và ảnh màu đều dùng ma trận 2 chiều"
+              },
+              {
+                "id": "C",
+                "text": "Ảnh xám dùng ma trận 2 chiều, ảnh màu dùng tensor 3 chiều"
+              },
+              {
+                "id": "D",
+                "text": "Cả hai đều dùng mô hình HSV"
+              }
+            ],
+            "correct_option_id": "C",
+            "explanation": "Nguồn nêu ảnh xám là ma trận 2 chiều còn ảnh màu là tensor 3 chiều.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+              "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Computer_Vision_Bai_Giang_pptx_Slide12-13_20260730T143244.282105Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_02",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Computer_Vision_Bai_Giang_pptx_Slide25",
+        "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide25_20260730T143257.633787Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:32:57.633787Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "bien doi hinh thai hoc",
+            "difficulty": "medium",
+            "question": "Trong ảnh nhị phân, phép nào phù hợp hơn để loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Erosion (Phép co)"
+              },
+              {
+                "id": "B",
+                "text": "Dilation (Phép giãn)"
+              },
+              {
+                "id": "C",
+                "text": "Cả hai phép như nhau"
+              },
+              {
+                "id": "D",
+                "text": "Không phép nào trong hai phép"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Quote nêu rõ Erosion thu nhỏ vùng foreground, loại bỏ nhiễu nhỏ và tách các đối tượng dính liền.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+              "quote": "CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "tac dung dilation",
+            "difficulty": "medium",
+            "question": "Nếu mục tiêu là làm mở rộng vùng đối tượng trong ảnh, nên chọn phép nào?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Erosion (Phép co)"
+              },
+              {
+                "id": "B",
+                "text": "Dilation (Phép giãn)"
+              },
+              {
+                "id": "C",
+                "text": "Lọc nhiễu bằng trung bình"
+              },
+              {
+                "id": "D",
+                "text": "Không cần biến đổi nào"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Quote nói trực tiếp rằng Dilation làm mở rộng vùng đối tượng.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide25",
+              "quote": "CHƯƠNG 3 · XỬ LÝ ẢNH. Biến đổi hình thái học: Erosion (Phép co) thu nhỏ vùng đối tượng foreground trong ảnh nhị phân, loại bỏ các điểm nhiễu nhỏ và tách các đối tượng dính liền. Dilation (Phép giãn) làm mở rộng vùng đối tượng."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Computer_Vision_Bai_Giang_pptx_Slide25_20260730T143257.633787Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_03",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Computer_Vision_Bai_Giang_pptx_Slide31",
+        "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide31_20260730T143310.736249Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:33:10.736249Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "SIFT properties",
+            "difficulty": "medium",
+            "question": "Theo nguồn, đặc điểm nào mô tả đúng SIFT?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Bất biến với tỉ lệ và phép quay"
+              },
+              {
+                "id": "B",
+                "text": "Chỉ bất biến với độ sáng"
+              },
+              {
+                "id": "C",
+                "text": "Chỉ hoạt động trên ảnh màu"
+              },
+              {
+                "id": "D",
+                "text": "Không dùng không gian tỉ lệ"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nêu rõ SIFT có tính bất biến với tỉ lệ và phép quay.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide31",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide31",
+              "quote": "CHƯƠNG 4 · ĐẶC TRƯNG ẢNH. SIFT - Scale Invariant Feature Transform. Bước 1: Phát hiện cực trị trong không gian tỉ lệ dùng Difference of Gaussian (DoG) ở nhiều tỉ lệ để tìm điểm đặc trưng ứng viên. SIFT có tính bất biến với tỉ lệ và phép quay."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "DoG role",
+            "difficulty": "medium",
+            "question": "Trong bước 1 của SIFT, Difference of Gaussian (DoG) được dùng để làm gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Tăng độ phân giải ảnh đầu vào"
+              },
+              {
+                "id": "B",
+                "text": "Tìm điểm đặc trưng ứng viên trong không gian tỉ lệ"
+              },
+              {
+                "id": "C",
+                "text": "Phân loại đối tượng theo màu sắc"
+              },
+              {
+                "id": "D",
+                "text": "Khử nhiễu bằng phép quay ảnh"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Nguồn nói DoG ở nhiều tỉ lệ được dùng để tìm điểm đặc trưng ứng viên.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide31",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide31",
+              "quote": "CHƯƠNG 4 · ĐẶC TRƯNG ẢNH. SIFT - Scale Invariant Feature Transform. Bước 1: Phát hiện cực trị trong không gian tỉ lệ dùng Difference of Gaussian (DoG) ở nhiều tỉ lệ để tìm điểm đặc trưng ứng viên. SIFT có tính bất biến với tỉ lệ và phép quay."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Computer_Vision_Bai_Giang_pptx_Slide31_20260730T143310.736249Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_04",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Computer_Vision_Bai_Giang_pptx_Slide43",
+        "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide43_20260730T143324.032168Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:33:24.032168Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "Skip Connection",
+            "difficulty": "medium",
+            "question": "Trong ResNet, kết nối tắt (Skip Connection) có vai trò chính nào theo tài liệu?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Cho phép thông tin đi tắt qua một hoặc nhiều lớp"
+              },
+              {
+                "id": "B",
+                "text": "Tăng kích thước ảnh đầu vào"
+              },
+              {
+                "id": "C",
+                "text": "Loại bỏ hoàn toàn hiện tượng gradient"
+              },
+              {
+                "id": "D",
+                "text": "Giảm số lượng lớp của mạng về 1"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nêu rõ Skip Connection cho phép thông tin đi tắt qua một hoặc nhiều lớp.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+              "quote": "CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "Mạng quá sâu",
+            "difficulty": "medium",
+            "question": "Theo tài liệu, vấn đề nào có thể xảy ra khi tăng số lớp trong mạng rất sâu?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Độ chính xác luôn tăng ổn định"
+              },
+              {
+                "id": "B",
+                "text": "Độ chính xác có thể giảm do tiêu biến/bùng nổ gradient"
+              },
+              {
+                "id": "C",
+                "text": "Mạng không còn cần dữ liệu huấn luyện"
+              },
+              {
+                "id": "D",
+                "text": "Kích thước ảnh đầu ra luôn nhỏ hơn"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Tài liệu nói khi tăng số lớp, độ chính xác có thể giảm do tiêu biến/bùng nổ gradient.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+              "quote": "CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Computer_Vision_Bai_Giang_pptx_Slide43_20260730T143324.032168Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_05",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "FAIL",
+      "failures": [
+        "missing required topics: ['Sigmoid formula']"
+      ],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Deep_Learning_Bai_Giang_pptx_Slide10-11",
+        "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide10-11_20260730T143337.672612Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:33:37.672612Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "ham kich hoat",
+            "difficulty": "medium",
+            "question": "Vai tro chinh cua ham kich hoat trong mang no-ron la gi?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Tao tinh phi tuyen cho mang no-ron"
+              },
+              {
+                "id": "B",
+                "text": "Giam so lop cua mang no-ron"
+              },
+              {
+                "id": "C",
+                "text": "Bien doi moi dau vao thanh gia tri am"
+              },
+              {
+                "id": "D",
+                "text": "Loai bo hoan toan cac phep bien doi tuyen tinh"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Doan trich noi ro ham kich hoat dung de tao tinh phi tuyen cho mang no-ron.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+              "quote": "BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1)."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "sigmoid",
+            "difficulty": "medium",
+            "question": "Theo nguon, ham Sigmoid co mien gia tri nao?",
+            "options": [
+              {
+                "id": "A",
+                "text": "(-1,1)"
+              },
+              {
+                "id": "B",
+                "text": "(0,1)"
+              },
+              {
+                "id": "C",
+                "text": "[0,1]"
+              },
+              {
+                "id": "D",
+                "text": "(0,+∞)"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Doan trich ghi ro ham Sigmoid co mien gia tri la (0,1).",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+              "quote": "BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1)."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Deep_Learning_Bai_Giang_pptx_Slide10-11_20260730T143337.672612Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_06",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Deep_Learning_Bai_Giang_pptx_Slide13",
+        "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide13_20260730T143352.765734Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:33:52.765734Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "loss function regression",
+            "difficulty": "medium",
+            "question": "Theo nguồn, hàm mất mát nào áp dụng cho bài toán hồi quy và phạt nặng sai số lớn do bình phương?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Mean Squared Error (MSE)"
+              },
+              {
+                "id": "B",
+                "text": "Mean Absolute Error (MAE)"
+              },
+              {
+                "id": "C",
+                "text": "Cross-Entropy Loss"
+              },
+              {
+                "id": "D",
+                "text": "Hinge Loss"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nêu rõ MSE áp dụng cho hồi quy và phạt nặng sai số lớn do bình phương.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide13",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide13",
+              "quote": "BÀI GIẢNG Deep Learning. ĐO LƯỜNG SAI SỐ - Hàm mất mát (Loss Function). Mean Squared Error (MSE) áp dụng cho bài toán Hồi quy (Regression), phạt nặng sai số lớn do bình phương. Mean Absolute Error (MAE) ít nhạy với điểm ngoại lai (outliers)."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "outlier sensitivity",
+            "difficulty": "medium",
+            "question": "Nếu dữ liệu có điểm ngoại lai, theo nguồn thì lựa chọn nào ít nhạy hơn với các điểm này?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Mean Squared Error (MSE)"
+              },
+              {
+                "id": "B",
+                "text": "Mean Absolute Error (MAE)"
+              },
+              {
+                "id": "C",
+                "text": "Cả MSE và MAE nhạy như nhau"
+              },
+              {
+                "id": "D",
+                "text": "Nguồn không đề cập"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Nguồn nói MAE ít nhạy với điểm ngoại lai hơn.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide13",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide13",
+              "quote": "BÀI GIẢNG Deep Learning. ĐO LƯỜNG SAI SỐ - Hàm mất mát (Loss Function). Mean Squared Error (MSE) áp dụng cho bài toán Hồi quy (Regression), phạt nặng sai số lớn do bình phương. Mean Absolute Error (MAE) ít nhạy với điểm ngoại lai (outliers)."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Deep_Learning_Bai_Giang_pptx_Slide13_20260730T143352.765734Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_07",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Deep_Learning_Bai_Giang_pptx_Slide19",
+        "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide19_20260730T143405.660454Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:34:05.660454Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "optimizer momentum",
+            "difficulty": "medium",
+            "question": "Theo bài giảng, lợi ích chính của Momentum là gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Tự điều chỉnh learning rate riêng cho từng tham số"
+              },
+              {
+                "id": "B",
+                "text": "Tích luỹ đà từ các bước trước để giúp vượt qua điểm yên ngựa"
+              },
+              {
+                "id": "C",
+                "text": "Giảm số lượng tham số cần huấn luyện"
+              },
+              {
+                "id": "D",
+                "text": "Thay thế hoàn toàn quá trình cập nhật gradient"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Quote nêu rõ Momentum tích luỹ đà từ các bước trước và giúp vượt qua điểm yên ngựa.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide19",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide19",
+              "quote": "BÀI GIẢNG Deep Learning. Các thuật toán Optimizer nâng cao: Momentum tích luỹ đà từ các bước trước giúp vượt qua điểm yên ngựa (saddle point). AdaGrad tự điều chỉnh learning rate riêng cho từng tham số."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "adagrad learning rate",
+            "difficulty": "medium",
+            "question": "Điểm khác biệt được bài giảng gán cho AdaGrad là gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Tích luỹ đà từ các bước trước"
+              },
+              {
+                "id": "B",
+                "text": "Giúp vượt qua điểm yên ngựa bằng quán tính"
+              },
+              {
+                "id": "C",
+                "text": "Tự điều chỉnh learning rate riêng cho từng tham số"
+              },
+              {
+                "id": "D",
+                "text": "Dùng chung một learning rate cố định cho mọi tham số"
+              }
+            ],
+            "correct_option_id": "C",
+            "explanation": "Quote nói AdaGrad tự điều chỉnh learning rate riêng cho từng tham số.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide19",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide19",
+              "quote": "BÀI GIẢNG Deep Learning. Các thuật toán Optimizer nâng cao: Momentum tích luỹ đà từ các bước trước giúp vượt qua điểm yên ngựa (saddle point). AdaGrad tự điều chỉnh learning rate riêng cho từng tham số."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Deep_Learning_Bai_Giang_pptx_Slide19_20260730T143405.660454Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_08",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "FAIL",
+      "failures": [
+        "missing required topics: ['Cell state C_t']"
+      ],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Deep_Learning_Bai_Giang_pptx_Slide37",
+        "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide37_20260730T143418.541226Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:34:18.541226Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "LSTM gates",
+            "difficulty": "medium",
+            "question": "Trong mạng LSTM, thành phần nào quyết định phần thông tin từ quá trình trước sẽ bị bỏ qua?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Cell state C_t"
+              },
+              {
+                "id": "B",
+                "text": "Forget Gate"
+              },
+              {
+                "id": "C",
+                "text": "Input Gate"
+              },
+              {
+                "id": "D",
+                "text": "Long Short-Term Memory"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Nguồn nêu rõ Forget Gate quyết định thông tin nào từ quá trình trước sẽ bị bỏ qua.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+              "quote": "BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "LSTM input gate",
+            "difficulty": "medium",
+            "question": "Trong mô tả về LSTM, Input Gate có vai trò gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Bỏ qua thông tin từ quá trình trước"
+              },
+              {
+                "id": "B",
+                "text": "Lưu toàn bộ đầu ra cuối cùng"
+              },
+              {
+                "id": "C",
+                "text": "Cập nhật thông tin mới"
+              },
+              {
+                "id": "D",
+                "text": "Thay thế Cell state C_t"
+              }
+            ],
+            "correct_option_id": "C",
+            "explanation": "Nguồn ghi trực tiếp rằng Input Gate dùng để cập nhật thông tin mới.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide37",
+              "quote": "BÀI GIẢNG Deep Learning. Mạng LSTM (Long Short-Term Memory). Trạng thái ô nhớ (Cell state C_t). Forget Gate (Cổng quên) quyết định phần thông tin nào từ quá trình trước sẽ bị bỏ qua. Input Gate (Cổng vào) cập nhật thông tin mới."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Deep_Learning_Bai_Giang_pptx_Slide37_20260730T143418.541226Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_09",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Machine_Learning_Bai_Giang_pptx_Slide10-11",
+        "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide10-11_20260730T143441.880326Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:34:41.880326Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 3,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "Nhom bai toan",
+            "difficulty": "medium",
+            "question": "Theo nguồn, đâu là một trong ba nhóm bài toán chính của Machine Learning?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Học có giám sát"
+              },
+              {
+                "id": "B",
+                "text": "Tối ưu tổ hợp"
+              },
+              {
+                "id": "C",
+                "text": "Xử lý ảnh số"
+              },
+              {
+                "id": "D",
+                "text": "Mã hóa dữ liệu"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nêu rõ Học có giám sát là một trong ba nhóm bài toán chính.",
+            "citation": {
+              "source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+              "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+              "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc)."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "Hoi quy",
+            "difficulty": "medium",
+            "question": "Trong học có giám sát, bài toán nào dùng để dự đoán giá trị liên tục?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Phân loại"
+              },
+              {
+                "id": "B",
+                "text": "Học tăng cường"
+              },
+              {
+                "id": "C",
+                "text": "Hồi quy"
+              },
+              {
+                "id": "D",
+                "text": "Học không giám sát"
+              }
+            ],
+            "correct_option_id": "C",
+            "explanation": "Nguồn ghi rõ Hồi quy là dự đoán giá trị liên tục.",
+            "citation": {
+              "source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+              "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+              "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc)."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q3",
+            "type": "single_choice",
+            "topic": "Phan loai",
+            "difficulty": "medium",
+            "question": "Điểm khác nhau chính giữa Phân loại và Hồi quy trong nguồn là gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Phân loại dự đoán nhãn rời rạc, còn Hồi quy dự đoán giá trị liên tục"
+              },
+              {
+                "id": "B",
+                "text": "Phân loại dùng cho học không giám sát, còn Hồi quy dùng cho học tăng cường"
+              },
+              {
+                "id": "C",
+                "text": "Phân loại dự đoán giá trị liên tục, còn Hồi quy dự đoán nhãn rời rạc"
+              },
+              {
+                "id": "D",
+                "text": "Hai bài toán này đều thuộc học không giám sát"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn phân biệt Phân loại với Hồi quy bằng kiểu đầu ra cần dự đoán.",
+            "citation": {
+              "source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+              "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+              "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc)."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Machine_Learning_Bai_Giang_pptx_Slide10-11_20260730T143441.880326Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HAPPY_10",
+      "category": "Happy Path",
+      "difficulty_class": "Normal",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Machine_Learning_Bai_Giang_pptx_Slide25",
+        "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide25_20260730T143455.848513Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:34:55.848513Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 2,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "K-Means quy trình",
+            "difficulty": "medium",
+            "question": "Trong quy trình K-Means, bước nào diễn ra ngay sau khi chọn ngẫu nhiên K tâm cụm ban đầu?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Cập nhật lại tâm cụm bằng trung bình cộng các điểm trong cụm"
+              },
+              {
+                "id": "B",
+                "text": "Gán mỗi điểm dữ liệu vào cụm có tâm gần nhất"
+              },
+              {
+                "id": "C",
+                "text": "Loại bỏ các điểm dữ liệu ở xa tâm cụm"
+              },
+              {
+                "id": "D",
+                "text": "Tăng số lượng cụm K"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Theo đoạn trích, sau Bước 1 là Bước 2: gán mỗi điểm dữ liệu vào cụm có tâm gần nhất.",
+            "citation": {
+              "source_id": "Machine_Learning_Bai_Giang.pptx#Slide25",
+              "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide25",
+              "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Phân cụm K-Means Clustering: Bước 1: Chọn K tâm cụm (centroid) ban đầu ngẫu nhiên. Bước 2: Gán mỗi điểm dữ liệu vào cụm có tâm gần nhất. Bước 3: Cập nhật lại tâm cụm bằng trung bình cộng các điểm trong cụm."
+            },
+            "citation_status": "verified"
+          },
+          {
+            "question_id": "q2",
+            "type": "single_choice",
+            "topic": "Cập nhật centroid",
+            "difficulty": "medium",
+            "question": "Theo nội dung nguồn, tâm cụm trong K-Means được cập nhật như thế nào?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Chọn lại ngẫu nhiên từ toàn bộ dữ liệu"
+              },
+              {
+                "id": "B",
+                "text": "Lấy điểm xa tâm cụm nhất làm tâm mới"
+              },
+              {
+                "id": "C",
+                "text": "Dùng trung bình cộng các điểm trong cụm"
+              },
+              {
+                "id": "D",
+                "text": "Giữ nguyên tâm cụm ban đầu"
+              }
+            ],
+            "correct_option_id": "C",
+            "explanation": "Đoạn trích nêu rõ Bước 3 là cập nhật tâm cụm bằng trung bình cộng các điểm trong cụm.",
+            "citation": {
+              "source_id": "Machine_Learning_Bai_Giang.pptx#Slide25",
+              "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide25",
+              "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Phân cụm K-Means Clustering: Bước 1: Chọn K tâm cụm (centroid) ban đầu ngẫu nhiên. Bước 2: Gán mỗi điểm dữ liệu vào cụm có tâm gần nhất. Bước 3: Cập nhật lại tâm cụm bằng trung bình cộng các điểm trong cụm."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Machine_Learning_Bai_Giang_pptx_Slide25_20260730T143455.848513Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS1_01",
+      "category": "Lớp 1 — Nguồn sự thật",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Machine_Learning_Bai_Giang_pptx_Slide10",
+        "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide10_20260730T143455.850219Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:34:55.850219Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS1_02",
+      "category": "Lớp 1 — Nguồn sự thật",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Deep_Learning_Bai_Giang_pptx_Slide25",
+        "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide25_20260730T143504.592721Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:35:04.592721Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "weight initialization",
+            "difficulty": "medium",
+            "question": "Vì sao không nên khởi tạo tất cả trọng số bằng 0 trong mạng nơ-ron?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Vì làm mọi nơ-ron học giống hệt nhau"
+              },
+              {
+                "id": "B",
+                "text": "Vì làm trọng số luôn tăng rất lớn"
+              },
+              {
+                "id": "C",
+                "text": "Vì làm dữ liệu đầu vào bị thay đổi"
+              },
+              {
+                "id": "D",
+                "text": "Vì làm hàm mất mát biến mất hoàn toàn"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nói khởi tạo bằng 0 khiến mọi nơ-ron học giống hệt nhau, nên không phá vỡ được tính đối xứng.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide25",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide25",
+              "quote": "Khởi tạo trọng số (Weight Initialization). Khởi tạo bằng 0 làm mọi nơ-ron học giống hệt nhau. Khởi tạo ngẫu nhiên nhỏ giúp phá vỡ tính đối xứng."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Deep_Learning_Bai_Giang_pptx_Slide25_20260730T143504.592721Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS2_01",
+      "category": "Lớp 2 — Mơ hồ / Thiếu thông tin",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Machine_Learning_Bai_Giang_pptx_Slide49",
+        "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide49_20260730T143504.593851Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:04.593851Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS2_02",
+      "category": "Lớp 2 — Mơ hồ / Thiếu thông tin",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Computer_Vision_Bai_Giang_pptx_Slide55",
+        "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide55_20260730T143504.593887Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:04.593887Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "truncated_source: Nguồn kết thúc giữa chừng nên không đủ chắc chắn để tạo câu hỏi."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS3_01",
+      "category": "Lớp 3 — Thẩm quyền / Ngoài phạm vi",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Download_Logistics_Log01",
+        "quiz_id": "quiz_Download_Logistics_Log01_20260730T143504.593913Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:04.593913Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "out_of_scope: Nguồn có vẻ là nội dung hành chính hoặc hướng dẫn công cụ, không phải kiến thức bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS3_02",
+      "category": "Lớp 3 — Thẩm quyền / Ngoài phạm vi",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "General_Topic_AutoClicker",
+        "quiz_id": "quiz_General_Topic_AutoClicker_20260730T143504.593942Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:04.593942Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "out_of_scope: Nguồn có vẻ là nội dung hành chính hoặc hướng dẫn công cụ, không phải kiến thức bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS4_01",
+      "category": "Lớp 4 — Đặc thù Domain",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Machine_Learning_Bai_Giang_pptx_Slide43",
+        "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide43_20260730T143514.659807Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:35:14.659807Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "Boosting residual",
+            "difficulty": "medium",
+            "question": "Trong Gradient Boosting, vai trò chính của mỗi cây mới là gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp"
+              },
+              {
+                "id": "B",
+                "text": "Học để dự đoán phần dư của các cây trước"
+              },
+              {
+                "id": "C",
+                "text": "Loại bỏ các mẫu đã được phân loại đúng"
+              },
+              {
+                "id": "D",
+                "text": "Gộp tất cả cây thành một cây duy nhất"
+              }
+            ],
+            "correct_option_id": "B",
+            "explanation": "Nguồn nêu rõ rằng trong Gradient Boosting, mỗi cây mới học để dự đoán phần dư của các cây trước.",
+            "citation": {
+              "source_id": "Machine_Learning_Bai_Giang.pptx#Slide43",
+              "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide43",
+              "quote": "CÁC THUẬT TOÁN BOOSTING PHỔ BIẾN: AdaBoost tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp. Gradient Boosting: Mỗi cây mới học để dự đoán phần dư (residual) của các cây trước."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Machine_Learning_Bai_Giang_pptx_Slide43_20260730T143514.659807Z.json"
+      }
+    },
+    {
+      "case_id": "TC_HARD_CLASS4_02",
+      "category": "Lớp 4 — Đặc thù Domain",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Computer_Vision_Bai_Giang_pptx_Slide49",
+        "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide49_20260730T143523.417430Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:35:23.417430Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "R-CNN vs Fast R-CNN",
+            "difficulty": "medium",
+            "question": "Điểm khác biệt chính giúp Fast R-CNN nhanh hơn nhiều so với R-CNN là gì?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh"
+              },
+              {
+                "id": "B",
+                "text": "Fast R-CNN trích xuất ít hơn 2000 vùng đề xuất"
+              },
+              {
+                "id": "C",
+                "text": "Fast R-CNN chạy CNN riêng lẻ cho từng vùng đề xuất"
+              },
+              {
+                "id": "D",
+                "text": "Fast R-CNN không sử dụng region proposals"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nêu rõ Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh, nên nhanh hơn nhiều so với R-CNN.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide49",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide49",
+              "quote": "Họ mô hình R-CNN. R-CNN (2014) trích xuất ~2000 vùng đề xuất (region proposals) và chạy CNN riêng lẻ. Fast R-CNN (2015) chia sẻ tính toán CNN cho toàn bộ ảnh, nhanh hơn nhiều."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Computer_Vision_Bai_Giang_pptx_Slide49_20260730T143523.417430Z.json"
+      }
+    },
+    {
+      "case_id": "TC_RARE_01",
+      "category": "Case Hiếm",
+      "difficulty_class": "Edge Case",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Deep_Learning_Bai_Giang_pptx_Slide11",
+        "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide11_20260730T143533.051492Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:35:33.051492Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "dao ham ham kich hoat",
+            "difficulty": "medium",
+            "question": "Theo nguồn, phát biểu nào đúng về đạo hàm của ReLU?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Đạo hàm bằng 1 khi x > 0 và bằng 0 khi x < 0"
+              },
+              {
+                "id": "B",
+                "text": "Đạo hàm luôn bằng f(x)(1 - f(x))"
+              },
+              {
+                "id": "C",
+                "text": "Đạo hàm luôn bằng 0 với mọi x"
+              },
+              {
+                "id": "D",
+                "text": "Đạo hàm luôn bằng 1 với mọi x"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nêu rõ đạo hàm của ReLU bằng 1 khi x > 0 và bằng 0 khi x < 0.",
+            "citation": {
+              "source_id": "Deep_Learning_Bai_Giang.pptx#Slide11",
+              "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide11",
+              "quote": "Sigmoid f(x) = 1 / (1 + e^-x) có đạo hàm f'(x) = f(x)(1 - f(x)). ReLU f(x) = max(0, x) có đạo hàm bằng 1 khi x > 0 và bằng 0 khi x < 0."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Deep_Learning_Bai_Giang_pptx_Slide11_20260730T143533.051492Z.json"
+      }
+    },
+    {
+      "case_id": "TC_RARE_02",
+      "category": "Case Hiếm",
+      "difficulty_class": "Edge Case",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "Computer_Vision_Bai_Giang_pptx_Slide37",
+        "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide37_20260730T143540.906389Z",
+        "status": "success",
+        "created_at": "2026-07-30T14:35:40.906389Z",
+        "model": "gpt-5.4",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [
+          {
+            "question_id": "q1",
+            "type": "single_choice",
+            "topic": "CNN advantages",
+            "difficulty": "medium",
+            "question": "Đặc điểm nào của CNN giúp giảm số lượng tham số so với mạng fully-connected?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Chia sẻ trọng số giữa các vị trí"
+              },
+              {
+                "id": "B",
+                "text": "Tăng số lớp fully-connected"
+              },
+              {
+                "id": "C",
+                "text": "Loại bỏ hoàn toàn cấu trúc không gian của ảnh"
+              },
+              {
+                "id": "D",
+                "text": "Dùng một trọng số riêng cho từng điểm ảnh"
+              }
+            ],
+            "correct_option_id": "A",
+            "explanation": "Nguồn nêu rõ CNN dùng chia sẻ trọng số để giảm số tham số so với mạng fully-connected.",
+            "citation": {
+              "source_id": "Computer_Vision_Bai_Giang.pptx#Slide37",
+              "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide37",
+              "quote": "Mạng nơ-ron tích chập (CNN) tận dụng cấu trúc không gian của ảnh, chia sẻ trọng số (weight sharing) giúp giảm số tham số so với mạng fully-connected. Đạt tính bất biến với dịch chuyển nhỏ (translation invariance)."
+            },
+            "citation_status": "verified"
+          }
+        ],
+        "warnings": [],
+        "trace_path": "C:\\Users\\dungs\\OneDrive\\Documents\\Hackathon\\Batch03-K3-AI-Product-Hackathon-D305\\VLEARN_QUIZ\\eval\\traces\\quiz_Computer_Vision_Bai_Giang_pptx_Slide37_20260730T143540.906389Z.json"
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_01",
+      "category": "Chatlog thật — yêu cầu quiz",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0063_T0849",
+        "quiz_id": "quiz_C0063_T0849_20260730T143540.907708Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.907708Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_02",
+      "category": "Chatlog thật — tự đánh giá",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0085_T0113",
+        "quiz_id": "quiz_C0085_T0113_20260730T143540.907773Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.907773Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_03",
+      "category": "Chatlog thật — yêu cầu quiz",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0287_T1113",
+        "quiz_id": "quiz_C0287_T1113_20260730T143540.907810Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.907810Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_04",
+      "category": "Chatlog thật — ôn Kahoot",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0573_T0257",
+        "quiz_id": "quiz_C0573_T0257_20260730T143540.907850Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.907850Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_05",
+      "category": "Chatlog thật — chủ đề mơ hồ",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0573_T0907",
+        "quiz_id": "quiz_C0573_T0907_20260730T143540.907891Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.907891Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_06",
+      "category": "Chatlog thật — thiếu slide",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0001_T0649",
+        "quiz_id": "quiz_C0001_T0649_20260730T143540.907926Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.907926Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_07",
+      "category": "Chatlog thật — thiếu toàn bộ ngày học",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0002_T0905",
+        "quiz_id": "quiz_C0002_T0905_20260730T143540.907966Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.907966Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_08",
+      "category": "Chatlog thật — danh sách chủ đề",
+      "difficulty_class": "Hard",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0002_T0092",
+        "quiz_id": "quiz_C0002_T0092_20260730T143540.908001Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.908001Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_09",
+      "category": "Chatlog thật — prompt injection",
+      "difficulty_class": "Edge Case",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0128_T0893",
+        "quiz_id": "quiz_C0128_T0893_20260730T143540.908090Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.908090Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    },
+    {
+      "case_id": "TC_CHATLOG_10",
+      "category": "Chatlog thật — thuật ngữ không có nguồn",
+      "difficulty_class": "Edge Case",
+      "status": "PASS",
+      "failures": [],
+      "output": {
+        "schema_version": "1.0",
+        "document_id": "C0004_T0115",
+        "quiz_id": "quiz_C0004_T0115_20260730T143540.908142Z",
+        "status": "rejected",
+        "created_at": "2026-07-30T14:35:40.908142Z",
+        "model": "not_called",
+        "config": {
+          "num_questions": 1,
+          "question_type": "single_choice",
+          "difficulty": "medium"
+        },
+        "questions": [],
+        "warnings": [
+          "insufficient_source: Nguồn quá ngắn hoặc chỉ có tiêu đề; cần thêm nội dung bài giảng."
+        ]
+      }
+    }
+  ]
+}

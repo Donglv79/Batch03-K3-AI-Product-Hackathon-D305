@@ -1,0 +1,77 @@
+{
+  "document_id": "Machine_Learning_Bai_Giang_pptx_Slide43",
+  "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide43_20260730T142353.839140Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Machine_Learning_Bai_Giang_pptx_Slide43\",\n  \"title\": \"Machine_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Machine_Learning_Bai_Giang.pptx#Slide43\",\n      \"parent_source_id\": \"Machine_Learning_Bai_Giang.pptx#Slide43\",\n      \"chunk_index\": 1,\n      \"text\": \"CÁC THUẬT TOÁN BOOSTING PHỔ BIẾN: AdaBoost tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp. Gradient Boosting: Mỗi cây mới học để dự đoán phần dư (residual) của các cây trước.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"boosting concept\",\"difficulty\":\"medium\",\"question\":\"Điểm khác nhau cốt lõi giữa AdaBoost và Gradient Boosting trong đoạn trích là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"AdaBoost tăng trọng số cho mẫu bị phân loại sai, còn Gradient Boosting học dự đoán phần dư của các cây trước\"},{\"id\":\"B\",\"text\":\"AdaBoost tạo cây mới để dự đoán phần dư, còn Gradient Boosting chỉ tăng trọng số cho mẫu đúng\"},{\"id\":\"C\",\"text\":\"Cả hai đều chỉ tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp\"},{\"id\":\"D\",\"text\":\"Cả hai đều chỉ học trực tiếp từ dữ liệu gốc mà không dùng kết quả của mô hình trước\"}],\"correct_option_id\":\"A\",\"explanation\":\"Đoạn trích nêu rõ AdaBoost tăng trọng số cho mẫu bị phân loại sai, còn Gradient Boosting học dự đoán phần dư của các cây trước.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide43\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide43\",\"quote\":\"CÁC THUẬT TOÁN BOOSTING PHỔ BIẾN: AdaBoost tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp. Gradient Boosting: Mỗi cây mới học để dự đoán phần dư (residual) của các cây trước.\"}}]}",
+  "raw_response": {
+    "id": "resp_03abbdbe206081ed016a6b5e728f808191b916ac8a7eb2b6a6",
+    "object": "chat.completion",
+    "created": 1785421426,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"boosting concept\",\"difficulty\":\"medium\",\"question\":\"Điểm khác nhau cốt lõi giữa AdaBoost và Gradient Boosting trong đoạn trích là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"AdaBoost tăng trọng số cho mẫu bị phân loại sai, còn Gradient Boosting học dự đoán phần dư của các cây trước\"},{\"id\":\"B\",\"text\":\"AdaBoost tạo cây mới để dự đoán phần dư, còn Gradient Boosting chỉ tăng trọng số cho mẫu đúng\"},{\"id\":\"C\",\"text\":\"Cả hai đều chỉ tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp\"},{\"id\":\"D\",\"text\":\"Cả hai đều chỉ học trực tiếp từ dữ liệu gốc mà không dùng kết quả của mô hình trước\"}],\"correct_option_id\":\"A\",\"explanation\":\"Đoạn trích nêu rõ AdaBoost tăng trọng số cho mẫu bị phân loại sai, còn Gradient Boosting học dự đoán phần dư của các cây trước.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide43\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide43\",\"quote\":\"CÁC THUẬT TOÁN BOOSTING PHỔ BIẾN: AdaBoost tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp. Gradient Boosting: Mỗi cây mới học để dự đoán phần dư (residual) của các cây trước.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3076,
+      "completion_tokens": 333,
+      "total_tokens": 3409
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Machine_Learning_Bai_Giang_pptx_Slide43",
+    "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide43_20260730T142353.839140Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:23:53.839140Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "boosting concept",
+        "difficulty": "medium",
+        "question": "Điểm khác nhau cốt lõi giữa AdaBoost và Gradient Boosting trong đoạn trích là gì?",
+        "options": [
+          {
+            "id": "A",
+            "text": "AdaBoost tăng trọng số cho mẫu bị phân loại sai, còn Gradient Boosting học dự đoán phần dư của các cây trước"
+          },
+          {
+            "id": "B",
+            "text": "AdaBoost tạo cây mới để dự đoán phần dư, còn Gradient Boosting chỉ tăng trọng số cho mẫu đúng"
+          },
+          {
+            "id": "C",
+            "text": "Cả hai đều chỉ tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp"
+          },
+          {
+            "id": "D",
+            "text": "Cả hai đều chỉ học trực tiếp từ dữ liệu gốc mà không dùng kết quả của mô hình trước"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Đoạn trích nêu rõ AdaBoost tăng trọng số cho mẫu bị phân loại sai, còn Gradient Boosting học dự đoán phần dư của các cây trước.",
+        "citation": {
+          "source_id": "Machine_Learning_Bai_Giang.pptx#Slide43",
+          "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide43",
+          "quote": "CÁC THUẬT TOÁN BOOSTING PHỔ BIẾN: AdaBoost tăng trọng số cho các mẫu bị phân loại sai qua từng vòng lặp. Gradient Boosting: Mỗi cây mới học để dự đoán phần dư (residual) của các cây trước."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

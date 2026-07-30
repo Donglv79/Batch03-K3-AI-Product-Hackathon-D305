@@ -10,6 +10,7 @@ from typing import Any
 from .citation_verifier import filter_verified_questions, verify_citations
 from .gemini_client import call_gemini, load_env_file
 from .prompt_builder import build_prompt, select_chunks
+from .source_guard import inspect_source
 from .schema import (
     SchemaValidationError,
     validate_config,
@@ -122,8 +123,27 @@ def generate_quiz(
     """
     validate_document_input(document)
     merged_config = validate_config(config)
+
+    source_issue = inspect_source(document)
+    if source_issue:
+        now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        return {
+            "schema_version": "1.0",
+            "document_id": document["document_id"],
+            "quiz_id": f"quiz_{document['document_id']}_{now.replace(':', '').replace('-', '')}",
+            "status": "rejected",
+            "created_at": now,
+            "model": "not_called",
+            "config": {
+                "num_questions": merged_config["num_questions"],
+                "question_type": merged_config["question_type"],
+                "difficulty": merged_config["difficulty"],
+            },
+            "questions": [],
+            "warnings": [f"{source_issue.code}: {source_issue.message}"],
+        }
     if env_path is None:
-        env_path = Path(__file__).resolve().parents[2] / ".env"
+        env_path = Path(__file__).resolve().parents[1] / ".env"
     load_env_file(env_path)
 
     selected_chunks = select_chunks(document["chunks"])
@@ -179,7 +199,7 @@ def generate_quiz_from_file(
     output = generate_quiz(
         document,
         config=config,
-        env_path=root / ".env",
+        env_path=root / "codebase" / ".env",
         trace_dir=root / "eval" / "traces",
     )
 

@@ -5,7 +5,6 @@ import {
   Difficulty,
   FeedbackEntry,
   Quiz,
-  buildQuiz,
 } from "@/lib/mockQuiz";
 import {
   adaptGeneratedQuiz,
@@ -28,7 +27,6 @@ import TeacherDashboard from "./TeacherDashboard";
 import QuizScreen from "./QuizScreen";
 import ResultScreen from "./ResultScreen";
 
-const DEFAULT_LECTURE_ID = "t04";
 const DEFAULT_QUESTION_COUNT = 3;
 const DEFAULT_DIFFICULTY: "all" | Difficulty = "all";
 
@@ -45,15 +43,13 @@ export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Real Ingestion Data State
-  const [uploadedRole2Doc, setUploadedRole2Doc] = useState<Role2Document | null>(null);
+  const [role2Documents, setRole2Documents] = useState<Record<string, Role2Document>>({});
 
   // Viewer State
-  const [toolMode, setToolMode] = useState<"read" | "pen" | "highlight">("read");
   const [zoomLevel, setZoomLevel] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
 
   // Quiz Engine State
-  const [selectedLectureId, setSelectedLectureId] = useState(DEFAULT_LECTURE_ID);
   const [questionCount, setQuestionCount] = useState(DEFAULT_QUESTION_COUNT);
   const [difficulty, setDifficulty] = useState<"all" | Difficulty>(DEFAULT_DIFFICULTY);
   const [quiz, setQuiz] = useState<Quiz | null>(null);
@@ -62,6 +58,9 @@ export default function App() {
   const [reported, setReported] = useState<Record<string, boolean>>({});
   const [feedbackLog, setFeedbackLog] = useState<FeedbackEntry[]>([]);
   const [feedbackFormOpen, setFeedbackFormOpen] = useState(false);
+  const [generationError, setGenerationError] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Switch Account Handler
   function handleSwitchAccount(acc: UserAccount) {
@@ -79,33 +78,42 @@ export default function App() {
 
   // Quiz Generation Handler (Gọi Gemini sinh Quiz trực tiếp từ văn bản slide nạp thật)
   async function handleGenerateQuiz() {
-    if (uploadedRole2Doc) {
-      try {
-        const role3Quiz = await generateRole3Quiz({
-          document: uploadedRole2Doc,
-          numQuestions: questionCount,
-          difficulty,
-        });
-        const adapted = adaptGeneratedQuiz(role3Quiz, uploadedRole2Doc);
-        setQuiz(adapted);
-        setCurrentIndex(0);
-        setAnswers({});
-        setReported({});
-        setFeedbackFormOpen(false);
-        setActiveTab("quiz");
-        return;
-      } catch (err) {
-        console.warn("Chưa gọi được Backend Gemini real-time, chuyển sang bộ sinh Quiz mẫu.", err);
-      }
+    const sourceDocument = selectedDocument ? role2Documents[selectedDocument.id] : null;
+    setGenerationError(null);
+    setActiveTab("quiz");
+
+    if (!sourceDocument) {
+      setQuiz(null);
+      setGenerationError("Tài liệu này chưa được ingestion thành công. Hãy nạp lại PDF khi backend đang chạy.");
+      return;
     }
 
-    const built = buildQuiz(selectedLectureId, questionCount, difficulty);
-    setQuiz(built);
-    setCurrentIndex(0);
-    setAnswers({});
-    setReported({});
-    setFeedbackFormOpen(false);
-    setActiveTab("quiz");
+    setIsGenerating(true);
+    try {
+      const role3Quiz = await generateRole3Quiz({
+        document: sourceDocument,
+        numQuestions: questionCount,
+        difficulty,
+      });
+      if (role3Quiz.status === "rejected" || role3Quiz.questions.length === 0) {
+        setQuiz(null);
+        setGenerationError(
+          role3Quiz.warnings.join(" ") || "Nguồn chưa đủ chắc chắn để tạo quiz có căn cứ."
+        );
+        return;
+      }
+      setQuiz(adaptGeneratedQuiz(role3Quiz, sourceDocument));
+      setCurrentIndex(0);
+      setAnswers({});
+      setReported({});
+      setFeedbackFormOpen(false);
+      setIsSubmitted(false);
+    } catch (err) {
+      setQuiz(null);
+      setGenerationError(err instanceof Error ? err.message : "Không thể gọi Quiz Engine.");
+    } finally {
+      setIsGenerating(false);
+    }
   }
 
   // Upload & Process Ingestion Slide Handler
@@ -131,9 +139,11 @@ export default function App() {
         documentId: docId,
         sourcePrefix: "SLIDE",
       });
-      setUploadedRole2Doc(realDoc);
+      setRole2Documents((prev) => ({ ...prev, [realDoc!.document_id]: realDoc! }));
     } catch (err) {
-      console.warn("Backend server chưa khởi chạy API, thực hiện Client-side Ingestion.", err);
+      URL.revokeObjectURL(fileUrl);
+      setGenerationError(err instanceof Error ? err.message : "Backend ingestion chưa sẵn sàng.");
+      return;
     }
 
     const sourceIds = realDoc
@@ -166,8 +176,10 @@ export default function App() {
     setCurriculumList((prev) => [...prev, newDay]);
     setSelectedDocument(newDoc);
     setCurrentPage(1);
+    setGenerationError(null);
     setActiveTab("reader");
     if (autoGenerateQuizNow && realDoc) {
+      setIsGenerating(true);
       try {
         const role3Quiz = await generateRole3Quiz({
           document: realDoc,
@@ -179,9 +191,14 @@ export default function App() {
         setAnswers({});
         setReported({});
         setFeedbackFormOpen(false);
+        setIsSubmitted(false);
         setActiveTab("quiz");
       } catch (err) {
-        console.warn("Không thể sinh quiz tự động ngay sau upload.", err);
+        setQuiz(null);
+        setGenerationError(err instanceof Error ? err.message : "Không thể sinh quiz sau khi upload.");
+        setActiveTab("quiz");
+      } finally {
+        setIsGenerating(false);
       }
     }
   }
@@ -200,7 +217,7 @@ export default function App() {
     if (currentIndex < quiz.questions.length - 1) {
       setCurrentIndex((i) => i + 1);
     } else {
-      setActiveTab("quiz");
+      setIsSubmitted(true);
     }
   }
 
@@ -213,6 +230,7 @@ export default function App() {
     setAnswers({});
     setReported({});
     setFeedbackFormOpen(false);
+    setIsSubmitted(false);
   }
 
   function handleReport(questionId: string) {
@@ -238,13 +256,8 @@ export default function App() {
         onSwitchAccount={handleSwitchAccount}
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        toolMode={toolMode}
-        onToolModeChange={setToolMode}
         zoomLevel={zoomLevel}
         onZoomChange={handleZoomChange}
-        currentPage={currentPage}
-        totalPages={selectedDocument ? selectedDocument.pages : 1}
-        onPageChange={setCurrentPage}
       />
 
       {/* 2. Body Main Layout */}
@@ -259,6 +272,10 @@ export default function App() {
           difficulty={difficulty}
           onDifficultyChange={(d) => setDifficulty(d)}
           onGenerateQuiz={handleGenerateQuiz}
+          isGenerating={isGenerating}
+          canGenerateQuiz={
+            !!selectedDocument && !!role2Documents[selectedDocument.id]
+          }
           onUploadSlide={handleUploadSlidePayload}
           collapsed={sidebarCollapsed}
           onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
@@ -272,24 +289,29 @@ export default function App() {
             selectedDocument ? (
               <SlideViewer
                 document={selectedDocument}
-                uploadedRole2Doc={uploadedRole2Doc}
+                uploadedRole2Doc={role2Documents[selectedDocument.id] || null}
                 currentPage={currentPage}
                 totalPages={selectedDocument.pages}
                 zoomLevel={zoomLevel}
-                toolMode={toolMode}
+                toolMode="read"
                 onPageChange={setCurrentPage}
                 onOpenQuiz={handleGenerateQuiz}
               />
             ) : (
               <div className="empty-state-container">
-                <div className="empty-state-card">
-                  <span className="empty-icon">📤</span>
-                  <h2>Chưa Có Bài Giảng Nào Được Nạp</h2>
+                <div className="empty-state-card empty-state-onboarding">
+                  <span className="empty-kicker">Bắt đầu trong 3 bước</span>
+                  <h2>Chưa có tài liệu được chọn</h2>
                   <p>
                     {activeAccount.role === "teacher"
-                      ? "Vui lòng bấm vào nút 'Nạp Slide Giảng Dạy' ở cột bên trái để tải lên slide PDF/PPTX đầu tiên của bạn."
-                      : "Vui lòng chuyển sang tài khoản Giảng viên để nạp bài giảng mới vào hệ thống VLearn."}
+                      ? "Tải PDF có nội dung văn bản, chọn tài liệu, sau đó tạo quiz có trích dẫn."
+                      : "Chọn một tài liệu ở danh sách bên trái để đọc và làm quiz."}
                   </p>
+                  <ol className="onboarding-steps">
+                    <li><span>1</span>Tải tài liệu PDF</li>
+                    <li><span>2</span>Kiểm tra nội dung nguồn</li>
+                    <li><span>3</span>Tạo và làm quiz</li>
+                  </ol>
                 </div>
               </div>
             )
@@ -298,13 +320,28 @@ export default function App() {
           {/* TAB 2: Quiz AI Execution & Results */}
           {activeTab === "quiz" && (
             <div className="quiz-tab-wrapper">
-              {!quiz ? (
-                <div className="empty-state-card">
-                  <span className="empty-icon">🪄</span>
-                  <h2>Chưa Có Bài Quiz Nào Được Khởi Tạo</h2>
-                  <p>Vui lòng nạp slide bài giảng và bấm nút 'Tạo Bài Quiz Từ Slide Này' để bắt đầu làm bài.</p>
+              {isGenerating ? (
+                <div className="empty-state-card status-state-card" aria-live="polite">
+                  <span className="status-spinner" aria-hidden="true" />
+                  <h2>Đang tạo quiz có căn cứ</h2>
+                  <p>Hệ thống đang kiểm tra nguồn, sinh câu hỏi và xác minh từng trích dẫn.</p>
                 </div>
-              ) : Object.keys(answers).length === quiz.questions.length && currentIndex === quiz.questions.length - 1 ? (
+              ) : generationError ? (
+                <div className="empty-state-card status-state-card is-error">
+                  <span className="status-symbol" aria-hidden="true">!</span>
+                  <h2>Chưa thể tạo Quiz có căn cứ</h2>
+                  <p>{generationError}</p>
+                  <button className="btn btn-ghost" onClick={() => setActiveTab("reader")}>
+                    Quay lại tài liệu
+                  </button>
+                </div>
+              ) : !quiz ? (
+                <div className="empty-state-card status-state-card">
+                  <span className="status-symbol" aria-hidden="true">?</span>
+                  <h2>Chưa có quiz</h2>
+                  <p>Chọn tài liệu và thiết lập quiz ở thanh bên trái để bắt đầu.</p>
+                </div>
+              ) : isSubmitted ? (
                 <ResultScreen
                   quiz={quiz}
                   answers={answers}

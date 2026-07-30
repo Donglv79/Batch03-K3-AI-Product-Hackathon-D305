@@ -1,0 +1,110 @@
+{
+  "document_id": "Deep_Learning_Bai_Giang_pptx_Slide10-11",
+  "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide10-11_20260730T143337.672612Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 2 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Deep_Learning_Bai_Giang_pptx_Slide10-11\",\n  \"title\": \"Deep_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n      \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n      \"chunk_index\": 1,\n      \"text\": \"BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1).\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"ham kich hoat\",\"difficulty\":\"medium\",\"question\":\"Vai tro chinh cua ham kich hoat trong mang no-ron la gi?\",\"options\":[{\"id\":\"A\",\"text\":\"Tao tinh phi tuyen cho mang no-ron\"},{\"id\":\"B\",\"text\":\"Giam so lop cua mang no-ron\"},{\"id\":\"C\",\"text\":\"Bien doi moi dau vao thanh gia tri am\"},{\"id\":\"D\",\"text\":\"Loai bo hoan toan cac phep bien doi tuyen tinh\"}],\"correct_option_id\":\"A\",\"explanation\":\"Doan trich noi ro ham kich hoat dung de tao tinh phi tuyen cho mang no-ron.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1).\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"sigmoid\",\"difficulty\":\"medium\",\"question\":\"Theo nguon, ham Sigmoid co mien gia tri nao?\",\"options\":[{\"id\":\"A\",\"text\":\"(-1,1)\"},{\"id\":\"B\",\"text\":\"(0,1)\"},{\"id\":\"C\",\"text\":\"[0,1]\"},{\"id\":\"D\",\"text\":\"(0,+∞)\"}],\"correct_option_id\":\"B\",\"explanation\":\"Doan trich ghi ro ham Sigmoid co mien gia tri la (0,1).\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1).\"}}]}",
+  "raw_response": {
+    "id": "resp_0724e4963d7e880e016a6b60b6db548195859cade2457294a3",
+    "object": "chat.completion",
+    "created": 1785422006,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"ham kich hoat\",\"difficulty\":\"medium\",\"question\":\"Vai tro chinh cua ham kich hoat trong mang no-ron la gi?\",\"options\":[{\"id\":\"A\",\"text\":\"Tao tinh phi tuyen cho mang no-ron\"},{\"id\":\"B\",\"text\":\"Giam so lop cua mang no-ron\"},{\"id\":\"C\",\"text\":\"Bien doi moi dau vao thanh gia tri am\"},{\"id\":\"D\",\"text\":\"Loai bo hoan toan cac phep bien doi tuyen tinh\"}],\"correct_option_id\":\"A\",\"explanation\":\"Doan trich noi ro ham kich hoat dung de tao tinh phi tuyen cho mang no-ron.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1).\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"sigmoid\",\"difficulty\":\"medium\",\"question\":\"Theo nguon, ham Sigmoid co mien gia tri nao?\",\"options\":[{\"id\":\"A\",\"text\":\"(-1,1)\"},{\"id\":\"B\",\"text\":\"(0,1)\"},{\"id\":\"C\",\"text\":\"[0,1]\"},{\"id\":\"D\",\"text\":\"(0,+∞)\"}],\"correct_option_id\":\"B\",\"explanation\":\"Doan trich ghi ro ham Sigmoid co mien gia tri la (0,1).\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1).\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3105,
+      "completion_tokens": 548,
+      "total_tokens": 3653
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Deep_Learning_Bai_Giang_pptx_Slide10-11",
+    "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide10-11_20260730T143337.672612Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:33:37.672612Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 2,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "ham kich hoat",
+        "difficulty": "medium",
+        "question": "Vai tro chinh cua ham kich hoat trong mang no-ron la gi?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Tao tinh phi tuyen cho mang no-ron"
+          },
+          {
+            "id": "B",
+            "text": "Giam so lop cua mang no-ron"
+          },
+          {
+            "id": "C",
+            "text": "Bien doi moi dau vao thanh gia tri am"
+          },
+          {
+            "id": "D",
+            "text": "Loai bo hoan toan cac phep bien doi tuyen tinh"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Doan trich noi ro ham kich hoat dung de tao tinh phi tuyen cho mang no-ron.",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+          "quote": "BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1)."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q2",
+        "type": "single_choice",
+        "topic": "sigmoid",
+        "difficulty": "medium",
+        "question": "Theo nguon, ham Sigmoid co mien gia tri nao?",
+        "options": [
+          {
+            "id": "A",
+            "text": "(-1,1)"
+          },
+          {
+            "id": "B",
+            "text": "(0,1)"
+          },
+          {
+            "id": "C",
+            "text": "[0,1]"
+          },
+          {
+            "id": "D",
+            "text": "(0,+∞)"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Doan trich ghi ro ham Sigmoid co mien gia tri la (0,1).",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+          "quote": "BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1)."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

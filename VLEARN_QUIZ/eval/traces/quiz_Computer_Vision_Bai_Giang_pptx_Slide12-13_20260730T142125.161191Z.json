@@ -1,0 +1,143 @@
+{
+  "document_id": "Computer_Vision_Bai_Giang_pptx_Slide12-13",
+  "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide12-13_20260730T142125.161191Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 3 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Computer_Vision_Bai_Giang_pptx_Slide12-13\",\n  \"title\": \"Computer_Vision_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\n      \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\n      \"chunk_index\": 1,\n      \"text\": \"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"Mau va do sang\",\"difficulty\":\"medium\",\"question\":\"Mo hinh nao tach biet thong tin mau sac va do sang?\",\"options\":[{\"id\":\"A\",\"text\":\"RGB\"},{\"id\":\"B\",\"text\":\"HSV\"},{\"id\":\"C\",\"text\":\"Grayscale\"},{\"id\":\"D\",\"text\":\"Tensor 3 chieu\"}],\"correct_option_id\":\"B\",\"explanation\":\"Doan trich noi ro HSV tach biet thong tin mau sac va do sang.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"Bieu dien anh xam\",\"difficulty\":\"medium\",\"question\":\"Theo nguon, anh xam duoc bieu dien nhu the nao?\",\"options\":[{\"id\":\"A\",\"text\":\"Bang tensor 3 chieu\"},{\"id\":\"B\",\"text\":\"Bang ma tran 2 chieu\"},{\"id\":\"C\",\"text\":\"Bang mo hinh cong mau\"},{\"id\":\"D\",\"text\":\"Bang hue va saturation\"}],\"correct_option_id\":\"B\",\"explanation\":\"Doan trich ghi anh xam duoc bieu dien bang ma tran 2 chieu.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q3\",\"type\":\"single_choice\",\"topic\":\"Bieu dien anh mau\",\"difficulty\":\"medium\",\"question\":\"Diem khac biet phu hop nhat giua anh xam va anh mau theo nguon la gi?\",\"options\":[{\"id\":\"A\",\"text\":\"Anh xam dung tensor 3 chieu, anh mau dung ma tran 2 chieu\"},{\"id\":\"B\",\"text\":\"Ca hai deu dung ma tran 2 chieu\"},{\"id\":\"C\",\"text\":\"Anh xam dung ma tran 2 chieu, anh mau dung tensor 3 chieu\"},{\"id\":\"D\",\"text\":\"Ca hai deu tach biet mau sac va do sang bang HSV\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguon neu anh xam la ma tran 2 chieu, con anh mau la tensor 3 chieu.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}}]}",
+  "raw_response": {
+    "id": "resp_084d91a3b55246c3016a6b5dd434bc8191b748b63c9c0e6cdc",
+    "object": "chat.completion",
+    "created": 1785421268,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"Mau va do sang\",\"difficulty\":\"medium\",\"question\":\"Mo hinh nao tach biet thong tin mau sac va do sang?\",\"options\":[{\"id\":\"A\",\"text\":\"RGB\"},{\"id\":\"B\",\"text\":\"HSV\"},{\"id\":\"C\",\"text\":\"Grayscale\"},{\"id\":\"D\",\"text\":\"Tensor 3 chieu\"}],\"correct_option_id\":\"B\",\"explanation\":\"Doan trich noi ro HSV tach biet thong tin mau sac va do sang.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"Bieu dien anh xam\",\"difficulty\":\"medium\",\"question\":\"Theo nguon, anh xam duoc bieu dien nhu the nao?\",\"options\":[{\"id\":\"A\",\"text\":\"Bang tensor 3 chieu\"},{\"id\":\"B\",\"text\":\"Bang ma tran 2 chieu\"},{\"id\":\"C\",\"text\":\"Bang mo hinh cong mau\"},{\"id\":\"D\",\"text\":\"Bang hue va saturation\"}],\"correct_option_id\":\"B\",\"explanation\":\"Doan trich ghi anh xam duoc bieu dien bang ma tran 2 chieu.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q3\",\"type\":\"single_choice\",\"topic\":\"Bieu dien anh mau\",\"difficulty\":\"medium\",\"question\":\"Diem khac biet phu hop nhat giua anh xam va anh mau theo nguon la gi?\",\"options\":[{\"id\":\"A\",\"text\":\"Anh xam dung tensor 3 chieu, anh mau dung ma tran 2 chieu\"},{\"id\":\"B\",\"text\":\"Ca hai deu dung ma tran 2 chieu\"},{\"id\":\"C\",\"text\":\"Anh xam dung ma tran 2 chieu, anh mau dung tensor 3 chieu\"},{\"id\":\"D\",\"text\":\"Ca hai deu tach biet mau sac va do sang bang HSV\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguon neu anh xam la ma tran 2 chieu, con anh mau la tensor 3 chieu.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3125,
+      "completion_tokens": 884,
+      "total_tokens": 4009
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Computer_Vision_Bai_Giang_pptx_Slide12-13",
+    "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide12-13_20260730T142125.161191Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:21:25.161191Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 3,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "Mau va do sang",
+        "difficulty": "medium",
+        "question": "Mo hinh nao tach biet thong tin mau sac va do sang?",
+        "options": [
+          {
+            "id": "A",
+            "text": "RGB"
+          },
+          {
+            "id": "B",
+            "text": "HSV"
+          },
+          {
+            "id": "C",
+            "text": "Grayscale"
+          },
+          {
+            "id": "D",
+            "text": "Tensor 3 chieu"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Doan trich noi ro HSV tach biet thong tin mau sac va do sang.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q2",
+        "type": "single_choice",
+        "topic": "Bieu dien anh xam",
+        "difficulty": "medium",
+        "question": "Theo nguon, anh xam duoc bieu dien nhu the nao?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Bang tensor 3 chieu"
+          },
+          {
+            "id": "B",
+            "text": "Bang ma tran 2 chieu"
+          },
+          {
+            "id": "C",
+            "text": "Bang mo hinh cong mau"
+          },
+          {
+            "id": "D",
+            "text": "Bang hue va saturation"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Doan trich ghi anh xam duoc bieu dien bang ma tran 2 chieu.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q3",
+        "type": "single_choice",
+        "topic": "Bieu dien anh mau",
+        "difficulty": "medium",
+        "question": "Diem khac biet phu hop nhat giua anh xam va anh mau theo nguon la gi?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Anh xam dung tensor 3 chieu, anh mau dung ma tran 2 chieu"
+          },
+          {
+            "id": "B",
+            "text": "Ca hai deu dung ma tran 2 chieu"
+          },
+          {
+            "id": "C",
+            "text": "Anh xam dung ma tran 2 chieu, anh mau dung tensor 3 chieu"
+          },
+          {
+            "id": "D",
+            "text": "Ca hai deu tach biet mau sac va do sang bang HSV"
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "Nguon neu anh xam la ma tran 2 chieu, con anh mau la tensor 3 chieu.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

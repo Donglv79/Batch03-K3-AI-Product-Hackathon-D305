@@ -55,7 +55,7 @@ export default function SlideViewer({
 
         <div className="slide-floating-bottom-bar">
           <button className="btn-take-quiz-floating" onClick={onOpenQuiz}>
-            ✨ Bắt đầu làm Quiz AI cho bài học này
+            Tạo quiz từ tài liệu
           </button>
         </div>
       </div>
@@ -152,7 +152,7 @@ export default function SlideViewer({
       {/* Floating Action Button Nổi Phía Dưới */}
       <div className="slide-floating-bottom-bar">
         <button className="btn-take-quiz-floating" onClick={onOpenQuiz}>
-          ✨ Bắt đầu làm Quiz AI cho bài học này ({displayPagesCount} slide)
+          Tạo quiz từ {displayPagesCount} slide
         </button>
       </div>
     </div>

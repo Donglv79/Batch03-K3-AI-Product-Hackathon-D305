@@ -1,0 +1,77 @@
+{
+  "document_id": "Deep_Learning_Bai_Giang_pptx_Slide11",
+  "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide11_20260730T142412.513643Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Deep_Learning_Bai_Giang_pptx_Slide11\",\n  \"title\": \"Deep_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide11\",\n      \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide11\",\n      \"chunk_index\": 1,\n      \"text\": \"Sigmoid f(x) = 1 / (1 + e^-x) có đạo hàm f'(x) = f(x)(1 - f(x)). ReLU f(x) = max(0, x) có đạo hàm bằng 1 khi x > 0 và bằng 0 khi x < 0.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"dao ham kich hoat\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, đặc điểm nào của đạo hàm ReLU giúp nó khác với sigmoid theo từng miền giá trị của x?\",\"options\":[{\"id\":\"A\",\"text\":\"Đạo hàm ReLU luôn bằng f(x)(1 - f(x)) với mọi x\"},{\"id\":\"B\",\"text\":\"Đạo hàm ReLU bằng 1 khi x > 0 và bằng 0 khi x < 0\"},{\"id\":\"C\",\"text\":\"Đạo hàm ReLU luôn bằng 0 với mọi x\"},{\"id\":\"D\",\"text\":\"Đạo hàm ReLU bằng 1 khi x < 0 và bằng 0 khi x > 0\"}],\"correct_option_id\":\"B\",\"explanation\":\"Nguồn nêu rõ đạo hàm của ReLU bằng 1 khi x > 0 và bằng 0 khi x < 0.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide11\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide11\",\"quote\":\"Sigmoid f(x) = 1 / (1 + e^-x) có đạo hàm f'(x) = f(x)(1 - f(x)). ReLU f(x) = max(0, x) có đạo hàm bằng 1 khi x > 0 và bằng 0 khi x < 0.\"}}]}",
+  "raw_response": {
+    "id": "resp_05d29a25d6f3f73e016a6b5e8551348191ad19f18a2bfa45ee",
+    "object": "chat.completion",
+    "created": 1785421445,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"dao ham kich hoat\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, đặc điểm nào của đạo hàm ReLU giúp nó khác với sigmoid theo từng miền giá trị của x?\",\"options\":[{\"id\":\"A\",\"text\":\"Đạo hàm ReLU luôn bằng f(x)(1 - f(x)) với mọi x\"},{\"id\":\"B\",\"text\":\"Đạo hàm ReLU bằng 1 khi x > 0 và bằng 0 khi x < 0\"},{\"id\":\"C\",\"text\":\"Đạo hàm ReLU luôn bằng 0 với mọi x\"},{\"id\":\"D\",\"text\":\"Đạo hàm ReLU bằng 1 khi x < 0 và bằng 0 khi x > 0\"}],\"correct_option_id\":\"B\",\"explanation\":\"Nguồn nêu rõ đạo hàm của ReLU bằng 1 khi x > 0 và bằng 0 khi x < 0.\",\"citation\":{\"source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide11\",\"parent_source_id\":\"Deep_Learning_Bai_Giang.pptx#Slide11\",\"quote\":\"Sigmoid f(x) = 1 / (1 + e^-x) có đạo hàm f'(x) = f(x)(1 - f(x)). ReLU f(x) = max(0, x) có đạo hàm bằng 1 khi x > 0 và bằng 0 khi x < 0.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3083,
+      "completion_tokens": 326,
+      "total_tokens": 3409
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Deep_Learning_Bai_Giang_pptx_Slide11",
+    "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide11_20260730T142412.513643Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:24:12.513643Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "dao ham kich hoat",
+        "difficulty": "medium",
+        "question": "Theo nguồn, đặc điểm nào của đạo hàm ReLU giúp nó khác với sigmoid theo từng miền giá trị của x?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Đạo hàm ReLU luôn bằng f(x)(1 - f(x)) với mọi x"
+          },
+          {
+            "id": "B",
+            "text": "Đạo hàm ReLU bằng 1 khi x > 0 và bằng 0 khi x < 0"
+          },
+          {
+            "id": "C",
+            "text": "Đạo hàm ReLU luôn bằng 0 với mọi x"
+          },
+          {
+            "id": "D",
+            "text": "Đạo hàm ReLU bằng 1 khi x < 0 và bằng 0 khi x > 0"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Nguồn nêu rõ đạo hàm của ReLU bằng 1 khi x > 0 và bằng 0 khi x < 0.",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide11",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide11",
+          "quote": "Sigmoid f(x) = 1 / (1 + e^-x) có đạo hàm f'(x) = f(x)(1 - f(x)). ReLU f(x) = max(0, x) có đạo hàm bằng 1 khi x > 0 và bằng 0 khi x < 0."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

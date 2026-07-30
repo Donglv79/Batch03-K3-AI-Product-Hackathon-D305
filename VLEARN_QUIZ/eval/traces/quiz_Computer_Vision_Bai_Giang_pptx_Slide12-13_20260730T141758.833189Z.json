@@ -1,0 +1,143 @@
+{
+  "document_id": "Computer_Vision_Bai_Giang_pptx_Slide12-13",
+  "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide12-13_20260730T141758.833189Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 3 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Computer_Vision_Bai_Giang_pptx_Slide12-13\",\n  \"title\": \"Computer_Vision_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\n      \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\n      \"chunk_index\": 1,\n      \"text\": \"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"Mo hinh mau\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, mô hình nào tách biệt thông tin màu sắc và độ sáng?\",\"options\":[{\"id\":\"A\",\"text\":\"RGB\"},{\"id\":\"B\",\"text\":\"HSV\"},{\"id\":\"C\",\"text\":\"Grayscale\"},{\"id\":\"D\",\"text\":\"Tensor 3 chiều\"}],\"correct_option_id\":\"B\",\"explanation\":\"Nguồn nêu rõ HSV tách biệt thông tin màu sắc và độ sáng.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"Anh xam\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, ảnh xám được biểu diễn như thế nào?\",\"options\":[{\"id\":\"A\",\"text\":\"Bằng tensor 3 chiều\"},{\"id\":\"B\",\"text\":\"Bằng mô hình cộng màu\"},{\"id\":\"C\",\"text\":\"Bằng ma trận 2 chiều\"},{\"id\":\"D\",\"text\":\"Bằng ba kênh Hue-Saturation-Value\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguồn ghi rằng ảnh xám được biểu diễn bằng ma trận 2 chiều.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q3\",\"type\":\"single_choice\",\"topic\":\"Bieu dien anh mau\",\"difficulty\":\"medium\",\"question\":\"Điểm khác biệt chính giữa biểu diễn ảnh xám và ảnh màu theo nguồn là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Ảnh xám dùng ma trận 2 chiều, còn ảnh màu dùng tensor 3 chiều\"},{\"id\":\"B\",\"text\":\"Ảnh xám dùng HSV, còn ảnh màu dùng RGB\"},{\"id\":\"C\",\"text\":\"Ảnh xám chỉ có giá trị từ 0 đến 100, còn ảnh màu từ 0 đến 255\"},{\"id\":\"D\",\"text\":\"Ảnh màu tách biệt độ sáng, còn ảnh xám mô phỏng màn hình hiển thị\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn đối chiếu trực tiếp ảnh xám là ma trận 2 chiều và ảnh màu là tensor 3 chiều.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}}]}",
+  "raw_response": {
+    "id": "resp_0d9b990d74e30f32016a6b5d060fa88199b42965ace169cbc2",
+    "object": "chat.completion",
+    "created": 1785421062,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"Mo hinh mau\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, mô hình nào tách biệt thông tin màu sắc và độ sáng?\",\"options\":[{\"id\":\"A\",\"text\":\"RGB\"},{\"id\":\"B\",\"text\":\"HSV\"},{\"id\":\"C\",\"text\":\"Grayscale\"},{\"id\":\"D\",\"text\":\"Tensor 3 chiều\"}],\"correct_option_id\":\"B\",\"explanation\":\"Nguồn nêu rõ HSV tách biệt thông tin màu sắc và độ sáng.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"Anh xam\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, ảnh xám được biểu diễn như thế nào?\",\"options\":[{\"id\":\"A\",\"text\":\"Bằng tensor 3 chiều\"},{\"id\":\"B\",\"text\":\"Bằng mô hình cộng màu\"},{\"id\":\"C\",\"text\":\"Bằng ma trận 2 chiều\"},{\"id\":\"D\",\"text\":\"Bằng ba kênh Hue-Saturation-Value\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguồn ghi rằng ảnh xám được biểu diễn bằng ma trận 2 chiều.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}},{\"question_id\":\"q3\",\"type\":\"single_choice\",\"topic\":\"Bieu dien anh mau\",\"difficulty\":\"medium\",\"question\":\"Điểm khác biệt chính giữa biểu diễn ảnh xám và ảnh màu theo nguồn là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Ảnh xám dùng ma trận 2 chiều, còn ảnh màu dùng tensor 3 chiều\"},{\"id\":\"B\",\"text\":\"Ảnh xám dùng HSV, còn ảnh màu dùng RGB\"},{\"id\":\"C\",\"text\":\"Ảnh xám chỉ có giá trị từ 0 đến 100, còn ảnh màu từ 0 đến 255\"},{\"id\":\"D\",\"text\":\"Ảnh màu tách biệt độ sáng, còn ảnh xám mô phỏng màn hình hiển thị\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn đối chiếu trực tiếp ảnh xám là ma trận 2 chiều và ảnh màu là tensor 3 chiều.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide12-13\",\"quote\":\"CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3125,
+      "completion_tokens": 883,
+      "total_tokens": 4008
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Computer_Vision_Bai_Giang_pptx_Slide12-13",
+    "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide12-13_20260730T141758.833189Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:17:58.833189Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 3,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "Mo hinh mau",
+        "difficulty": "medium",
+        "question": "Theo nguồn, mô hình nào tách biệt thông tin màu sắc và độ sáng?",
+        "options": [
+          {
+            "id": "A",
+            "text": "RGB"
+          },
+          {
+            "id": "B",
+            "text": "HSV"
+          },
+          {
+            "id": "C",
+            "text": "Grayscale"
+          },
+          {
+            "id": "D",
+            "text": "Tensor 3 chiều"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Nguồn nêu rõ HSV tách biệt thông tin màu sắc và độ sáng.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q2",
+        "type": "single_choice",
+        "topic": "Anh xam",
+        "difficulty": "medium",
+        "question": "Theo nguồn, ảnh xám được biểu diễn như thế nào?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Bằng tensor 3 chiều"
+          },
+          {
+            "id": "B",
+            "text": "Bằng mô hình cộng màu"
+          },
+          {
+            "id": "C",
+            "text": "Bằng ma trận 2 chiều"
+          },
+          {
+            "id": "D",
+            "text": "Bằng ba kênh Hue-Saturation-Value"
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "Nguồn ghi rằng ảnh xám được biểu diễn bằng ma trận 2 chiều.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q3",
+        "type": "single_choice",
+        "topic": "Bieu dien anh mau",
+        "difficulty": "medium",
+        "question": "Điểm khác biệt chính giữa biểu diễn ảnh xám và ảnh màu theo nguồn là gì?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Ảnh xám dùng ma trận 2 chiều, còn ảnh màu dùng tensor 3 chiều"
+          },
+          {
+            "id": "B",
+            "text": "Ảnh xám dùng HSV, còn ảnh màu dùng RGB"
+          },
+          {
+            "id": "C",
+            "text": "Ảnh xám chỉ có giá trị từ 0 đến 100, còn ảnh màu từ 0 đến 255"
+          },
+          {
+            "id": "D",
+            "text": "Ảnh màu tách biệt độ sáng, còn ảnh xám mô phỏng màn hình hiển thị"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Nguồn đối chiếu trực tiếp ảnh xám là ma trận 2 chiều và ảnh màu là tensor 3 chiều.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
+          "quote": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

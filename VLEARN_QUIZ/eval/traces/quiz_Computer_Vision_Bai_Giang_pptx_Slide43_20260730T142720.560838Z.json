@@ -1,0 +1,110 @@
+{
+  "document_id": "Computer_Vision_Bai_Giang_pptx_Slide43",
+  "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide43_20260730T142720.560838Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 2 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Computer_Vision_Bai_Giang_pptx_Slide43\",\n  \"title\": \"Computer_Vision_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide43\",\n      \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide43\",\n      \"chunk_index\": 1,\n      \"text\": \"CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"van de mang sau\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, vấn đề nào có thể xảy ra khi tăng số lớp trong mạng rất sâu?\",\"options\":[{\"id\":\"A\",\"text\":\"Độ chính xác có thể giảm do tiêu biến hoặc bùng nổ gradient\"},{\"id\":\"B\",\"text\":\"Số lượng dữ liệu huấn luyện tự động tăng lên\"},{\"id\":\"C\",\"text\":\"Mạng không cần cập nhật trọng số nữa\"},{\"id\":\"D\",\"text\":\"Kết nối tắt bị loại bỏ hoàn toàn\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn nêu rõ khi tăng số lớp, độ chính xác có thể giảm do tiêu biến/bùng nổ gradient.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"quote\":\"CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"skip connection\",\"difficulty\":\"medium\",\"question\":\"Trong ResNet theo nguồn, vai trò chính của Skip Connection là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Cho phép thông tin đi tắt qua một hoặc nhiều lớp\"},{\"id\":\"B\",\"text\":\"Thay toàn bộ tích chập bằng pooling\"},{\"id\":\"C\",\"text\":\"Giảm số lớp của mạng xuống còn một nửa\"},{\"id\":\"D\",\"text\":\"Chỉ dùng để tăng kích thước ảnh đầu vào\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn mô tả Skip Connection là kết nối tắt cho phép thông tin đi tắt qua một hoặc nhiều lớp.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"quote\":\"CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp.\"}}]}",
+  "raw_response": {
+    "id": "resp_04b698724071bb60016a6b5f3dae788191b2655eb16c823ab0",
+    "object": "chat.completion",
+    "created": 1785421629,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"van de mang sau\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, vấn đề nào có thể xảy ra khi tăng số lớp trong mạng rất sâu?\",\"options\":[{\"id\":\"A\",\"text\":\"Độ chính xác có thể giảm do tiêu biến hoặc bùng nổ gradient\"},{\"id\":\"B\",\"text\":\"Số lượng dữ liệu huấn luyện tự động tăng lên\"},{\"id\":\"C\",\"text\":\"Mạng không cần cập nhật trọng số nữa\"},{\"id\":\"D\",\"text\":\"Kết nối tắt bị loại bỏ hoàn toàn\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn nêu rõ khi tăng số lớp, độ chính xác có thể giảm do tiêu biến/bùng nổ gradient.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"quote\":\"CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp.\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"skip connection\",\"difficulty\":\"medium\",\"question\":\"Trong ResNet theo nguồn, vai trò chính của Skip Connection là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Cho phép thông tin đi tắt qua một hoặc nhiều lớp\"},{\"id\":\"B\",\"text\":\"Thay toàn bộ tích chập bằng pooling\"},{\"id\":\"C\",\"text\":\"Giảm số lớp của mạng xuống còn một nửa\"},{\"id\":\"D\",\"text\":\"Chỉ dùng để tăng kích thước ảnh đầu vào\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn mô tả Skip Connection là kết nối tắt cho phép thông tin đi tắt qua một hoặc nhiều lớp.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide43\",\"quote\":\"CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3087,
+      "completion_tokens": 547,
+      "total_tokens": 3634
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Computer_Vision_Bai_Giang_pptx_Slide43",
+    "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide43_20260730T142720.560838Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:27:20.560838Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 2,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "van de mang sau",
+        "difficulty": "medium",
+        "question": "Theo nguồn, vấn đề nào có thể xảy ra khi tăng số lớp trong mạng rất sâu?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Độ chính xác có thể giảm do tiêu biến hoặc bùng nổ gradient"
+          },
+          {
+            "id": "B",
+            "text": "Số lượng dữ liệu huấn luyện tự động tăng lên"
+          },
+          {
+            "id": "C",
+            "text": "Mạng không cần cập nhật trọng số nữa"
+          },
+          {
+            "id": "D",
+            "text": "Kết nối tắt bị loại bỏ hoàn toàn"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Nguồn nêu rõ khi tăng số lớp, độ chính xác có thể giảm do tiêu biến/bùng nổ gradient.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+          "quote": "CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q2",
+        "type": "single_choice",
+        "topic": "skip connection",
+        "difficulty": "medium",
+        "question": "Trong ResNet theo nguồn, vai trò chính của Skip Connection là gì?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Cho phép thông tin đi tắt qua một hoặc nhiều lớp"
+          },
+          {
+            "id": "B",
+            "text": "Thay toàn bộ tích chập bằng pooling"
+          },
+          {
+            "id": "C",
+            "text": "Giảm số lớp của mạng xuống còn một nửa"
+          },
+          {
+            "id": "D",
+            "text": "Chỉ dùng để tăng kích thước ảnh đầu vào"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Nguồn mô tả Skip Connection là kết nối tắt cho phép thông tin đi tắt qua một hoặc nhiều lớp.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide43",
+          "quote": "CHƯƠNG 5 · CNN. ResNet - Residual Learning. Vấn đề mạng quá sâu: Khi tăng số lớp, độ chính xác có thể giảm do vấn đề tiêu biến/bùng nổ gradient. Giải pháp: Kết nối tắt (Skip Connection) cho phép thông tin đi tắt qua một hoặc nhiều lớp."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

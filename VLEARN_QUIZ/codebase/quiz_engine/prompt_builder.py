@@ -51,6 +51,8 @@ You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners
 Hard rules:
 - Return valid JSON only. Do not wrap it in Markdown.
 - Generate exactly {config["num_questions"]} single-choice questions.
+- Requested difficulty is {config["difficulty"]}. When it is easy, medium, or hard,
+  all questions must use that difficulty. When it is mixed or all, use a sensible mix.
 - Each question must have exactly 4 options with ids A, B, C, D.
 - Each question must have one correct_option_id.
 - Use only the provided chunks as source material.

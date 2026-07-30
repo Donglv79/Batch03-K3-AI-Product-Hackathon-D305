@@ -45,7 +45,7 @@ export default function QuizScreen({
   const correct = !isUngrounded && selectedOptionId === q.correctOptionId;
 
   return (
-    <div className="card">
+    <div className="card quiz-card">
       <div className="quiz-head">
         <span className="muted">
           Câu {currentIndex + 1} / {total}
@@ -62,9 +62,9 @@ export default function QuizScreen({
           {DIFFICULTY_LABEL[q.difficulty] || "Hiểu bản chất"}
         </span>
         {q.citation ? (
-          <span className="pill pill-chunk">🔖 Mã đoạn: [{q.citation.chunkId}]</span>
+          <span className="pill pill-chunk">Nguồn [{q.citation.chunkId}]</span>
         ) : (
-          <span className="pill pill-warning">⚠️ Chưa có căn cứ nguồn</span>
+          <span className="pill pill-warning">Chưa có căn cứ nguồn</span>
         )}
       </div>
 
@@ -104,7 +104,7 @@ export default function QuizScreen({
           {q.citation && (
             <div className="citation-block">
               <div className="citation-label">
-                🔊 Trích dẫn nguyên văn bài giảng ([{q.citation.chunkId}]):
+                Trích dẫn nguyên văn · [{q.citation.chunkId}]
               </div>
               <div className="citation-quote">&quot;{q.citation.quote}&quot;</div>
             </div>

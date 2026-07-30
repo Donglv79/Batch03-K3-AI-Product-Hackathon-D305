@@ -1,0 +1,143 @@
+{
+  "document_id": "Machine_Learning_Bai_Giang_pptx_Slide10-11",
+  "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide10-11_20260730T142830.553765Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 3 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Machine_Learning_Bai_Giang_pptx_Slide10-11\",\n  \"title\": \"Machine_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\n      \"parent_source_id\": \"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\n      \"chunk_index\": 1,\n      \"text\": \"TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc).\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"nhom bai toan\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, đâu là một trong ba nhóm bài toán chính của Machine Learning?\",\"options\":[{\"id\":\"A\",\"text\":\"Học có giám sát\"},{\"id\":\"B\",\"text\":\"Tối ưu tổ hợp\"},{\"id\":\"C\",\"text\":\"Xử lý ảnh\"},{\"id\":\"D\",\"text\":\"Mạng máy tính\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn nêu rõ Học có giám sát là một trong ba nhóm bài toán chính.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc).\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"hoi quy\",\"difficulty\":\"medium\",\"question\":\"Trong học có giám sát, bài toán nào dùng để dự đoán giá trị liên tục?\",\"options\":[{\"id\":\"A\",\"text\":\"Phân loại\"},{\"id\":\"B\",\"text\":\"Học tăng cường\"},{\"id\":\"C\",\"text\":\"Hồi quy\"},{\"id\":\"D\",\"text\":\"Học không giám sát\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguồn ghi rằng Hồi quy là bài toán dự đoán giá trị liên tục.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc).\"}},{\"question_id\":\"q3\",\"type\":\"single_choice\",\"topic\":\"phan loai\",\"difficulty\":\"medium\",\"question\":\"Phân loại trong học có giám sát được mô tả như thế nào trong nguồn?\",\"options\":[{\"id\":\"A\",\"text\":\"Dự đoán nhãn rời rạc\"},{\"id\":\"B\",\"text\":\"Dự đoán giá trị liên tục\"},{\"id\":\"C\",\"text\":\"Tìm ba nhóm bài toán chính\"},{\"id\":\"D\",\"text\":\"Tăng cường phần thưởng\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn mô tả Phân loại là dự đoán nhãn rời rạc.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc).\"}}]}",
+  "raw_response": {
+    "id": "resp_04f264ceca18c389016a6b5f7e604c8191987011d8c8559580",
+    "object": "chat.completion",
+    "created": 1785421694,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"nhom bai toan\",\"difficulty\":\"medium\",\"question\":\"Theo nguồn, đâu là một trong ba nhóm bài toán chính của Machine Learning?\",\"options\":[{\"id\":\"A\",\"text\":\"Học có giám sát\"},{\"id\":\"B\",\"text\":\"Tối ưu tổ hợp\"},{\"id\":\"C\",\"text\":\"Xử lý ảnh\"},{\"id\":\"D\",\"text\":\"Mạng máy tính\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn nêu rõ Học có giám sát là một trong ba nhóm bài toán chính.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc).\"}},{\"question_id\":\"q2\",\"type\":\"single_choice\",\"topic\":\"hoi quy\",\"difficulty\":\"medium\",\"question\":\"Trong học có giám sát, bài toán nào dùng để dự đoán giá trị liên tục?\",\"options\":[{\"id\":\"A\",\"text\":\"Phân loại\"},{\"id\":\"B\",\"text\":\"Học tăng cường\"},{\"id\":\"C\",\"text\":\"Hồi quy\"},{\"id\":\"D\",\"text\":\"Học không giám sát\"}],\"correct_option_id\":\"C\",\"explanation\":\"Nguồn ghi rằng Hồi quy là bài toán dự đoán giá trị liên tục.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc).\"}},{\"question_id\":\"q3\",\"type\":\"single_choice\",\"topic\":\"phan loai\",\"difficulty\":\"medium\",\"question\":\"Phân loại trong học có giám sát được mô tả như thế nào trong nguồn?\",\"options\":[{\"id\":\"A\",\"text\":\"Dự đoán nhãn rời rạc\"},{\"id\":\"B\",\"text\":\"Dự đoán giá trị liên tục\"},{\"id\":\"C\",\"text\":\"Tìm ba nhóm bài toán chính\"},{\"id\":\"D\",\"text\":\"Tăng cường phần thưởng\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn mô tả Phân loại là dự đoán nhãn rời rạc.\",\"citation\":{\"source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"parent_source_id\":\"Machine_Learning_Bai_Giang.pptx#Slide10-11\",\"quote\":\"TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc).\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3120,
+      "completion_tokens": 820,
+      "total_tokens": 3940
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Machine_Learning_Bai_Giang_pptx_Slide10-11",
+    "quiz_id": "quiz_Machine_Learning_Bai_Giang_pptx_Slide10-11_20260730T142830.553765Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:28:30.553765Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 3,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "nhom bai toan",
+        "difficulty": "medium",
+        "question": "Theo nguồn, đâu là một trong ba nhóm bài toán chính của Machine Learning?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Học có giám sát"
+          },
+          {
+            "id": "B",
+            "text": "Tối ưu tổ hợp"
+          },
+          {
+            "id": "C",
+            "text": "Xử lý ảnh"
+          },
+          {
+            "id": "D",
+            "text": "Mạng máy tính"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Nguồn nêu rõ Học có giám sát là một trong ba nhóm bài toán chính.",
+        "citation": {
+          "source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+          "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+          "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc)."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q2",
+        "type": "single_choice",
+        "topic": "hoi quy",
+        "difficulty": "medium",
+        "question": "Trong học có giám sát, bài toán nào dùng để dự đoán giá trị liên tục?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Phân loại"
+          },
+          {
+            "id": "B",
+            "text": "Học tăng cường"
+          },
+          {
+            "id": "C",
+            "text": "Hồi quy"
+          },
+          {
+            "id": "D",
+            "text": "Học không giám sát"
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "Nguồn ghi rằng Hồi quy là bài toán dự đoán giá trị liên tục.",
+        "citation": {
+          "source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+          "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+          "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc)."
+        },
+        "citation_status": "verified"
+      },
+      {
+        "question_id": "q3",
+        "type": "single_choice",
+        "topic": "phan loai",
+        "difficulty": "medium",
+        "question": "Phân loại trong học có giám sát được mô tả như thế nào trong nguồn?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Dự đoán nhãn rời rạc"
+          },
+          {
+            "id": "B",
+            "text": "Dự đoán giá trị liên tục"
+          },
+          {
+            "id": "C",
+            "text": "Tìm ba nhóm bài toán chính"
+          },
+          {
+            "id": "D",
+            "text": "Tăng cường phần thưởng"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Nguồn mô tả Phân loại là dự đoán nhãn rời rạc.",
+        "citation": {
+          "source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+          "parent_source_id": "Machine_Learning_Bai_Giang.pptx#Slide10-11",
+          "quote": "TRÍ TUỆ NHÂN TẠO - Machine Learning. Ba nhóm bài toán chính: Học có giám sát (Supervised Learning), Học không giám sát (Unsupervised Learning), và Học tăng cường (Reinforcement Learning). Học có giám sát gồm 2 bài toán chính: Hồi quy (dự đoán giá trị liên tục) và Phân loại (dự đoán nhãn rời rạc)."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

@@ -13,6 +13,9 @@ export default function TeacherDashboard({ activeDocumentTitle }: Props) {
     MOCK_TEACHER_DASHBOARD_DATA.recentSubmissions
   );
   const data = MOCK_TEACHER_DASHBOARD_DATA;
+  const completionPct = data.totalStudents
+    ? (data.completedCount / data.totalStudents) * 100
+    : 0;
 
   return (
     <div className="teacher-dashboard-container">
@@ -43,7 +46,7 @@ export default function TeacherDashboard({ activeDocumentTitle }: Props) {
             <div className="kpi-bar">
               <div
                 className="kpi-fill"
-                style={{ width: `${(data.completedCount / data.totalStudents) * 100}%` }}
+                style={{ width: `${completionPct}%` }}
               />
             </div>
           </div>

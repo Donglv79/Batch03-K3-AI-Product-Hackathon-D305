@@ -1,0 +1,77 @@
+{
+  "document_id": "Computer_Vision_Bai_Giang_pptx_Slide49",
+  "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide49_20260730T143523.417430Z",
+  "model": "gpt-5.4",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Requested difficulty is medium. When it is easy, medium, or hard,\n  all questions must use that difficulty. When it is mixed or all, use a sensible mix.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Computer_Vision_Bai_Giang_pptx_Slide49\",\n  \"title\": \"Computer_Vision_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide49\",\n      \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide49\",\n      \"chunk_index\": 1,\n      \"text\": \"Họ mô hình R-CNN. R-CNN (2014) trích xuất ~2000 vùng đề xuất (region proposals) và chạy CNN riêng lẻ. Fast R-CNN (2015) chia sẻ tính toán CNN cho toàn bộ ảnh, nhanh hơn nhiều.\"\n    }\n  ]\n}",
+  "raw_text": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"R-CNN vs Fast R-CNN\",\"difficulty\":\"medium\",\"question\":\"Điểm khác biệt chính giúp Fast R-CNN nhanh hơn nhiều so với R-CNN là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh\"},{\"id\":\"B\",\"text\":\"Fast R-CNN trích xuất ít hơn 2000 vùng đề xuất\"},{\"id\":\"C\",\"text\":\"Fast R-CNN chạy CNN riêng lẻ cho từng vùng đề xuất\"},{\"id\":\"D\",\"text\":\"Fast R-CNN không sử dụng region proposals\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn nêu rõ Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh, nên nhanh hơn nhiều so với R-CNN.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide49\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide49\",\"quote\":\"Họ mô hình R-CNN. R-CNN (2014) trích xuất ~2000 vùng đề xuất (region proposals) và chạy CNN riêng lẻ. Fast R-CNN (2015) chia sẻ tính toán CNN cho toàn bộ ảnh, nhanh hơn nhiều.\"}}]}",
+  "raw_response": {
+    "id": "resp_08ebd4ba8bf1ca3b016a6b61253fc88191a62f8d28f201082d",
+    "object": "chat.completion",
+    "created": 1785422117,
+    "model": "gpt-5.4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"questions\":[{\"question_id\":\"q1\",\"type\":\"single_choice\",\"topic\":\"R-CNN vs Fast R-CNN\",\"difficulty\":\"medium\",\"question\":\"Điểm khác biệt chính giúp Fast R-CNN nhanh hơn nhiều so với R-CNN là gì?\",\"options\":[{\"id\":\"A\",\"text\":\"Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh\"},{\"id\":\"B\",\"text\":\"Fast R-CNN trích xuất ít hơn 2000 vùng đề xuất\"},{\"id\":\"C\",\"text\":\"Fast R-CNN chạy CNN riêng lẻ cho từng vùng đề xuất\"},{\"id\":\"D\",\"text\":\"Fast R-CNN không sử dụng region proposals\"}],\"correct_option_id\":\"A\",\"explanation\":\"Nguồn nêu rõ Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh, nên nhanh hơn nhiều so với R-CNN.\",\"citation\":{\"source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide49\",\"parent_source_id\":\"Computer_Vision_Bai_Giang.pptx#Slide49\",\"quote\":\"Họ mô hình R-CNN. R-CNN (2014) trích xuất ~2000 vùng đề xuất (region proposals) và chạy CNN riêng lẻ. Fast R-CNN (2015) chia sẻ tính toán CNN cho toàn bộ ảnh, nhanh hơn nhiều.\"}}]}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3073,
+      "completion_tokens": 288,
+      "total_tokens": 3361
+    }
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Computer_Vision_Bai_Giang_pptx_Slide49",
+    "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide49_20260730T143523.417430Z",
+    "status": "success",
+    "created_at": "2026-07-30T14:35:23.417430Z",
+    "model": "gpt-5.4",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "R-CNN vs Fast R-CNN",
+        "difficulty": "medium",
+        "question": "Điểm khác biệt chính giúp Fast R-CNN nhanh hơn nhiều so với R-CNN là gì?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh"
+          },
+          {
+            "id": "B",
+            "text": "Fast R-CNN trích xuất ít hơn 2000 vùng đề xuất"
+          },
+          {
+            "id": "C",
+            "text": "Fast R-CNN chạy CNN riêng lẻ cho từng vùng đề xuất"
+          },
+          {
+            "id": "D",
+            "text": "Fast R-CNN không sử dụng region proposals"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Nguồn nêu rõ Fast R-CNN chia sẻ tính toán CNN cho toàn bộ ảnh, nên nhanh hơn nhiều so với R-CNN.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide49",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide49",
+          "quote": "Họ mô hình R-CNN. R-CNN (2014) trích xuất ~2000 vùng đề xuất (region proposals) và chạy CNN riêng lẻ. Fast R-CNN (2015) chia sẻ tính toán CNN cho toàn bộ ảnh, nhanh hơn nhiều."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}
