@@ -150,11 +150,13 @@ Ví dụ nguyên văn:
 
 | Phần | Người chịu trách nhiệm |
 |---|---|
-| Product/spec/evidence | Trần Văn Dũng |
-| Ingestion/backend | Lê Văn Đông |
-| Gemini quiz engine/eval | Nguyễn Viết Huy |
-| Student flow/frontend | Đàm Lê Minh Quân |
-| Teacher dashboard/validation/demo | Đào Đức Mạnh |
+| Product/spec/evidence, tích hợp cuối và demo artifact | Trần Văn Dũng |
+| Ingestion/backend và stable source contract | Lê Văn Đông |
+| Gemini Quiz Engine, schema và citation verifier | Đào Đức Mạnh |
+| Student flow/frontend, result và gap map | Đàm Lê Minh Quân |
+| Golden set/eval, manual review, validation và dashboard prototype | Nguyễn Viết Huy |
+
+**Đóng góp tích hợp chéo:** Lê Văn Đông tạo phiên bản `TeacherDashboard`/`SlideViewer` tích hợp ban đầu; Trần Văn Dũng hoàn thiện dashboard dữ liệu phiên và các thay đổi frontend sau validation. Phân công chính ở trên bám theo reflection cá nhân; ghi chú này bám theo lịch sử commit để không quy toàn bộ phần tích hợp cho một người.
 
 ### Willing users và kế hoạch CP5
 
@@ -179,3 +181,4 @@ Ví dụ nguyên văn:
 | 2026-07-30 | Manual semantic review | 27/27 câu grounded và có một đáp án rõ ràng; Nguyễn Viết Huy và Đàm Lê Minh Quân đã xác nhận độc lập 5 ca khó |
 | 2026-07-30 | Ghi nhận 5 phiên user validation | Xác nhận giá trị của quiz/gap map; phát hiện nhu cầu xem đúng đoạn nguồn, rút gọn giải thích và làm lại câu sai |
 | 2026-07-31 | Định lượng cost-of-friction trong impact table | Bổ sung công thức người × tần suất × cost proxy; chỉ dùng đơn vị tương tác quan sát được, không tự suy diễn số phút hoặc tiền |
+| 2026-07-31 | Đồng bộ phân công với reflection và commit | Tách Quiz Engine cho Đào Đức Mạnh, Eval/Validation cho Nguyễn Viết Huy và ghi rõ đóng góp tích hợp chéo ở dashboard |

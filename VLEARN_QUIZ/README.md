@@ -6,11 +6,13 @@ Prototype cho phép giảng viên nạp PDF bài giảng, sinh quiz bằng Gemin
 
 | Vai trò | Họ tên | Mã học viên | Phần chịu trách nhiệm |
 |---|---|---|---|
-| Product/Evidence | Trần Văn Dũng | 2A202601859 | JTBD, mining, spec |
-| Ingestion | Lê Văn Đông | 2A202601851 | PDF/text → chunks |
-| Quiz Engine/Eval | Nguyễn Viết Huy | 2A202601081 | Gemini, citation verifier, golden set |
-| Student Flow | Đàm Lê Minh Quân | 2A202601451 | Quiz UI, result, gap map |
-| Dashboard/Validation/Demo | Đào Đức Mạnh | 2A202601833 | Dashboard, user test, slide |
+| Product/Evidence · Integration/Demo | Trần Văn Dũng | 2A202601859 | JTBD, mining, spec, quality bar, tích hợp cuối và demo artifact |
+| Ingestion/Backend | Lê Văn Đông | 2A202601851 | PDF/text/transcript → chunks, stable source ID và ingestion API |
+| Quiz Engine | Đào Đức Mạnh | 2A202601833 | Gemini call, JSON schema, prompt và exact citation verifier |
+| Student Flow | Đàm Lê Minh Quân | 2A202601451 | Quiz UI, feedback, result và knowledge gap map |
+| Eval/Validation · Dashboard prototype | Nguyễn Viết Huy | 2A202601081 | Golden set, eval runner, manual review, user validation và dashboard đánh giá |
+
+Phần dashboard có đóng góp tích hợp chéo: Lê Văn Đông tạo phiên bản `TeacherDashboard`/`SlideViewer` tích hợp ban đầu; Trần Văn Dũng hoàn thiện dashboard dữ liệu phiên, tìm kiếm, CSV và các luồng feedback sau validation. Bảng trên ghi **người chịu trách nhiệm chính**, còn lịch sử commit được giữ nguyên để thể hiện đóng góp phối hợp.
 
 
 ## Lát cắt
