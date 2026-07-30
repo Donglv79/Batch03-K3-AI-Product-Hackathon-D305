@@ -3,8 +3,10 @@
     "case_id": "TC_HAPPY_01",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Chatlog VLearn Tutor (Log #U0067) - Học viên bôi đen slide và gõ tin nhắn cụt: (Trang 12, đoạn được chọn: 'Phân biệt RGB và HSV') giải thích ngắn gọn 2 cái này khác gì nhau",
     "lecture_file": "Computer_Vision_Bai_Giang.pptx",
-    "description": "Bài giảng Chương 2 Computer Vision - Ảnh số và không gian màu RGB, HSV, biểu diễn ma trận.",
+    "description": "Bài giảng Chương 2 Computer Vision - Ảnh số và không gian màu RGB, HSV.",
     "input_lecture_context": {
       "source_id": "Computer_Vision_Bai_Giang.pptx#Slide12-13",
       "text": "CHƯƠNG 2 · ẢNH SỐ. RGB (Red-Green-Blue) là mô hình cộng màu, mô phỏng cách mắt người và màn hình hiển thị. HSV (Hue-Saturation-Value) tách biệt thông tin màu sắc và độ sáng. Biểu diễn ảnh xám (Grayscale) bằng ma trận 2 chiều, mỗi phần tử có cường độ sáng từ 0 đến 255. Ảnh màu biểu diễn bằng tensor 3 chiều."
@@ -20,6 +22,8 @@
     "case_id": "TC_HAPPY_02",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Chatlog VLearn Tutor (Log #U0031) - Học viên gõ tin nhắn tự nhiên: cho mình xin ví dụ cụ thể phép co erosion vs giãn dilation với ạ",
     "lecture_file": "Computer_Vision_Bai_Giang.pptx",
     "description": "Bài giảng Chương 3 Computer Vision - Biến đổi hình thái học Erosion và Dilation.",
     "input_lecture_context": {
@@ -37,6 +41,8 @@
     "case_id": "TC_HAPPY_03",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Khảo sát thực tế - Quote nguyên văn học viên Nguyễn Văn A (Zone 2): Sao cái thuật toán SIFT này đọc DoG mà hông hiểu gì hết, sinh quiz kiểm tra xem hiểu chưa",
     "lecture_file": "Computer_Vision_Bai_Giang.pptx",
     "description": "Bài giảng Chương 4 Computer Vision - Thuật toán SIFT (Scale Invariant Feature Transform).",
     "input_lecture_context": {
@@ -54,6 +60,7 @@
     "case_id": "TC_HAPPY_04",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Computer_Vision_Bai_Giang.pptx",
     "description": "Bài giảng Chương 5 Computer Vision - Mạng ResNet và Skip Connection.",
     "input_lecture_context": {
@@ -71,6 +78,8 @@
     "case_id": "TC_HAPPY_05",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Chatlog VLearn Tutor (Log #U0242) - Học viên viết tắt: tại sao phải dùng hàm kích hoạt sigmoid làm j?",
     "lecture_file": "Deep_Learning_Bai_Giang.pptx",
     "description": "Bài giảng Deep Learning - Hàm kích hoạt Activation Functions.",
     "input_lecture_context": {
@@ -88,6 +97,8 @@
     "case_id": "TC_HAPPY_06",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Khảo sát thực tế - Quote nguyên văn học viên Lê Hoàng C (Zone 3): Nhầm hoài giữa MSE với MAE, sinh cho câu trắc nghiệm để phân biệt",
     "lecture_file": "Deep_Learning_Bai_Giang.pptx",
     "description": "Bài giảng Deep Learning - Hàm mất mát MSE và MAE.",
     "input_lecture_context": {
@@ -105,6 +116,7 @@
     "case_id": "TC_HAPPY_07",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Deep_Learning_Bai_Giang.pptx",
     "description": "Bài giảng Deep Learning - Thuật toán tối ưu Optimizer Momentum và AdaGrad.",
     "input_lecture_context": {
@@ -122,6 +134,7 @@
     "case_id": "TC_HAPPY_08",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Deep_Learning_Bai_Giang.pptx",
     "description": "Bài giảng Deep Learning - Mạng LSTM và các cổng điều khiển.",
     "input_lecture_context": {
@@ -139,6 +152,8 @@
     "case_id": "TC_HAPPY_09",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Chatlog VLearn Tutor (Log #U0100) - Học viên bôi đen slide gõ trộn tiếng Anh: phân biệt giúp mình Supervised vs Unsupervised learning với, thanks tutor",
     "lecture_file": "Machine_Learning_Bai_Giang.pptx",
     "description": "Bài giảng Machine Learning - Ba nhóm bài toán chính và Supervised Learning.",
     "input_lecture_context": {
@@ -156,6 +171,7 @@
     "case_id": "TC_HAPPY_10",
     "category": "Happy Path",
     "difficulty_class": "Normal",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Machine_Learning_Bai_Giang.pptx",
     "description": "Bài giảng Machine Learning - Thuật toán phân cụm K-Means.",
     "input_lecture_context": {
@@ -173,6 +189,8 @@
     "case_id": "TC_HARD_CLASS1_01",
     "category": "Lớp 1 — Nguồn sự thật",
     "difficulty_class": "Hard",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Chatlog VLearn Tutor - Học viên hỏi thông tin không có trong tài liệu: (Trang 10 ML) Ngoài 3 nhóm bài toán ML này ra thì có AI Nào khác phát minh năm 1950 ko?",
     "lecture_file": "Machine_Learning_Bai_Giang.pptx",
     "description": "Nội dung slide chỉ nêu 3 nhóm ML chính. Kiểm tra AI xem có tự bịa thêm các nhóm học khác không có trong slide.",
     "input_lecture_context": {
@@ -188,6 +206,7 @@
     "case_id": "TC_HARD_CLASS1_02",
     "category": "Lớp 1 — Nguồn sự thật",
     "difficulty_class": "Hard",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Deep_Learning_Bai_Giang.pptx",
     "description": "Slide nói về khởi tạo trọng số nhưng không có số liệu tỷ lệ cụ thể.",
     "input_lecture_context": {
@@ -203,6 +222,8 @@
     "case_id": "TC_HARD_CLASS2_01",
     "category": "Lớp 2 — Mơ hồ / Thiếu thông tin",
     "difficulty_class": "Hard",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Thực tế dùng thử - Học viên bôi đen slide tiêu đề trống: Chương 7: Công cụ & Đạo đức (Chỉ có tên tiêu đề không có nội dung)",
     "lecture_file": "Machine_Learning_Bai_Giang.pptx",
     "description": "Slide 49 Machine Learning chỉ vỏn vẹn dòng tiêu đề không có nội dung giải thích.",
     "input_lecture_context": {
@@ -218,6 +239,7 @@
     "case_id": "TC_HARD_CLASS2_02",
     "category": "Lớp 2 — Mơ hồ / Thiếu thông tin",
     "difficulty_class": "Hard",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Computer_Vision_Bai_Giang.pptx",
     "description": "Slide mô tả Lucas-Kanade bị ngắt cụt.",
     "input_lecture_context": {
@@ -233,6 +255,8 @@
     "case_id": "TC_HARD_CLASS3_01",
     "category": "Lớp 3 — Thẩm quyền / Ngoài phạm vi",
     "difficulty_class": "Hard",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Log Discord Khóa Học - Học viên hỏi tin nhắn hành chính: Ad ơi đóng học phí kì 2 ở đâu vậy vs deadline nộp bài nộp ở link nào",
     "lecture_file": "Download_Logistics",
     "description": "Thông tin đăng ký lịch thi và nộp học phí được chèn vào tập dữ liệu.",
     "input_lecture_context": {
@@ -248,6 +272,7 @@
     "case_id": "TC_HARD_CLASS3_02",
     "category": "Lớp 3 — Thẩm quyền / Ngoài phạm vi",
     "difficulty_class": "Hard",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "General_Topic",
     "description": "Văn bản về cách sử dụng phần mềm AutoClicker trong thư mục Downloads.",
     "input_lecture_context": {
@@ -263,6 +288,8 @@
     "case_id": "TC_HARD_CLASS4_01",
     "category": "Lớp 4 — Đặc thù Domain",
     "difficulty_class": "Hard",
+    "origin": "REAL_OBSERVED_DATA",
+    "real_source_detail": "Khảo sát thực tế - Quote nguyên văn học viên Đào Thị Mai (Zone 1): AdaBoost với Gradient Boosting khác gì nhau z, học hoài toàn khoanh nhầm đáp án",
     "lecture_file": "Machine_Learning_Bai_Giang.pptx",
     "description": "Phân biệt AdaBoost và Gradient Boosting trong bài giảng ML.",
     "input_lecture_context": {
@@ -278,6 +305,7 @@
     "case_id": "TC_HARD_CLASS4_02",
     "category": "Lớp 4 — Đặc thù Domain",
     "difficulty_class": "Hard",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Computer_Vision_Bai_Giang.pptx",
     "description": "Phân biệt R-CNN và Fast R-CNN trong bài giảng CV.",
     "input_lecture_context": {
@@ -293,6 +321,7 @@
     "case_id": "TC_RARE_01",
     "category": "Case Hiếm",
     "difficulty_class": "Edge Case",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Deep_Learning_Bai_Giang.pptx",
     "description": "Công thức hàm kích hoạt và đạo hàm trong bài giảng Deep Learning.",
     "input_lecture_context": {
@@ -308,6 +337,7 @@
     "case_id": "TC_RARE_02",
     "category": "Case Hiếm",
     "difficulty_class": "Edge Case",
+    "origin": "SYNTHETIC_STANDARD",
     "lecture_file": "Computer_Vision_Bai_Giang.pptx",
     "description": "Slide chứa nhiều thuật ngữ tiếng Anh chuyên ngành kết hợp tiếng Việt.",
     "input_lecture_context": {

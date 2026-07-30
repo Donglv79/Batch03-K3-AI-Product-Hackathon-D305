@@ -1,0 +1,87 @@
+{
+  "document_id": "Deep_Learning_Bai_Giang_pptx_Slide25",
+  "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide25_20260730T094003.714024Z",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Deep_Learning_Bai_Giang_pptx_Slide25\",\n  \"title\": \"Deep_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide25\",\n      \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide25\",\n      \"chunk_index\": 1,\n      \"text\": \"Khởi tạo trọng số (Weight Initialization). Khởi tạo bằng 0 làm mọi nơ-ron học giống hệt nhau. Khởi tạo ngẫu nhiên nhỏ giúp phá vỡ tính đối xứng.\"\n    }\n  ]\n}",
+  "raw_text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Weight Initialization\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao việc khởi tạo trọng số bằng 0 trong mạng nơ-ron lại không được khuyến khích?\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"Vì nó làm cho các nơ-ron không thể hội tụ.\"},\n        {\"id\": \"B\", \"text\": \"Vì nó làm mọi nơ-ron học giống hệt nhau.\"},\n        {\"id\": \"C\", \"text\": \"Vì nó làm mất đi tính đối xứng của mô hình.\"},\n        {\"id\": \"D\", \"text\": \"Vì nó khiến trọng số trở nên quá lớn.\"}\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"Khởi tạo trọng số bằng 0 khiến các nơ-ron không có sự khác biệt trong quá trình học, dẫn đến việc chúng học giống hệt nhau.\",\n      \"citation\": {\n        \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide25\",\n        \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide25\",\n        \"quote\": \"Khởi tạo trọng số (Weight Initialization). Khởi tạo bằng 0 làm mọi nơ-ron học giống hệt nhau. Khởi tạo ngẫu nhiên nhỏ giúp phá vỡ tính đối xứng.\"\n      }\n    }\n  ]\n}",
+  "raw_response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Weight Initialization\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao việc khởi tạo trọng số bằng 0 trong mạng nơ-ron lại không được khuyến khích?\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"Vì nó làm cho các nơ-ron không thể hội tụ.\"},\n        {\"id\": \"B\", \"text\": \"Vì nó làm mọi nơ-ron học giống hệt nhau.\"},\n        {\"id\": \"C\", \"text\": \"Vì nó làm mất đi tính đối xứng của mô hình.\"},\n        {\"id\": \"D\", \"text\": \"Vì nó khiến trọng số trở nên quá lớn.\"}\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"Khởi tạo trọng số bằng 0 khiến các nơ-ron không có sự khác biệt trong quá trình học, dẫn đến việc chúng học giống hệt nhau.\",\n      \"citation\": {\n        \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide25\",\n        \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide25\",\n        \"quote\": \"Khởi tạo trọng số (Weight Initialization). Khởi tạo bằng 0 làm mọi nơ-ron học giống hệt nhau. Khởi tạo ngẫu nhiên nhỏ giúp phá vỡ tính đối xứng.\"\n      }\n    }\n  ]\n}",
+              "thoughtSignature": "EjQKMgERTTIPfwa7kARGUP8fOtsUGNsBmu5FlxrXn51BMYHJkV2wUD+BS/TBqfkUfwQpDkRQ"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 624,
+      "candidatesTokenCount": 352,
+      "totalTokenCount": 976,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 624
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-flash-lite",
+    "responseId": "8RtraoKRHoOc0-kPrY6B0Qg"
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Deep_Learning_Bai_Giang_pptx_Slide25",
+    "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide25_20260730T094003.714024Z",
+    "status": "success",
+    "created_at": "2026-07-30T09:40:03.714024Z",
+    "model": "gemini-3.1-flash-lite",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "Weight Initialization",
+        "difficulty": "medium",
+        "question": "Tại sao việc khởi tạo trọng số bằng 0 trong mạng nơ-ron lại không được khuyến khích?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Vì nó làm cho các nơ-ron không thể hội tụ."
+          },
+          {
+            "id": "B",
+            "text": "Vì nó làm mọi nơ-ron học giống hệt nhau."
+          },
+          {
+            "id": "C",
+            "text": "Vì nó làm mất đi tính đối xứng của mô hình."
+          },
+          {
+            "id": "D",
+            "text": "Vì nó khiến trọng số trở nên quá lớn."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Khởi tạo trọng số bằng 0 khiến các nơ-ron không có sự khác biệt trong quá trình học, dẫn đến việc chúng học giống hệt nhau.",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide25",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide25",
+          "quote": "Khởi tạo trọng số (Weight Initialization). Khởi tạo bằng 0 làm mọi nơ-ron học giống hệt nhau. Khởi tạo ngẫu nhiên nhỏ giúp phá vỡ tính đối xứng."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

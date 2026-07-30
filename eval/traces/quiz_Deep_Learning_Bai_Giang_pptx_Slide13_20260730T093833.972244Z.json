@@ -1,0 +1,87 @@
+{
+  "document_id": "Deep_Learning_Bai_Giang_pptx_Slide13",
+  "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide13_20260730T093833.972244Z",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Deep_Learning_Bai_Giang_pptx_Slide13\",\n  \"title\": \"Deep_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide13\",\n      \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide13\",\n      \"chunk_index\": 1,\n      \"text\": \"BÀI GIẢNG Deep Learning. ĐO LƯỜNG SAI SỐ - Hàm mất mát (Loss Function). Mean Squared Error (MSE) áp dụng cho bài toán Hồi quy (Regression), phạt nặng sai số lớn do bình phương. Mean Absolute Error (MAE) ít nhạy với điểm ngoại lai (outliers).\"\n    }\n  ]\n}",
+  "raw_text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Loss Functions\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao Mean Squared Error (MSE) lại phạt nặng các sai số lớn trong bài toán hồi quy?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Vì nó sử dụng giá trị tuyệt đối của sai số.\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Vì nó thực hiện phép tính bình phương sai số.\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Vì nó nhạy cảm với các điểm ngoại lai (outliers).\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Vì nó được thiết kế riêng cho các bài toán phân loại.\"\n        }\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"MSE phạt nặng sai số lớn do thực hiện phép tính bình phương sai số.\",\n      \"citation\": {\n        \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide13\",\n        \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide13\",\n        \"quote\": \"Mean Squared Error (MSE) áp dụng cho bài toán Hồi quy (Regression), phạt nặng sai số lớn do bình phương.\"\n      }\n    }\n  ]\n}",
+  "raw_response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Loss Functions\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao Mean Squared Error (MSE) lại phạt nặng các sai số lớn trong bài toán hồi quy?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Vì nó sử dụng giá trị tuyệt đối của sai số.\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Vì nó thực hiện phép tính bình phương sai số.\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Vì nó nhạy cảm với các điểm ngoại lai (outliers).\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Vì nó được thiết kế riêng cho các bài toán phân loại.\"\n        }\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"MSE phạt nặng sai số lớn do thực hiện phép tính bình phương sai số.\",\n      \"citation\": {\n        \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide13\",\n        \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide13\",\n        \"quote\": \"Mean Squared Error (MSE) áp dụng cho bài toán Hồi quy (Regression), phạt nặng sai số lớn do bình phương.\"\n      }\n    }\n  ]\n}",
+              "thoughtSignature": "EjQKMgERTTIPdSHPfLOe83oLQATKhUaG9tHH0uk5tTKPqxnXC/sFwerkEbChyaj94ZxxaWYY"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 651,
+      "candidatesTokenCount": 347,
+      "totalTokenCount": 998,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 651
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-flash-lite",
+    "responseId": "lxtraqbhMNPy2roPpPWzsAQ"
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Deep_Learning_Bai_Giang_pptx_Slide13",
+    "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide13_20260730T093833.972244Z",
+    "status": "success",
+    "created_at": "2026-07-30T09:38:33.972244Z",
+    "model": "gemini-3.1-flash-lite",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "Loss Functions",
+        "difficulty": "medium",
+        "question": "Tại sao Mean Squared Error (MSE) lại phạt nặng các sai số lớn trong bài toán hồi quy?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Vì nó sử dụng giá trị tuyệt đối của sai số."
+          },
+          {
+            "id": "B",
+            "text": "Vì nó thực hiện phép tính bình phương sai số."
+          },
+          {
+            "id": "C",
+            "text": "Vì nó nhạy cảm với các điểm ngoại lai (outliers)."
+          },
+          {
+            "id": "D",
+            "text": "Vì nó được thiết kế riêng cho các bài toán phân loại."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "MSE phạt nặng sai số lớn do thực hiện phép tính bình phương sai số.",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide13",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide13",
+          "quote": "Mean Squared Error (MSE) áp dụng cho bài toán Hồi quy (Regression), phạt nặng sai số lớn do bình phương."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

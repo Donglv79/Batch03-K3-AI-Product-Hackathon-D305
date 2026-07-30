@@ -1,0 +1,87 @@
+{
+  "document_id": "General_Topic_AutoClicker",
+  "quiz_id": "quiz_General_Topic_AutoClicker_20260730T094102.965539Z",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"General_Topic_AutoClicker\",\n  \"title\": \"General_Topic\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"General_Topic#AutoClicker\",\n      \"parent_source_id\": \"General_Topic#AutoClicker\",\n      \"chunk_index\": 1,\n      \"text\": \"Hướng dẫn sử dụng AutoClicker: Thiết lập khoảng thời gian giữa các lần nhấp chuột tính bằng millisecond và chọn vị trí cố định trên màn hình.\"\n    }\n  ]\n}",
+  "raw_text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"AutoClicker Configuration\",\n      \"difficulty\": \"easy\",\n      \"question\": \"Khi thiết lập AutoClicker, người dùng cần xác định những thông số nào?\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"Khoảng thời gian giữa các lần nhấp và vị trí cố định trên màn hình.\"},\n        {\"id\": \"B\", \"text\": \"Tốc độ internet và độ phân giải của màn hình.\"},\n        {\"id\": \"C\", \"text\": \"Số lượng ứng dụng đang chạy và dung lượng RAM.\"},\n        {\"id\": \"D\", \"text\": \"Tên người dùng và mật khẩu đăng nhập hệ thống.\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"Theo hướng dẫn, người dùng cần thiết lập khoảng thời gian giữa các lần nhấp (tính bằng millisecond) và chọn vị trí cố định trên màn hình.\",\n      \"citation\": {\n        \"source_id\": \"General_Topic#AutoClicker\",\n        \"parent_source_id\": \"General_Topic#AutoClicker\",\n        \"quote\": \"Hướng dẫn sử dụng AutoClicker: Thiết lập khoảng thời gian giữa các lần nhấp chuột tính bằng millisecond và chọn vị trí cố định trên màn hình.\"\n      }\n    }\n  ]\n}",
+  "raw_response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"AutoClicker Configuration\",\n      \"difficulty\": \"easy\",\n      \"question\": \"Khi thiết lập AutoClicker, người dùng cần xác định những thông số nào?\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"Khoảng thời gian giữa các lần nhấp và vị trí cố định trên màn hình.\"},\n        {\"id\": \"B\", \"text\": \"Tốc độ internet và độ phân giải của màn hình.\"},\n        {\"id\": \"C\", \"text\": \"Số lượng ứng dụng đang chạy và dung lượng RAM.\"},\n        {\"id\": \"D\", \"text\": \"Tên người dùng và mật khẩu đăng nhập hệ thống.\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"Theo hướng dẫn, người dùng cần thiết lập khoảng thời gian giữa các lần nhấp (tính bằng millisecond) và chọn vị trí cố định trên màn hình.\",\n      \"citation\": {\n        \"source_id\": \"General_Topic#AutoClicker\",\n        \"parent_source_id\": \"General_Topic#AutoClicker\",\n        \"quote\": \"Hướng dẫn sử dụng AutoClicker: Thiết lập khoảng thời gian giữa các lần nhấp chuột tính bằng millisecond và chọn vị trí cố định trên màn hình.\"\n      }\n    }\n  ]\n}",
+              "thoughtSignature": "EjQKMgERTTIP206WwuN+jLQDhtwwq+vIymw4bQZpq7A1W5TFn7TlTjUl9848JQwhWK7qIPqO"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 583,
+      "candidatesTokenCount": 326,
+      "totalTokenCount": 909,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 583
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-flash-lite",
+    "responseId": "LBxrate6N73G2roPvdaAoAg"
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "General_Topic_AutoClicker",
+    "quiz_id": "quiz_General_Topic_AutoClicker_20260730T094102.965539Z",
+    "status": "success",
+    "created_at": "2026-07-30T09:41:02.965539Z",
+    "model": "gemini-3.1-flash-lite",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "AutoClicker Configuration",
+        "difficulty": "easy",
+        "question": "Khi thiết lập AutoClicker, người dùng cần xác định những thông số nào?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Khoảng thời gian giữa các lần nhấp và vị trí cố định trên màn hình."
+          },
+          {
+            "id": "B",
+            "text": "Tốc độ internet và độ phân giải của màn hình."
+          },
+          {
+            "id": "C",
+            "text": "Số lượng ứng dụng đang chạy và dung lượng RAM."
+          },
+          {
+            "id": "D",
+            "text": "Tên người dùng và mật khẩu đăng nhập hệ thống."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Theo hướng dẫn, người dùng cần thiết lập khoảng thời gian giữa các lần nhấp (tính bằng millisecond) và chọn vị trí cố định trên màn hình.",
+        "citation": {
+          "source_id": "General_Topic#AutoClicker",
+          "parent_source_id": "General_Topic#AutoClicker",
+          "quote": "Hướng dẫn sử dụng AutoClicker: Thiết lập khoảng thời gian giữa các lần nhấp chuột tính bằng millisecond và chọn vị trí cố định trên màn hình."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

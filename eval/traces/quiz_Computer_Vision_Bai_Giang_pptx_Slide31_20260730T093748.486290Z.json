@@ -1,0 +1,87 @@
+{
+  "document_id": "Computer_Vision_Bai_Giang_pptx_Slide31",
+  "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide31_20260730T093748.486290Z",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Computer_Vision_Bai_Giang_pptx_Slide31\",\n  \"title\": \"Computer_Vision_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide31\",\n      \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide31\",\n      \"chunk_index\": 1,\n      \"text\": \"CHƯƠNG 4 · ĐẶC TRƯNG ẢNH. SIFT - Scale Invariant Feature Transform. Bước 1: Phát hiện cực trị trong không gian tỉ lệ dùng Difference of Gaussian (DoG) ở nhiều tỉ lệ để tìm điểm đặc trưng ứng viên. SIFT có tính bất biến với tỉ lệ và phép quay.\"\n    }\n  ]\n}",
+  "raw_text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"SIFT Algorithm\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao thuật toán SIFT (Scale Invariant Feature Transform) lại được coi là một phương pháp trích xuất đặc trưng mạnh mẽ trong thị giác máy tính?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Vì nó sử dụng Difference of Gaussian để phát hiện cực trị trong không gian tỉ lệ.\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Vì nó có khả năng duy trì tính ổn định trước sự thay đổi về tỉ lệ và phép quay của ảnh.\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Vì nó chỉ tập trung vào việc tìm kiếm các điểm đặc trưng ứng viên ở một tỉ lệ duy nhất.\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Vì nó loại bỏ hoàn toàn các điểm đặc trưng không quan trọng trong không gian tỉ lệ.\"\n        }\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"Theo tài liệu, SIFT có tính bất biến với tỉ lệ và phép quay, giúp nó duy trì hiệu quả khi ảnh bị thay đổi các yếu tố này.\",\n      \"citation\": {\n        \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide31\",\n        \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide31\",\n        \"quote\": \"SIFT có tính bất biến với tỉ lệ và phép quay.\"\n      }\n    }\n  ]\n}",
+  "raw_response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"SIFT Algorithm\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao thuật toán SIFT (Scale Invariant Feature Transform) lại được coi là một phương pháp trích xuất đặc trưng mạnh mẽ trong thị giác máy tính?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Vì nó sử dụng Difference of Gaussian để phát hiện cực trị trong không gian tỉ lệ.\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Vì nó có khả năng duy trì tính ổn định trước sự thay đổi về tỉ lệ và phép quay của ảnh.\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Vì nó chỉ tập trung vào việc tìm kiếm các điểm đặc trưng ứng viên ở một tỉ lệ duy nhất.\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Vì nó loại bỏ hoàn toàn các điểm đặc trưng không quan trọng trong không gian tỉ lệ.\"\n        }\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"Theo tài liệu, SIFT có tính bất biến với tỉ lệ và phép quay, giúp nó duy trì hiệu quả khi ảnh bị thay đổi các yếu tố này.\",\n      \"citation\": {\n        \"source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide31\",\n        \"parent_source_id\": \"Computer_Vision_Bai_Giang.pptx#Slide31\",\n        \"quote\": \"SIFT có tính bất biến với tỉ lệ và phép quay.\"\n      }\n    }\n  ]\n}",
+              "thoughtSignature": "EjQKMgERTTIPaDUaUcEAzqTwj/4lfu/6i0E6KTwgZ22mOVbxW37AoKXIPD7BuMsrHTHP/xUb"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 654,
+      "candidatesTokenCount": 396,
+      "totalTokenCount": 1050,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 654
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-flash-lite",
+    "responseId": "aRtrarTNOpna1e8P0uvQkAg"
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Computer_Vision_Bai_Giang_pptx_Slide31",
+    "quiz_id": "quiz_Computer_Vision_Bai_Giang_pptx_Slide31_20260730T093748.486290Z",
+    "status": "success",
+    "created_at": "2026-07-30T09:37:48.486290Z",
+    "model": "gemini-3.1-flash-lite",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "SIFT Algorithm",
+        "difficulty": "medium",
+        "question": "Tại sao thuật toán SIFT (Scale Invariant Feature Transform) lại được coi là một phương pháp trích xuất đặc trưng mạnh mẽ trong thị giác máy tính?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Vì nó sử dụng Difference of Gaussian để phát hiện cực trị trong không gian tỉ lệ."
+          },
+          {
+            "id": "B",
+            "text": "Vì nó có khả năng duy trì tính ổn định trước sự thay đổi về tỉ lệ và phép quay của ảnh."
+          },
+          {
+            "id": "C",
+            "text": "Vì nó chỉ tập trung vào việc tìm kiếm các điểm đặc trưng ứng viên ở một tỉ lệ duy nhất."
+          },
+          {
+            "id": "D",
+            "text": "Vì nó loại bỏ hoàn toàn các điểm đặc trưng không quan trọng trong không gian tỉ lệ."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Theo tài liệu, SIFT có tính bất biến với tỉ lệ và phép quay, giúp nó duy trì hiệu quả khi ảnh bị thay đổi các yếu tố này.",
+        "citation": {
+          "source_id": "Computer_Vision_Bai_Giang.pptx#Slide31",
+          "parent_source_id": "Computer_Vision_Bai_Giang.pptx#Slide31",
+          "quote": "SIFT có tính bất biến với tỉ lệ và phép quay."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

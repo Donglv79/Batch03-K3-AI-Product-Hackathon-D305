@@ -19,7 +19,7 @@ class GeminiClientError(RuntimeError):
 
 
 def load_env_file(env_path: str | Path) -> None:
-    """Load simple KEY=VALUE pairs into os.environ if they are not set.
+    """Load simple KEY=VALUE pairs into os.environ.
 
     This avoids adding python-dotenv as a dependency for the prototype.
     """
@@ -32,7 +32,8 @@ def load_env_file(env_path: str | Path) -> None:
         if not line or line.startswith("#") or "=" not in line:
             continue
         key, value = line.split("=", 1)
-        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+        os.environ[key.strip()] = value.strip().strip('"').strip("'")
+
 
 
 def call_gemini(prompt: str, model: str | None = None, timeout: int = 60) -> dict[str, Any]:

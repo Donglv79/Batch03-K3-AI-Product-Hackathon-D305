@@ -1,0 +1,87 @@
+{
+  "document_id": "Deep_Learning_Bai_Giang_pptx_Slide10-11",
+  "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide10-11_20260730T093819.141163Z",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Deep_Learning_Bai_Giang_pptx_Slide10-11\",\n  \"title\": \"Deep_Learning_Bai_Giang.pptx\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n      \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n      \"chunk_index\": 1,\n      \"text\": \"BÀI GIẢNG Deep Learning. Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn. Hàm Sigmoid = 1 / (1 + e^-x), miền giá trị (0,1).\"\n    }\n  ]\n}",
+  "raw_text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Activation Function\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao mạng nơ-ron cần sử dụng hàm kích hoạt (Activation Function)?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Để tăng tốc độ tính toán của các lớp tuyến tính.\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Để tạo tính phi tuyến cho mạng nơ-ron.\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Để giới hạn miền giá trị của đầu vào trong khoảng (0,1).\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Để thay thế các phép biến đổi tuyến tính bằng phép biến đổi phi tuyến.\"\n        }\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"Hàm kích hoạt đóng vai trò tạo tính phi tuyến cho mạng nơ-ron, giúp tránh việc chồng nhiều lớp tuyến tính chỉ tương đương với một phép biến đổi tuyến tính đơn.\",\n      \"citation\": {\n        \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n        \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n        \"quote\": \"Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn.\"\n      }\n    }\n  ]\n}",
+  "raw_response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Activation Function\",\n      \"difficulty\": \"medium\",\n      \"question\": \"Tại sao mạng nơ-ron cần sử dụng hàm kích hoạt (Activation Function)?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Để tăng tốc độ tính toán của các lớp tuyến tính.\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Để tạo tính phi tuyến cho mạng nơ-ron.\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Để giới hạn miền giá trị của đầu vào trong khoảng (0,1).\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Để thay thế các phép biến đổi tuyến tính bằng phép biến đổi phi tuyến.\"\n        }\n      ],\n      \"correct_option_id\": \"B\",\n      \"explanation\": \"Hàm kích hoạt đóng vai trò tạo tính phi tuyến cho mạng nơ-ron, giúp tránh việc chồng nhiều lớp tuyến tính chỉ tương đương với một phép biến đổi tuyến tính đơn.\",\n      \"citation\": {\n        \"source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n        \"parent_source_id\": \"Deep_Learning_Bai_Giang.pptx#Slide10-11\",\n        \"quote\": \"Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn.\"\n      }\n    }\n  ]\n}",
+              "thoughtSignature": "EjQKMgERTTIPz4+y7NHOAw5xwLByeNFUQkIOyU7Wc2rBEh+2EtPhPMmh1pFr3OwWMsxj1cEo"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 667,
+      "candidatesTokenCount": 397,
+      "totalTokenCount": 1064,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 667
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-flash-lite",
+    "responseId": "iBtravqxNeHCvr0P6J6TqQY"
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Deep_Learning_Bai_Giang_pptx_Slide10-11",
+    "quiz_id": "quiz_Deep_Learning_Bai_Giang_pptx_Slide10-11_20260730T093819.141163Z",
+    "status": "success",
+    "created_at": "2026-07-30T09:38:19.141163Z",
+    "model": "gemini-3.1-flash-lite",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "Activation Function",
+        "difficulty": "medium",
+        "question": "Tại sao mạng nơ-ron cần sử dụng hàm kích hoạt (Activation Function)?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Để tăng tốc độ tính toán của các lớp tuyến tính."
+          },
+          {
+            "id": "B",
+            "text": "Để tạo tính phi tuyến cho mạng nơ-ron."
+          },
+          {
+            "id": "C",
+            "text": "Để giới hạn miền giá trị của đầu vào trong khoảng (0,1)."
+          },
+          {
+            "id": "D",
+            "text": "Để thay thế các phép biến đổi tuyến tính bằng phép biến đổi phi tuyến."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Hàm kích hoạt đóng vai trò tạo tính phi tuyến cho mạng nơ-ron, giúp tránh việc chồng nhiều lớp tuyến tính chỉ tương đương với một phép biến đổi tuyến tính đơn.",
+        "citation": {
+          "source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+          "parent_source_id": "Deep_Learning_Bai_Giang.pptx#Slide10-11",
+          "quote": "Vai trò của hàm kích hoạt (Activation Function): Tạo tính phi tuyến cho mạng nơ-ron. Nếu không có hàm kích hoạt, chồng nhiều lớp tuyến tính vẫn chỉ tương đương một phép biến đổi tuyến tính đơn."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "document_id": "Download_Logistics_Log01",
+  "quiz_id": "quiz_Download_Logistics_Log01_20260730T094048.217680Z",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "You are the VLearn Quiz Engine. Generate a grounded quiz for Vietnamese learners.\n\nHard rules:\n- Return valid JSON only. Do not wrap it in Markdown.\n- Generate exactly 1 single-choice questions.\n- Each question must have exactly 4 options with ids A, B, C, D.\n- Each question must have one correct_option_id.\n- Use only the provided chunks as source material.\n- citation.source_id must be copied from one provided chunk.source_id.\n- citation.parent_source_id must be copied from that same chunk.parent_source_id.\n- citation.quote must be copied exactly from that chunk.text.\n- Do not paraphrase citation.quote.\n- If the source does not support a question with an exact quote, do not create that question.\n- Explanations must be short and must not introduce facts outside the source chunks.\n- Prefer conceptual questions over memorizing isolated wording.\n- Topics should be concise labels useful for a knowledge gap map.\n\nRequired JSON shape:\n{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"short topic label\",\n      \"difficulty\": \"easy|medium|hard\",\n      \"question\": \"question text\",\n      \"options\": [\n        {\"id\": \"A\", \"text\": \"option text\"},\n        {\"id\": \"B\", \"text\": \"option text\"},\n        {\"id\": \"C\", \"text\": \"option text\"},\n        {\"id\": \"D\", \"text\": \"option text\"}\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"short explanation grounded in the quote\",\n      \"citation\": {\n        \"source_id\": \"source id from chunks\",\n        \"parent_source_id\": \"parent source id from same chunk\",\n        \"quote\": \"exact quote copied from chunk text\"\n      }\n    }\n  ]\n}\n\nSource chunks:\n{\n  \"document_id\": \"Download_Logistics_Log01\",\n  \"title\": \"Download_Logistics\",\n  \"source_type\": \"text\",\n  \"chunks\": [\n    {\n      \"source_id\": \"Download_Logistics#Log01\",\n      \"parent_source_id\": \"Download_Logistics#Log01\",\n      \"chunk_index\": 1,\n      \"text\": \"Thông báo từ Phòng Đào tạo: Sinh viên cần hoàn thành học phí học kỳ trước ngày 15/08 và đăng ký lịch thi lại trên portal.\"\n    }\n  ]\n}",
+  "raw_text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Thủ tục học vụ\",\n      \"difficulty\": \"easy\",\n      \"question\": \"Theo thông báo từ Phòng Đào tạo, sinh viên cần thực hiện công việc gì trước ngày 15/08?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Hoàn thành học phí học kỳ\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Đăng ký môn học mới\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Nộp đơn xin nghỉ học\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Nhận bằng tốt nghiệp\"\n        }\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"Thông báo nêu rõ sinh viên cần hoàn thành học phí học kỳ trước ngày 15/08.\",\n      \"citation\": {\n        \"source_id\": \"Download_Logistics#Log01\",\n        \"parent_source_id\": \"Download_Logistics#Log01\",\n        \"quote\": \"Thông báo từ Phòng Đào tạo: Sinh viên cần hoàn thành học phí học kỳ trước ngày 15/08 và đăng ký lịch thi lại trên portal.\"\n      }\n    }\n  ]\n}",
+  "raw_response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "{\n  \"questions\": [\n    {\n      \"question_id\": \"q1\",\n      \"type\": \"single_choice\",\n      \"topic\": \"Thủ tục học vụ\",\n      \"difficulty\": \"easy\",\n      \"question\": \"Theo thông báo từ Phòng Đào tạo, sinh viên cần thực hiện công việc gì trước ngày 15/08?\",\n      \"options\": [\n        {\n          \"id\": \"A\",\n          \"text\": \"Hoàn thành học phí học kỳ\"\n        },\n        {\n          \"id\": \"B\",\n          \"text\": \"Đăng ký môn học mới\"\n        },\n        {\n          \"id\": \"C\",\n          \"text\": \"Nộp đơn xin nghỉ học\"\n        },\n        {\n          \"id\": \"D\",\n          \"text\": \"Nhận bằng tốt nghiệp\"\n        }\n      ],\n      \"correct_option_id\": \"A\",\n      \"explanation\": \"Thông báo nêu rõ sinh viên cần hoàn thành học phí học kỳ trước ngày 15/08.\",\n      \"citation\": {\n        \"source_id\": \"Download_Logistics#Log01\",\n        \"parent_source_id\": \"Download_Logistics#Log01\",\n        \"quote\": \"Thông báo từ Phòng Đào tạo: Sinh viên cần hoàn thành học phí học kỳ trước ngày 15/08 và đăng ký lịch thi lại trên portal.\"\n      }\n    }\n  ]\n}",
+              "thoughtSignature": "EjQKMgERTTIPW+SZueWDk2Ub823Lw3d0JiPJS5k6a/qy+m3q85jwsrY28A6ABXKWf5kqDUHt"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 588,
+      "candidatesTokenCount": 333,
+      "totalTokenCount": 921,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 588
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-flash-lite",
+    "responseId": "HhxraoOHDvLKrfcPzsWYiAc"
+  },
+  "parsed_output": {
+    "schema_version": "1.0",
+    "document_id": "Download_Logistics_Log01",
+    "quiz_id": "quiz_Download_Logistics_Log01_20260730T094048.217680Z",
+    "status": "success",
+    "created_at": "2026-07-30T09:40:48.217680Z",
+    "model": "gemini-3.1-flash-lite",
+    "config": {
+      "num_questions": 1,
+      "question_type": "single_choice",
+      "difficulty": "medium"
+    },
+    "questions": [
+      {
+        "question_id": "q1",
+        "type": "single_choice",
+        "topic": "Thủ tục học vụ",
+        "difficulty": "easy",
+        "question": "Theo thông báo từ Phòng Đào tạo, sinh viên cần thực hiện công việc gì trước ngày 15/08?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Hoàn thành học phí học kỳ"
+          },
+          {
+            "id": "B",
+            "text": "Đăng ký môn học mới"
+          },
+          {
+            "id": "C",
+            "text": "Nộp đơn xin nghỉ học"
+          },
+          {
+            "id": "D",
+            "text": "Nhận bằng tốt nghiệp"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Thông báo nêu rõ sinh viên cần hoàn thành học phí học kỳ trước ngày 15/08.",
+        "citation": {
+          "source_id": "Download_Logistics#Log01",
+          "parent_source_id": "Download_Logistics#Log01",
+          "quote": "Thông báo từ Phòng Đào tạo: Sinh viên cần hoàn thành học phí học kỳ trước ngày 15/08 và đăng ký lịch thi lại trên portal."
+        },
+        "citation_status": "verified"
+      }
+    ],
+    "warnings": []
+  }
+}
