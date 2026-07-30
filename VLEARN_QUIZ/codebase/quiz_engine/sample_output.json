@@ -1,0 +1,331 @@
+{
+  "schema_version": "1.0",
+  "document_id": "transcript_01",
+  "quiz_id": "quiz_transcript_01_sample",
+  "status": "success",
+  "created_at": "2026-07-30T10:30:00.000Z",
+  "model": "gemini-3.1-flash-lite",
+  "config": {
+    "num_questions": 15,
+    "question_type": "single_choice",
+    "difficulty": "mixed"
+  },
+  "questions": [
+    {
+      "question_id": "q1",
+      "type": "single_choice",
+      "topic": "Problem discovery",
+      "difficulty": "easy",
+      "question": "Theo nguon, ky nang nao duoc nhan manh la quan trong khi nhan yeu cau mo ho?",
+      "options": [
+        { "id": "A", "text": "Viet code giao dien that nhanh" },
+        { "id": "B", "text": "Xac dinh bai toan tu yeu cau mo ho" },
+        { "id": "C", "text": "Chon model lon nhat" },
+        { "id": "D", "text": "Tu dong hoa tat ca buoc" }
+      ],
+      "correct_option_id": "B",
+      "explanation": "Nguon noi ro ky nang quan trong la xac dinh bai toan tu yeu cau mo ho.",
+      "citation": {
+        "source_id": "T01-001",
+        "parent_source_id": "T01-001",
+        "quote": "kha nang xac dinh ra mot bai toan tu mot yeu cau rat mo ho"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q2",
+      "type": "single_choice",
+      "topic": "Team handoff",
+      "difficulty": "medium",
+      "question": "Sau khi tim duoc bai toan dang lam, buoc tiep theo trong nguon la gi?",
+      "options": [
+        { "id": "A", "text": "Bo qua stakeholder" },
+        { "id": "B", "text": "Boc tach de team development phat trien" },
+        { "id": "C", "text": "Sinh slide demo ngay" },
+        { "id": "D", "text": "Chi tap trung dashboard" }
+      ],
+      "correct_option_id": "B",
+      "explanation": "Nguon noi phai boc tach bai toan de team development co the phat trien.",
+      "citation": {
+        "source_id": "T01-001",
+        "parent_source_id": "T01-001",
+        "quote": "boc tach no ra cho team development phat trien"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q3",
+      "type": "single_choice",
+      "topic": "Problem selection",
+      "difficulty": "medium",
+      "question": "Van de nao duoc neu ra khi doanh nghiep co qua nhieu viec can lam?",
+      "options": [
+        { "id": "A", "text": "Khong co ai chi ra viec nen lam truoc" },
+        { "id": "B", "text": "Khong co du giao dien mau" },
+        { "id": "C", "text": "Tat ca viec deu da tu dong hoa" },
+        { "id": "D", "text": "Khong can xac dinh scope" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon nhan manh rang nguoi dat de bai lai khong chi ra duoc viec nen uu tien.",
+      "citation": {
+        "source_id": "T01-002-C01",
+        "parent_source_id": "T01-002",
+        "quote": "Khong co ai chi ra duoc trong rat nhieu viec phai lam moi ngay"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q4",
+      "type": "single_choice",
+      "topic": "Prioritization",
+      "difficulty": "easy",
+      "question": "Theo nguon, cau hoi uu tien can tra loi la gi?",
+      "options": [
+        { "id": "A", "text": "Nen dung mau UI nao" },
+        { "id": "B", "text": "Nen dua viec gi vao lam truoc" },
+        { "id": "C", "text": "Nen dat ten repo la gi" },
+        { "id": "D", "text": "Nen xoa du lieu nao" }
+      ],
+      "correct_option_id": "B",
+      "explanation": "Nguon tap trung vao viec chon cai gi nen lam truoc.",
+      "citation": {
+        "source_id": "T01-002-C01",
+        "parent_source_id": "T01-002",
+        "quote": "cai gi nen dua vao lam truoc"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q5",
+      "type": "single_choice",
+      "topic": "Quick outcome",
+      "difficulty": "medium",
+      "question": "Muc tieu cua viec chon dung viec nen lam truoc la gi?",
+      "options": [
+        { "id": "A", "text": "Tao thanh qua ngay dau tien" },
+        { "id": "B", "text": "Tang so file upload" },
+        { "id": "C", "text": "Giam so cau quiz" },
+        { "id": "D", "text": "An het citation" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon noi viec nen lam la viec tao ra thanh qua ngay dau tien.",
+      "citation": {
+        "source_id": "T01-002-C01",
+        "parent_source_id": "T01-002",
+        "quote": "cai gi nen lam de tao ra thanh qua ngay dau tien"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q6",
+      "type": "single_choice",
+      "topic": "Technology role",
+      "difficulty": "easy",
+      "question": "Theo nguon, cong nghe sinh ra de lam gi?",
+      "options": [
+        { "id": "A", "text": "Thay the viec xac dinh van de" },
+        { "id": "B", "text": "Giai quyet mot van de nao day" },
+        { "id": "C", "text": "Sinh dashboard dep hon" },
+        { "id": "D", "text": "Lam cho spec dai hon" }
+      ],
+      "correct_option_id": "B",
+      "explanation": "Nguon dinh vi cong nghe la phuong tien de giai quyet van de.",
+      "citation": {
+        "source_id": "T01-004",
+        "parent_source_id": "T01-004",
+        "quote": "Cong nghe sinh ra de giai quyet mot van de nao day"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q7",
+      "type": "single_choice",
+      "topic": "Problem first",
+      "difficulty": "medium",
+      "question": "Thu tu dung khi ap dung cong nghe theo nguon la gi?",
+      "options": [
+        { "id": "A", "text": "Chon cong nghe truoc, tim van de sau" },
+        { "id": "B", "text": "Biet van de truoc, dung cong nghe sau" },
+        { "id": "C", "text": "Viet dashboard truoc, bo qua quiz" },
+        { "id": "D", "text": "Chi can upload file la xong" }
+      ],
+      "correct_option_id": "B",
+      "explanation": "Nguon noi dau tien phai biet van de, sau do cong nghe moi la cong cu.",
+      "citation": {
+        "source_id": "T01-004",
+        "parent_source_id": "T01-004",
+        "quote": "Dau tien phai biet van de la gi"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q8",
+      "type": "single_choice",
+      "topic": "Technology as tool",
+      "difficulty": "easy",
+      "question": "Trong nguon, cong nghe duoc xem la gi sau khi da biet van de?",
+      "options": [
+        { "id": "A", "text": "Cong cu de giai quyet van de" },
+        { "id": "B", "text": "Bang diem cua hoc vien" },
+        { "id": "C", "text": "Nguon citation duy nhat" },
+        { "id": "D", "text": "Yeu cau mo ho" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon noi ro cong nghe la cong cu de giai quyet van de.",
+      "citation": {
+        "source_id": "T01-004",
+        "parent_source_id": "T01-004",
+        "quote": "cong nghe moi la cong cu de giai quyet no"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q9",
+      "type": "single_choice",
+      "topic": "Ambiguous requirement",
+      "difficulty": "hard",
+      "question": "Khi yeu cau ban dau mo ho, hanh dong phu hop nhat theo nguon la gi?",
+      "options": [
+        { "id": "A", "text": "Sinh luon quiz khong can nguon" },
+        { "id": "B", "text": "Xac dinh va boc tach bai toan cu the" },
+        { "id": "C", "text": "Chi chon model co context lon" },
+        { "id": "D", "text": "Bo qua validation" }
+      ],
+      "correct_option_id": "B",
+      "explanation": "Nguon nhan manh viec xac dinh bai toan tu yeu cau mo ho roi boc tach cho team phat trien.",
+      "citation": {
+        "source_id": "T01-001",
+        "parent_source_id": "T01-001",
+        "quote": "xac dinh ra mot bai toan tu mot yeu cau rat mo ho"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q10",
+      "type": "single_choice",
+      "topic": "Product mindset",
+      "difficulty": "medium",
+      "question": "Lua chon nao phan anh dung tinh than cua nguon?",
+      "options": [
+        { "id": "A", "text": "AI la muc tieu cuoi cung" },
+        { "id": "B", "text": "Cong nghe chi nen vao sau khi ro van de" },
+        { "id": "C", "text": "Khong can biet nguoi dung" },
+        { "id": "D", "text": "Moi viec deu can dashboard" }
+      ],
+      "correct_option_id": "B",
+      "explanation": "Nguon dat van de len truoc, cong nghe la cong cu di sau.",
+      "citation": {
+        "source_id": "T01-004",
+        "parent_source_id": "T01-004",
+        "quote": "Dau tien phai biet van de la gi, sau day cong nghe moi la cong cu de giai quyet no"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q11",
+      "type": "single_choice",
+      "topic": "Development handoff",
+      "difficulty": "medium",
+      "question": "Vi sao can boc tach bai toan truoc khi dua cho team development?",
+      "options": [
+        { "id": "A", "text": "De team co the phat trien dua tren bai toan ro hon" },
+        { "id": "B", "text": "De tang dung luong file" },
+        { "id": "C", "text": "De bo het citation" },
+        { "id": "D", "text": "De tranh sinh cau hoi" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon noi sau khi tim bai toan can boc tach no ra cho team development phat trien.",
+      "citation": {
+        "source_id": "T01-001",
+        "parent_source_id": "T01-001",
+        "quote": "tim duoc bai toan dang de lam, sau day boc tach no ra cho team development phat trien"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q12",
+      "type": "single_choice",
+      "topic": "Impact focus",
+      "difficulty": "hard",
+      "question": "Dau hieu nao cho thay mot bai toan dang duoc uu tien dung theo nguon?",
+      "options": [
+        { "id": "A", "text": "No tao ra thanh qua som" },
+        { "id": "B", "text": "No co ten tieng Anh hay" },
+        { "id": "C", "text": "No khong can nguon" },
+        { "id": "D", "text": "No chi co UI" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon dat cau hoi ve viec nao nen lam de tao ra thanh qua ngay dau tien.",
+      "citation": {
+        "source_id": "T01-002-C01",
+        "parent_source_id": "T01-002",
+        "quote": "cai gi nen lam de tao ra thanh qua ngay dau tien"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q13",
+      "type": "single_choice",
+      "topic": "Problem owner",
+      "difficulty": "medium",
+      "question": "Nguon chi ra thieu hut nao trong viec dat de bai AI?",
+      "options": [
+        { "id": "A", "text": "Thieu nguoi dat ra de bai ro rang" },
+        { "id": "B", "text": "Thieu nut upload PDF" },
+        { "id": "C", "text": "Thieu mau dashboard" },
+        { "id": "D", "text": "Thieu so cau hoi trac nghiem" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon noi truc tiep van de la nguoi dat ra de bai lai khong co.",
+      "citation": {
+        "source_id": "T01-002-C01",
+        "parent_source_id": "T01-002",
+        "quote": "Van de o day la nguoi dat ra de bai lai khong co"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q14",
+      "type": "single_choice",
+      "topic": "Source grounded learning",
+      "difficulty": "easy",
+      "question": "Neu ap dung vao engine sinh quiz, nguyen tac nao phu hop nhat voi nguon?",
+      "options": [
+        { "id": "A", "text": "Sinh cau hoi dua tren van de va nguon ro rang" },
+        { "id": "B", "text": "Sinh cau hoi ngoai tai lieu" },
+        { "id": "C", "text": "Khong can giai thich" },
+        { "id": "D", "text": "Chi sinh dap an dung" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon nhan manh can biet van de truoc, sau do moi dung cong nghe de giai quyet.",
+      "citation": {
+        "source_id": "T01-004",
+        "parent_source_id": "T01-004",
+        "quote": "Dau tien phai biet van de la gi"
+      },
+      "citation_status": "verified"
+    },
+    {
+      "question_id": "q15",
+      "type": "single_choice",
+      "topic": "Feature scope",
+      "difficulty": "medium",
+      "question": "Trong ngu canh build prototype, thong diep nao gan nhat voi nguon?",
+      "options": [
+        { "id": "A", "text": "Dung cong nghe de giai quyet van de da xac dinh" },
+        { "id": "B", "text": "Dung AI vi nghe hien dai" },
+        { "id": "C", "text": "Lam dashboard truoc khi co cau hoi" },
+        { "id": "D", "text": "Bo qua viec chon uu tien" }
+      ],
+      "correct_option_id": "A",
+      "explanation": "Nguon noi cong nghe la cong cu sau khi da xac dinh van de.",
+      "citation": {
+        "source_id": "T01-004",
+        "parent_source_id": "T01-004",
+        "quote": "cong nghe moi la cong cu de giai quyet no"
+      },
+      "citation_status": "verified"
+    }
+  ],
+  "warnings": []
+}
