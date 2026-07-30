@@ -1,4 +1,4 @@
-# Reflection — [Đào Đức Mạnh · 2A202601833]
+# Reflection — Đào Đức Mạnh · 2A202601833
 
 ## Vai trò và phần tôi chịu trách nhiệm
 
