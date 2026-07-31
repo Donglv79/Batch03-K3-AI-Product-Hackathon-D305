@@ -1,11 +1,11 @@
 "use client";
 
-import { UserAccount, USER_ACCOUNTS } from "@/lib/vlearnData";
+import { UserAccount } from "@/lib/vlearnData";
 
 type Props = {
   currentDocumentTitle: string;
   activeAccount: UserAccount;
-  onSwitchAccount: (account: UserAccount) => void;
+  onLogout: () => void;
   activeTab: "reader" | "quiz" | "dashboard";
   onTabChange: (tab: "reader" | "quiz" | "dashboard") => void;
   toolMode: "read" | "pen" | "highlight";
@@ -20,7 +20,7 @@ type Props = {
 export default function VLearnHeader({
   currentDocumentTitle,
   activeAccount,
-  onSwitchAccount,
+  onLogout,
   activeTab,
   onTabChange,
   toolMode,
@@ -120,22 +120,19 @@ export default function VLearnHeader({
 
         <div className="divider-vert" />
 
-        {/* Clean Account Selector */}
         <div className="account-switcher-clean">
-          <select
-            className="role-select-clean"
-            value={activeAccount.id}
-            onChange={(e) => {
-              const selected = USER_ACCOUNTS.find((acc) => acc.id === e.target.value);
-              if (selected) onSwitchAccount(selected);
-            }}
-          >
-            {USER_ACCOUNTS.map((acc) => (
-              <option key={acc.id} value={acc.id}>
-                {acc.avatar} {acc.name} ({acc.role === "teacher" ? "Giảng viên" : "Sinh viên"})
-              </option>
-            ))}
-          </select>
+          <div className="account-chip">
+            <span className="account-avatar">{activeAccount.avatar}</span>
+            <div>
+              <div className="account-name">{activeAccount.name}</div>
+              <div className="account-meta">
+                {activeAccount.code} · {activeAccount.role === "teacher" ? "Giảng viên" : "Sinh viên"}
+              </div>
+            </div>
+          </div>
+          <button className="logout-btn" onClick={onLogout}>
+            Đăng xuất
+          </button>
         </div>
       </div>
     </header>

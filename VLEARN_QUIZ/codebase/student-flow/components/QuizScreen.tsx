@@ -45,42 +45,56 @@ export default function QuizScreen({
   const correct = !isUngrounded && selectedOptionId === q.correctOptionId;
 
   return (
-    <div className="card">
+    <div className="quiz-card card">
       <div className="quiz-head">
-        <span className="muted">
-          Câu {currentIndex + 1} / {total}
+        <div className="quiz-counter-badge">
+          <span className="counter-label">Câu hỏi</span>
+          <span className="counter-val">{currentIndex + 1}</span>
+          <span className="counter-total">/ {total}</span>
+        </div>
+        <span className="pill pill-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          {q.topic || "Machine Learning"}
         </span>
-        <span className="pill pill-outline">{q.topic || "Machine Learning"}</span>
       </div>
 
-      <div className="progress-track">
-        <div className="progress-fill" style={{ width: `${progressPct}%` }} />
+      <div className="progress-container">
+        <div className="progress-track">
+          <div className="progress-fill" style={{ width: `${progressPct}%` }} />
+        </div>
+        <span className="progress-text">{progressPct}% Hoàn thành</span>
       </div>
 
       <div className="tag-row">
         <span className="pill pill-accent">
-          {DIFFICULTY_LABEL[q.difficulty] || "Hiểu bản chất"}
+          ⚡ {DIFFICULTY_LABEL[q.difficulty] || "Hiểu bản chất"}
         </span>
-        {q.citation ? (
-          <span className="pill pill-chunk">🔖 Mã đoạn: [{q.citation.chunkId}]</span>
-        ) : (
-          <span className="pill pill-warning">⚠️ Chưa có căn cứ nguồn</span>
-        )}
       </div>
 
       <h2 className="question-text">{q.question}</h2>
 
       <div className="option-list">
-        {q.options.map((opt) => (
-          <button
-            key={opt.id}
-            className={optionClass(opt.id)}
-            onClick={() => onSelectOption(q.id, opt.id)}
-          >
-            <span className="opt-badge">{opt.id.toUpperCase()}</span>
-            <span style={{ flex: 1 }}>{opt.text}</span>
-          </button>
-        ))}
+        {q.options.map((opt) => {
+          const isSelected = selectedOptionId === opt.id;
+          return (
+            <button
+              key={opt.id}
+              className={optionClass(opt.id)}
+              onClick={() => onSelectOption(q.id, opt.id)}
+            >
+              <div className="opt-badge">{opt.id.toUpperCase()}</div>
+              <span className="opt-text">{opt.text}</span>
+              {answered && !isUngrounded && opt.id === q.correctOptionId && (
+                <span className="opt-status-icon status-correct">✓</span>
+              )}
+              {answered && !isUngrounded && isSelected && opt.id !== q.correctOptionId && (
+                <span className="opt-status-icon status-incorrect">✕</span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {answered && (
@@ -89,34 +103,24 @@ export default function QuizScreen({
             isUngrounded ? "is-warning" : correct ? "is-correct" : "is-incorrect"
           }`}
         >
-          <div
-            className={`feedback-title ${
-              isUngrounded ? "is-warning" : correct ? "is-correct" : "is-incorrect"
-            }`}
-          >
-            {isUngrounded
-              ? "⚠️ Chưa xác minh nguồn"
-              : correct
-              ? "✓ Chính xác!"
-              : "✕ Chưa chính xác!"}
+          <div className="feedback-header">
+            <div className="feedback-title">
+              {isUngrounded
+                ? "⚠️ Chưa xác minh nguồn slide"
+                : correct
+                ? "✨ Chính xác! Rất tốt"
+                : "✖ Chưa chính xác"}
+            </div>
+            <button
+              className="report-btn"
+              data-reported={isReported}
+              disabled={isReported}
+              onClick={() => onReport(q.id)}
+            >
+              {isReported ? "✓ Đã gửi báo cáo" : "🚩 Báo lỗi câu này"}
+            </button>
           </div>
           <div className="feedback-body">{q.explanation}</div>
-          {q.citation && (
-            <div className="citation-block">
-              <div className="citation-label">
-                🔊 Trích dẫn nguyên văn bài giảng ([{q.citation.chunkId}]):
-              </div>
-              <div className="citation-quote">&quot;{q.citation.quote}&quot;</div>
-            </div>
-          )}
-          <button
-            className="report-btn"
-            data-reported={isReported}
-            disabled={isReported}
-            onClick={() => onReport(q.id)}
-          >
-            {isReported ? "Đã gửi báo cáo cho giảng viên ✓" : "Báo lỗi câu hỏi này"}
-          </button>
         </div>
       )}
 
@@ -124,12 +128,8 @@ export default function QuizScreen({
         <button className="btn btn-ghost" onClick={onPrev} disabled={currentIndex === 0}>
           ← Câu trước
         </button>
-        <button
-          className="btn btn-primary"
-          onClick={onNext}
-          disabled={!answered}
-        >
-          {currentIndex === total - 1 ? "Nộp bài" : "Tiếp theo →"}
+        <button className="btn btn-primary" onClick={onNext} disabled={!answered}>
+          {currentIndex === total - 1 ? "Xem kết quả bài test 🎉" : "Câu tiếp theo →"}
         </button>
       </div>
     </div>

@@ -54,6 +54,9 @@ Hard rules:
 - Each question must have exactly 4 options with ids A, B, C, D.
 - Each question must have one correct_option_id.
 - Use only the provided chunks as source material.
+- Do not create questions from title slides, agenda/outline slides, instructor biography, contact information, sponsor/logistics, or general welcome/introduction slides.
+- All questions, topics, options, and explanations MUST be written in natural, clear Vietnamese with proper diacritics (Tiếng Việt có dấu chuẩn).
+- Cover all major lesson concepts/topics represented in the remaining academic content. Avoid repeatedly asking about the same small detail.
 - citation.source_id must be copied from one provided chunk.source_id.
 - citation.parent_source_id must be copied from that same chunk.parent_source_id.
 - citation.quote must be copied exactly from that chunk.text.
@@ -69,17 +72,17 @@ Required JSON shape:
     {{
       "question_id": "q1",
       "type": "single_choice",
-      "topic": "short topic label",
+      "topic": "short topic label in Vietnamese",
       "difficulty": "easy|medium|hard",
-      "question": "question text",
+      "question": "question text in Vietnamese with proper diacritics",
       "options": [
-        {{"id": "A", "text": "option text"}},
-        {{"id": "B", "text": "option text"}},
-        {{"id": "C", "text": "option text"}},
-        {{"id": "D", "text": "option text"}}
+        {{"id": "A", "text": "option text in Vietnamese"}},
+        {{"id": "B", "text": "option text in Vietnamese"}},
+        {{"id": "C", "text": "option text in Vietnamese"}},
+        {{"id": "D", "text": "option text in Vietnamese"}}
       ],
       "correct_option_id": "A",
-      "explanation": "short explanation grounded in the quote",
+      "explanation": "short explanation in Vietnamese with proper diacritics",
       "citation": {{
         "source_id": "source id from chunks",
         "parent_source_id": "parent source id from same chunk",

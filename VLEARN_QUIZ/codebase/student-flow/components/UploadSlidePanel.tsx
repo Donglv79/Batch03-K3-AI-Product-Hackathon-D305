@@ -25,7 +25,7 @@ export default function UploadSlidePanel({ busy, statusText, summary, onUpload }
   const [isDragOver, setIsDragOver] = useState(false);
   const [fileNames, setFileNames] = useState<string[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [title, setTitle] = useState("Bai giang 01");
+  const [title, setTitle] = useState("Bài giảng 01");
   const [documentId, setDocumentId] = useState("slides_batch_01");
   const [sourcePrefix, setSourcePrefix] = useState("slide");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,6 +36,19 @@ export default function UploadSlidePanel({ busy, statusText, summary, onUpload }
     if (!validFiles.length) return;
     setFileNames(validFiles.map((file) => file.name));
     setSelectedFiles(validFiles);
+
+    const firstFile = validFiles[0];
+    if (firstFile) {
+      const baseName = firstFile.name.replace(/\.pdf$/i, "");
+      const cleanedId = baseName
+        .toLowerCase()
+        .replace(/[^a-z0-9_-]/g, "_")
+        .replace(/__+/g, "_")
+        .replace(/^_+|_+$/g, "");
+      setTitle(baseName);
+      setDocumentId(cleanedId || "document_id");
+      setSourcePrefix("slide");
+    }
   }
 
   function handleDrop(e: React.DragEvent<HTMLDivElement>) {
@@ -101,11 +114,11 @@ export default function UploadSlidePanel({ busy, statusText, summary, onUpload }
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
       <div className="field">
-        <label>Document ID:</label>
+        <label>Mã tài liệu (Document ID):</label>
         <input value={documentId} onChange={(e) => setDocumentId(e.target.value)} />
       </div>
       <div className="field">
-        <label>Slide prefix:</label>
+        <label>Tiền tố slide (Slide prefix):</label>
         <input value={sourcePrefix} onChange={(e) => setSourcePrefix(e.target.value)} />
       </div>
       <button className="btn btn-primary" disabled={busy} style={{ width: "100%", marginTop: 10 }}>
@@ -118,10 +131,11 @@ export default function UploadSlidePanel({ busy, statusText, summary, onUpload }
         <div className="upload-summary">
           <div className="upload-summary-title">{summary.title}</div>
           <div className="muted">
-            {summary.documentId} · {summary.chunkCount} chunks · {summary.totalCharacters} ký tự
+            {summary.documentId} · {summary.chunkCount} đoạn trích · {summary.totalCharacters} ký tự
           </div>
         </div>
       )}
+
     </form>
   );
 }

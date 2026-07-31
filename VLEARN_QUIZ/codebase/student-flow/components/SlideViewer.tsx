@@ -1,7 +1,9 @@
 "use client";
 
-import { Role2Document } from "@/lib/quizBridge";
-import { VLearnDocument } from "@/lib/vlearnData";
+import { useEffect, useState } from "react";
+import { Difficulty } from "@/lib/mockQuiz";
+import { resolveRole2Url, Role2Document } from "@/lib/quizBridge";
+import { UserRole, VLearnDocument } from "@/lib/vlearnData";
 
 type Props = {
   document: VLearnDocument;
@@ -12,6 +14,13 @@ type Props = {
   toolMode: "read" | "pen" | "highlight";
   onPageChange: (page: number) => void;
   onOpenQuiz: () => void;
+  questionCount: number;
+  onQuestionCountChange: (n: number) => void;
+  difficulty: "all" | Difficulty;
+  onDifficultyChange: (d: "all" | Difficulty) => void;
+  activeRole: UserRole;
+  onOpenDashboard?: () => void;
+  hasCompletedQuiz?: boolean;
 };
 
 export default function SlideViewer({
@@ -23,13 +32,185 @@ export default function SlideViewer({
   toolMode,
   onPageChange,
   onOpenQuiz,
+  questionCount,
+  onQuestionCountChange,
+  difficulty,
+  onDifficultyChange,
+  activeRole,
+  onOpenDashboard,
+  hasCompletedQuiz = false,
 }: Props) {
+  const [customQuestionCount, setCustomQuestionCount] = useState(String(questionCount));
   const cleanTitle = document.title || document.filename.replace(/\.[^/.]+$/, "");
   const isPdfUpload =
     !!document.fileUrl &&
     (document.fileType === "application/pdf" || /\.pdf$/i.test(document.filename));
 
-  if (isPdfUpload && document.fileUrl) {
+  const chunks = document.chunks || uploadedRole2Doc?.chunks || [];
+  const pdfUrl = resolveRole2Url(document.fileUrl);
+
+  const isTeacher = activeRole === "teacher";
+  const isQuizAvailable = !!document.quizAvailable;
+
+  useEffect(() => {
+    setCustomQuestionCount(String(questionCount));
+  }, [questionCount]);
+
+  function applyCustomQuestionCount() {
+    const parsed = Number(customQuestionCount);
+    if (!Number.isFinite(parsed)) return;
+    const safeCount = Math.min(60, Math.max(1, Math.round(parsed)));
+    setCustomQuestionCount(String(safeCount));
+    onQuestionCountChange(safeCount);
+  }
+
+  const quizGeneratorSection = (
+    <div className="slide-quiz-generator-section">
+      <div className="slide-quiz-generator-card">
+        {isTeacher ? (
+          <>
+            <div className="slide-quiz-gen-header">
+              <div className="slide-quiz-gen-icon-box">
+                <span className="slide-quiz-gen-icon">👩‍🏫</span>
+              </div>
+              <div className="slide-quiz-gen-header-text">
+                <h3 className="slide-quiz-gen-title">
+                  {isQuizAvailable ? "Cập Nhật Bài Quiz AI Từ Bài Giảng Này" : "Đặt Câu Hỏi AI Từ Bài Giảng Này"}
+                </h3>
+                <p className="slide-quiz-gen-desc">
+                  {isQuizAvailable
+                    ? "Bài học này đã được tạo Quiz. Bạn có thể thay đổi số lượng/độ khó và tạo lại bài mới."
+                    : "Hệ thống AI sẽ phân tích toàn bộ nội dung slide và sinh câu hỏi trắc nghiệm tự động."}
+                </p>
+              </div>
+            </div>
+
+            <div className="slide-quiz-gen-controls">
+              <div className="slide-quiz-gen-field">
+                <label>SỐ LƯỢNG CÂU HỎI:</label>
+                <select
+                  className="slide-quiz-gen-select"
+                  value={questionCount}
+                  onChange={(e) => {
+                    const nextCount = Number(e.target.value);
+                    setCustomQuestionCount(String(nextCount));
+                    onQuestionCountChange(nextCount);
+                  }}
+                >
+                  <option value={10}>10 câu hỏi (Nhanh)</option>
+                  <option value={15}>15 câu hỏi (Mặc định)</option>
+                  <option value={20}>20 câu hỏi (Bao quát)</option>
+                  <option value={25}>25 câu hỏi (Chuyên sâu)</option>
+                  <option value={30}>30 câu hỏi (Rất chi tiết)</option>
+                </select>
+                <div className="question-count-custom-row">
+                  <input
+                    type="number"
+                    min={1}
+                    max={60}
+                    value={customQuestionCount}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setCustomQuestionCount(val);
+                      const parsed = Number(val);
+                      if (Number.isFinite(parsed) && parsed >= 1 && parsed <= 60) {
+                        onQuestionCountChange(Math.round(parsed));
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        applyCustomQuestionCount();
+                      }
+                    }}
+                    aria-label="Nhập số câu hỏi mong muốn"
+                    className="custom-count-input"
+                  />
+                  <button type="button" className="btn-apply-count" onClick={applyCustomQuestionCount}>
+                    Áp dụng
+                  </button>
+                </div>
+              </div>
+
+              <div className="slide-quiz-gen-field">
+                <label>ĐỘ KHÓ BÀI TEST:</label>
+                <select
+                  className="slide-quiz-gen-select"
+                  value={difficulty}
+                  onChange={(e) => onDifficultyChange(e.target.value as "all" | Difficulty)}
+                >
+                  <option value="all">Tất cả độ khó</option>
+                  <option value="remember">Nhận biết & Thông hiểu</option>
+                  <option value="understand">Vận dụng</option>
+                  <option value="apply">Vận dụng cao</option>
+                </select>
+              </div>
+            </div>
+
+            {isQuizAvailable ? (
+              <>
+                <div className="slide-quiz-gen-live">
+                  Bài quiz này đã được duyệt/xuất bản. Xem trước và chỉnh sửa trong Dashboard Giảng Viên.
+                </div>
+                <button className="slide-quiz-gen-btn" onClick={onOpenDashboard}>
+                  Mở Dashboard Giảng Viên
+                </button>
+              </>
+            ) : (
+              <button
+                className="slide-quiz-gen-btn"
+                onClick={() => {
+                  applyCustomQuestionCount();
+                  onOpenQuiz();
+                }}
+              >
+                ⚡ Tạo Bài Quiz AI
+              </button>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="slide-quiz-gen-header">
+              <div className="slide-quiz-gen-icon-box">
+                <span className="slide-quiz-gen-icon">{isQuizAvailable ? "📝" : "⏳"}</span>
+              </div>
+              <div className="slide-quiz-gen-header-text">
+                <h3 className="slide-quiz-gen-title">
+                  {isQuizAvailable ? "Làm Bài Quiz AI Đánh Giá Kiến Thức" : "Chưa có Bài Quiz cho tài liệu này"}
+                </h3>
+                <p className="slide-quiz-gen-desc">
+                  {isQuizAvailable
+                    ? "Bấm vào nút phía dưới để bắt đầu làm bài Quiz do giảng viên đã chuẩn bị từ slide này."
+                    : "Giảng viên của bạn chưa khởi tạo bài trắc nghiệm cho bài học này. Vui lòng quay lại sau."}
+                </p>
+              </div>
+            </div>
+
+            {isQuizAvailable ? (
+              hasCompletedQuiz ? (
+                <button className="slide-quiz-gen-btn" onClick={onOpenQuiz}>
+                  🔁 Làm Lại Bài Quiz AI
+                </button>
+              ) : (
+                <button className="slide-quiz-gen-btn" onClick={onOpenQuiz}>
+                  ✍️ Bắt Đầu Làm Bài Quiz AI
+                </button>
+              )
+            ) : (
+              <button
+                className="slide-quiz-gen-btn btn-disabled"
+                disabled
+                style={{ background: "#cbd5e1", cursor: "not-allowed", boxShadow: "none" }}
+              >
+                Chờ Giảng Viên Tạo Bài...
+              </button>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+
+  if (isPdfUpload && pdfUrl) {
     return (
       <div className="slide-scroll-viewer-container">
         <div className="pdf-reader-shell">
@@ -42,35 +223,27 @@ export default function SlideViewer({
                 {document.hasExplanation ? "Có sinh bài giải" : "Chưa kèm bài giải"}
               </p>
             </div>
-            <a className="pdf-open-link" href={document.fileUrl} target="_blank" rel="noreferrer">
+            <a className="pdf-open-link" href={pdfUrl} target="_blank" rel="noreferrer">
               Mở PDF
             </a>
           </div>
           <iframe
             className="pdf-reader-frame"
-            src={`${document.fileUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+            src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
             title={cleanTitle}
           />
         </div>
 
-        <div className="slide-floating-bottom-bar">
-          <button className="btn-take-quiz-floating" onClick={onOpenQuiz}>
-            ✨ Bắt đầu làm Quiz AI cho bài học này
-          </button>
-        </div>
+        {quizGeneratorSection}
       </div>
     );
   }
 
-  // Đọc nội dung văn bản THẬT bóc tách từng slide từ Backend Python
-  const hasRealChunks = uploadedRole2Doc && uploadedRole2Doc.chunks && uploadedRole2Doc.chunks.length > 0;
-
-  // Gom các chunk theo đúng từng mã SLIDE thật (SLIDE_01, SLIDE_02, SLIDE_03...)
+  const hasRealChunks = chunks.length > 0;
   const slideMap = new Map<string, string[]>();
 
   if (hasRealChunks) {
-    uploadedRole2Doc.chunks.forEach((chunk) => {
-      // Lấy prefix mã slide (Ví dụ: SLIDE_01, SLIDE_18)
+    chunks.forEach((chunk) => {
       const slideKey = chunk.parent_source_id || chunk.source_id.split("-")[0] || "SLIDE_01";
       if (!slideMap.has(slideKey)) {
         slideMap.set(slideKey, []);
@@ -84,7 +257,6 @@ export default function SlideViewer({
 
   return (
     <div className="slide-scroll-viewer-container">
-      {/* Hiển Thị Tất Cả Trang Slide Chuẩn Văn Bản Thật Bóc Tách Từ File Slide Của Bạn */}
       <div className="slide-list-vertical" style={{ transform: `scale(${zoomLevel / 100})` }}>
         {Array.from({ length: displayPagesCount }, (_, i) => {
           const pageNum = i + 1;
@@ -92,7 +264,6 @@ export default function SlideViewer({
           const rawTexts = slideKey ? slideMap.get(slideKey) || [] : [];
           const fullText = rawTexts.join("\n");
 
-          // Trích xuất dòng đầu tiên làm Tiêu đề thật của Slide này
           const lines = fullText
             .split("\n")
             .map((l) => l.trim())
@@ -110,7 +281,6 @@ export default function SlideViewer({
                 color: pageNum === 1 ? "#ffffff" : "#0f172a",
               }}
             >
-              {/* Header của Slide */}
               <div className="slide-real-header">
                 <span className="slide-real-tag">
                   {pageNum === 1 ? "TRANG BÌA SLIDE" : `SLIDE CHÍNH THỨC ${pageNum}`}
@@ -120,7 +290,6 @@ export default function SlideViewer({
                 </span>
               </div>
 
-              {/* Thân Nội Dung Slide Đọc Đúng Văn Bản Bóc Tách Từ File PPTX Của Bạn */}
               <div className="slide-real-body">
                 <h1 className="slide-real-title">{slideTitle}</h1>
 
@@ -139,7 +308,6 @@ export default function SlideViewer({
                 )}
               </div>
 
-              {/* Footer của Slide */}
               <div className="slide-real-footer">
                 <span>{document.filename} · VinUniversity</span>
                 <span className="footer-line-accent" />
@@ -149,12 +317,7 @@ export default function SlideViewer({
         })}
       </div>
 
-      {/* Floating Action Button Nổi Phía Dưới */}
-      <div className="slide-floating-bottom-bar">
-        <button className="btn-take-quiz-floating" onClick={onOpenQuiz}>
-          ✨ Bắt đầu làm Quiz AI cho bài học này ({displayPagesCount} slide)
-        </button>
-      </div>
+      {quizGeneratorSection}
     </div>
   );
 }

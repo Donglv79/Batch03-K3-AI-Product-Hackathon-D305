@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -23,7 +24,7 @@ class QuizGenerationError(RuntimeError):
 
 
 def parse_json_response(raw_text: str) -> dict[str, Any]:
-    """Parse model output as JSON, including common Markdown-fenced responses."""
+    """Parse model output as JSON, including common Markdown-fenced responses and repairing trailing commas."""
     text = raw_text.strip()
     if text.startswith("```"):
         lines = text.splitlines()
@@ -35,8 +36,13 @@ def parse_json_response(raw_text: str) -> dict[str, Any]:
 
     try:
         parsed = json.loads(text)
-    except json.JSONDecodeError as exc:
-        raise QuizGenerationError(f"Gemini did not return valid JSON: {exc}") from exc
+    except json.JSONDecodeError:
+        # Auto-repair trailing commas before } or ] which LLMs occasionally output
+        repaired_text = re.sub(r",\s*([}\]])", r"\1", text)
+        try:
+            parsed = json.loads(repaired_text)
+        except json.JSONDecodeError as exc:
+            raise QuizGenerationError(f"Gemini did not return valid JSON: {exc}") from exc
 
     if not isinstance(parsed, dict):
         raise QuizGenerationError("Gemini JSON response must be an object")
@@ -123,8 +129,13 @@ def generate_quiz(
     validate_document_input(document)
     merged_config = validate_config(config)
     if env_path is None:
-        env_path = Path(__file__).resolve().parents[2] / ".env"
-    load_env_file(env_path)
+        backend_env = Path(__file__).resolve().parents[1] / "role2_ingestion" / "backend" / ".env"
+        if backend_env.exists():
+            env_path = backend_env
+        else:
+            env_path = Path(__file__).resolve().parents[2] / ".env"
+    if env_path and Path(env_path).exists():
+        load_env_file(env_path)
 
     selected_chunks = select_chunks(document["chunks"])
     prompt = build_prompt(document, selected_chunks, merged_config)
@@ -163,7 +174,6 @@ def generate_quiz(
             return output
         except (QuizGenerationError, SchemaValidationError, RuntimeError) as exc:
             last_error = exc
-            warnings.append(f"attempt_{attempt}_failed: {exc}")
 
     raise QuizGenerationError(f"Unable to generate quiz: {last_error}")
 

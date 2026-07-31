@@ -171,6 +171,131 @@ class IngestionService:
         path.write_text(json.dumps(document, ensure_ascii=False, indent=2), encoding="utf-8")
         return path
 
+    def library_dir(self) -> Path:
+        return Path(__file__).resolve().parents[6] / "data" / "library"
+
+    def library_index_path(self) -> Path:
+        return self.library_dir() / "index.json"
+
+    def processed_dir(self) -> Path:
+        return Path(__file__).resolve().parents[6] / "data" / "processed"
+
+    def save_uploaded_pdf(self, *, document_id: str, pdf_bytes: bytes, original_filename: str) -> Path:
+        files_dir = self.library_dir() / "files"
+        files_dir.mkdir(parents=True, exist_ok=True)
+        path = files_dir / f"{document_id}.pdf"
+        path.write_bytes(pdf_bytes)
+        return path
+
+    def load_library_index(self) -> list[dict[str, Any]]:
+        path = self.library_index_path()
+        existing_items: list[dict[str, Any]] = []
+        if path.exists():
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                data = []
+            if isinstance(data, list) and data:
+                existing_items = [item for item in data if isinstance(item, dict)]
+
+        # Collect all document IDs already tracked in existing items
+        tracked_doc_ids: set[str] = set()
+        for item in existing_items:
+            for doc in item.get("documents", []):
+                if isinstance(doc, dict) and doc.get("id"):
+                    tracked_doc_ids.add(doc["id"])
+
+        # Scan processed/ for new documents not yet in the index
+        processed_dir = self.processed_dir()
+        new_items: list[dict[str, Any]] = []
+        if processed_dir.exists():
+            for doc_path in sorted(processed_dir.glob("*.json")):
+                try:
+                    document = json.loads(doc_path.read_text(encoding="utf-8"))
+                except json.JSONDecodeError:
+                    continue
+                if not isinstance(document, dict):
+                    continue
+
+                document_id = str(document.get("document_id") or doc_path.stem)
+                if document_id in tracked_doc_ids:
+                    continue  # Already in the index
+
+                original_filename = str(document.get("original_filename") or f"{document_id}.pdf")
+                title = str(document.get("title") or document_id)
+                quiz_path = self.library_dir() / "quizzes" / f"{document_id}.json"
+                file_path = self.library_dir() / "files" / f"{document_id}.pdf"
+                quiz_id = None
+                quiz_status = None
+                quiz_version = None
+                quiz_data = None
+                if quiz_path.exists():
+                    try:
+                        quiz_data = json.loads(quiz_path.read_text(encoding="utf-8"))
+                    except json.JSONDecodeError:
+                        quiz_data = None
+                if isinstance(quiz_data, dict):
+                    quiz_id = quiz_data.get("quiz_id")
+                    quiz_status = quiz_data.get("status")
+                    quiz_version = quiz_data.get("version")
+
+                day_index = len(existing_items) + len(new_items) + 1
+                new_items.append(
+                    {
+                        "id": f"day-{day_index}",
+                        "dayTag": f"Bài {day_index}",
+                        "title": title,
+                        "documents": [
+                            {
+                                "id": document_id,
+                                "title": title,
+                                "pages": document.get("statistics", {}).get("total_chunks", 1) or 1,
+                                "status": "STUDYING",
+                                "filename": original_filename,
+                                "fileUrl": f"/api/files/{document_id}.pdf" if file_path.exists() else None,
+                                "fileType": "application/pdf",
+                                "hasExplanation": True,
+                                "uploadedAt": document.get("created_at"),
+                                "quizId": quiz_id,
+                                "quizAvailable": quiz_status == "published",
+                                "quizStatus": quiz_status,
+                                "quizVersion": quiz_version,
+                                "chunks": document.get("chunks", []),
+                            }
+                        ],
+                    }
+                )
+
+        # Also refresh quiz availability for existing items
+        for item in existing_items:
+            for doc in item.get("documents", []):
+                if not isinstance(doc, dict):
+                    continue
+                doc_id = doc.get("id", "")
+                quiz_path = self.library_dir() / "quizzes" / f"{doc_id}.json"
+                if quiz_path.exists() and not doc.get("quizAvailable"):
+                    try:
+                        quiz_data = json.loads(quiz_path.read_text(encoding="utf-8"))
+                    except json.JSONDecodeError:
+                        quiz_data = None
+                    if isinstance(quiz_data, dict):
+                        doc["quizId"] = quiz_data.get("quiz_id")
+                        doc["quizStatus"] = quiz_data.get("status")
+                        doc["quizVersion"] = quiz_data.get("version")
+                        doc["quizAvailable"] = quiz_data.get("status") == "published"
+
+        result = existing_items + new_items
+        if result:
+            self.save_library_index(result)
+        return result
+
+    def save_library_index(self, items: list[dict[str, Any]]) -> Path:
+        library_dir = self.library_dir()
+        library_dir.mkdir(parents=True, exist_ok=True)
+        path = self.library_index_path()
+        path.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
+        return path
+
 
 def ingest_payload(payload: dict[str, Any], service: IngestionService | None = None) -> dict[str, Any]:
     service = service or IngestionService()

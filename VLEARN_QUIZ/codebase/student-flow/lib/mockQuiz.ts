@@ -62,9 +62,11 @@ export const LECTURES: Lecture[] = [
 ];
 
 export const QUESTION_COUNT_OPTIONS = [
-  { value: 3, label: "3 Câu (Nhanh · ~2 phút)" },
-  { value: 5, label: "5 Câu (Vừa · ~4 phút)" },
-  { value: 7, label: "7 Câu (Đầy đủ · ~6 phút)" },
+  { value: 10, label: "10 Câu (Nhanh · ~8 phút)" },
+  { value: 15, label: "15 Câu (Mặc định · ~12 phút)" },
+  { value: 20, label: "20 Câu (Bao quát · ~16 phút)" },
+  { value: 25, label: "25 Câu (Chuyên sâu · ~20 phút)" },
+  { value: 30, label: "30 Câu (Rất chi tiết · ~25 phút)" },
 ];
 
 export const DIFFICULTY_OPTIONS: { value: "all" | Difficulty; label: string }[] = [

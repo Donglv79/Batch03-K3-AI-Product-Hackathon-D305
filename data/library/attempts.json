@@ -1,0 +1,75 @@
+[
+  {
+    "attempt_id": "quiz_DOC_1785465317227_20260731T023607.402962Z:SV20230001",
+    "document_id": "DOC_1785465317227",
+    "quiz_id": "quiz_DOC_1785465317227_20260731T023607.402962Z",
+    "student_name": "Sinh Viên VinUni",
+    "student_code": "SV20230001",
+    "score_pct": 78,
+    "correct_count": 7,
+    "total_count": 9,
+    "answers": {
+      "q1": "b",
+      "q2": "a",
+      "q3": "b",
+      "q4": "b",
+      "q5": "b",
+      "q6": "b",
+      "q7": "b",
+      "q8": "b",
+      "q10": "b"
+    },
+    "weak_topics": [
+      "Quy trình huấn luyện LLM",
+      "Cấu trúc AI Agent"
+    ],
+    "submitted_at": "2026-07-31T04:01:03.337Z"
+  },
+  {
+    "attempt_id": "quiz_DOC_1785466567212_20260731T025621.949135Z:SV20230001",
+    "document_id": "DOC_1785466567212",
+    "quiz_id": "quiz_DOC_1785466567212_20260731T025621.949135Z",
+    "student_name": "Sinh Viên VinUni",
+    "student_code": "SV20230001",
+    "score_pct": 0,
+    "correct_count": 0,
+    "total_count": 1,
+    "answers": {
+      "q1": "b"
+    },
+    "weak_topics": [
+      "Thuật toán BFS"
+    ],
+    "submitted_at": "2026-07-31T03:07:17.695Z"
+  },
+  {
+    "attempt_id": "quiz_DOC_1785467649012_20260731T031423.859588Z:SV20230001",
+    "document_id": "DOC_1785467649012",
+    "quiz_id": "quiz_DOC_1785467649012_20260731T031423.859588Z",
+    "student_name": "Sinh Viên VinUni",
+    "student_code": "SV20230001",
+    "score_pct": 50,
+    "correct_count": 5,
+    "total_count": 10,
+    "answers": {
+      "q1": "b",
+      "q2": "b",
+      "q3": "c",
+      "q4": "c",
+      "q5": "c",
+      "q6": "b",
+      "q7": "b",
+      "q8": "b",
+      "q9": "c",
+      "q10": "b"
+    },
+    "weak_topics": [
+      "Quan hệ AI, ML và Deep Learning",
+      "Học có giám sát: Hồi quy và Phân loại",
+      "Học tăng cường",
+      "Đánh giá mô hình phân loại",
+      "Kiến trúc học sâu chuyên biệt"
+    ],
+    "submitted_at": "2026-07-31T04:07:23.758Z"
+  }
+]

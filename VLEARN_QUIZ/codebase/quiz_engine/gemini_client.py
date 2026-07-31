@@ -11,11 +11,48 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_MODEL = "gemini-3.1-flash-lite"
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
 
 class GeminiClientError(RuntimeError):
     """Raised when the Gemini API call fails."""
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        status_code: int | None = None,
+        status: str | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.status_code = status_code
+        self.status = status
+
+
+def _format_gemini_error(status_code: int, body: str) -> tuple[str, str | None]:
+    try:
+        payload = json.loads(body)
+    except json.JSONDecodeError:
+        return body.strip() or "No response body", None
+
+    error = payload.get("error") if isinstance(payload, dict) else None
+    if not isinstance(error, dict):
+        return body.strip() or "No response body", None
+
+    status = error.get("status")
+    message = error.get("message") or "Gemini request failed"
+    if status == "NOT_FOUND":
+        hint = "Check MODEL in .env; this model is not available for generateContent."
+    elif status == "RESOURCE_EXHAUSTED":
+        hint = "Gemini quota is exhausted or free-tier quota is disabled for this project."
+    elif status == "PERMISSION_DENIED":
+        hint = "Check that the API key belongs to the selected project and Generative Language API is enabled."
+    elif status == "INVALID_ARGUMENT":
+        hint = "Check the request payload/model configuration."
+    else:
+        hint = "Check Gemini API key, project, quota, and model availability."
+
+    return f"{status or 'HTTP_ERROR'}: {message} {hint}", status
 
 
 def load_env_file(env_path: str | Path) -> None:
@@ -60,7 +97,10 @@ def call_gemini(prompt: str, model: str | None = None, timeout: int = 60) -> dic
     request = urllib.request.Request(
         url,
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "x-goog-api-key": api_key,
+        },
         method="POST",
     )
 
@@ -69,7 +109,12 @@ def call_gemini(prompt: str, model: str | None = None, timeout: int = 60) -> dic
             raw = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
-        raise GeminiClientError(f"Gemini HTTP {exc.code}: {body}") from exc
+        message, status = _format_gemini_error(exc.code, body)
+        raise GeminiClientError(
+            f"Gemini HTTP {exc.code}: {message}",
+            status_code=exc.code,
+            status=status,
+        ) from exc
     except urllib.error.URLError as exc:
         raise GeminiClientError(f"Gemini network error: {exc}") from exc
 

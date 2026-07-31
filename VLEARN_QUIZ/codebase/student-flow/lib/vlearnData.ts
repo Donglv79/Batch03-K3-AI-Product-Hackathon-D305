@@ -6,6 +6,8 @@ export interface UserAccount {
   role: UserRole;
   avatar: string;
   code: string; // MSSV hoặc Mã Giảng Viên
+  loginId: string;
+  password: string;
 }
 
 export const USER_ACCOUNTS: UserAccount[] = [
@@ -15,6 +17,8 @@ export const USER_ACCOUNTS: UserAccount[] = [
     role: "student",
     avatar: "🎓",
     code: "SV20230001",
+    loginId: "sv20230001",
+    password: "student123",
   },
   {
     id: "teacher-01",
@@ -22,6 +26,8 @@ export const USER_ACCOUNTS: UserAccount[] = [
     role: "teacher",
     avatar: "👩‍🏫",
     code: "GV_COMP2010",
+    loginId: "gv_comp2010",
+    password: "teacher123",
   },
 ];
 
@@ -35,6 +41,17 @@ export interface VLearnDocument {
   fileType?: string;
   hasExplanation?: boolean;
   uploadedAt?: string;
+  quizId?: string | null;
+  quizAvailable?: boolean;
+  hiddenFromStudent?: boolean;
+  quizStatus?: string | null;
+  quizVersion?: number | null;
+  chunks?: {
+    source_id: string;
+    parent_source_id: string;
+    chunk_index: number;
+    text: string;
+  }[];
 }
 
 export interface VLearnDay {
@@ -44,11 +61,13 @@ export interface VLearnDay {
   documents: VLearnDocument[];
 }
 
-// Khởi tạo danh sách bài học trống hoàn toàn để người dùng nạp từ đầu
 export const VLEARN_CURRICULUM: VLearnDay[] = [];
 
 export interface StudentSubmission {
   id: string;
+  attemptId?: string;
+  documentId?: string;
+  quizId?: string;
   studentName: string;
   studentCode: string;
   submittedAt: string;
@@ -57,6 +76,9 @@ export interface StudentSubmission {
   totalCount: number;
   status: "Excellence" | "Good" | "Needs Review";
   weakTopics: string[];
+  teacherComment?: string;
+  evaluatedAt?: string;
+  evaluatedBy?: string;
 }
 
 export interface ClassWeakness {
@@ -64,6 +86,7 @@ export interface ClassWeakness {
   failCount: number;
   percentage: string;
   recommendation: string;
+  slideRef?: string;
 }
 
 export interface TeacherDashboardData {
@@ -73,6 +96,8 @@ export interface TeacherDashboardData {
   recentSubmissions: StudentSubmission[];
   frequentWeakness: ClassWeakness[];
 }
+
+export const INITIAL_STUDENT_SUBMISSIONS: StudentSubmission[] = [];
 
 export const MOCK_TEACHER_DASHBOARD_DATA: TeacherDashboardData = {
   totalStudents: 0,

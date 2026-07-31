@@ -20,6 +20,31 @@ export type Role2Document = {
     total_characters: number;
   };
   chunks: Role2Chunk[];
+  file_url?: string;
+};
+
+export type SavedCurriculumDocument = {
+  id: string;
+  title: string;
+  pages: number;
+  status: "PUBLISHED" | "STUDYING" | "DRAFT";
+  filename: string;
+  fileUrl?: string;
+  fileType?: string;
+  hasExplanation?: boolean;
+  uploadedAt?: string;
+  quizId?: string | null;
+  quizAvailable?: boolean;
+  quizStatus?: string | null;
+  quizVersion?: number | null;
+  chunks?: Role2Chunk[];
+};
+
+export type LibraryDay = {
+  id: string;
+  dayTag: string;
+  title: string;
+  documents: SavedCurriculumDocument[];
 };
 
 export type Role3Question = {
@@ -43,7 +68,7 @@ export type Role3Quiz = {
   schema_version: string;
   document_id: string;
   quiz_id: string;
-  status: string;
+  status: "draft" | "published" | "ready" | string;
   created_at: string;
   model: string;
   config: {
@@ -54,6 +79,33 @@ export type Role3Quiz = {
   questions: Role3Question[];
   warnings: string[];
   trace_path?: string;
+  version?: number;
+  published_at?: string | null;
+  history?: Array<{
+    quiz_id: string;
+    version: number;
+    status: string;
+    created_at: string;
+    published_at?: string | null;
+  }>;
+};
+
+export type QuizAttemptRecord = {
+  attempt_id: string;
+  document_id: string;
+  quiz_id: string;
+  student_name: string;
+  student_code: string;
+  score_pct: number;
+  correct_count: number;
+  total_count: number;
+  answers: Record<string, string>;
+  submitted_at: string;
+  weak_topics?: string[];
+  teacher_comment?: string;
+  status?: "Excellence" | "Good" | "Needs Review";
+  reviewed_at?: string;
+  reviewed_by?: string;
 };
 
 const DIFFICULTY_MAP: Record<Role3Question["difficulty"], Difficulty> = {
@@ -91,6 +143,130 @@ export function adaptGeneratedQuiz(response: Role3Quiz, document: Role2Document)
 
 function getApiBase(): string {
   return process.env.NEXT_PUBLIC_ROLE2_API_BASE || "http://127.0.0.1:8000";
+}
+
+export function resolveRole2Url(path?: string | null): string | undefined {
+  if (!path) return undefined;
+  if (/^https?:\/\//i.test(path)) return path;
+  return `${getApiBase()}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+export async function fetchLibrary(): Promise<LibraryDay[]> {
+  const res = await fetch(`${getApiBase()}/api/library`, { cache: "no-store" });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to load library");
+  }
+
+  let hiddenMap: Record<string, boolean> = {};
+  if (typeof window !== "undefined") {
+    try {
+      hiddenMap = JSON.parse(window.localStorage.getItem("vlearn_hidden_docs") || "{}");
+    } catch (e) {
+      console.warn("Failed to read hidden docs map", e);
+    }
+  }
+
+  return ((data.items || []) as LibraryDay[]).map((day) => ({
+    ...day,
+    documents: day.documents.map((doc) => ({
+      ...doc,
+      fileUrl: resolveRole2Url(doc.fileUrl),
+      hiddenFromStudent: !!hiddenMap[doc.id],
+    })),
+  }));
+}
+
+export async function fetchSavedQuiz(
+  documentId: string,
+  options?: { includeDraft?: boolean }
+): Promise<Role3Quiz | null> {
+  const url = new URL(`${getApiBase()}/api/quizzes/${documentId}.json`);
+  if (options?.includeDraft) {
+    url.searchParams.set("includeDraft", "1");
+  }
+  const res = await fetch(url.toString(), { cache: "no-store" });
+  if (res.status === 404) {
+    return null;
+  }
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to load quiz");
+  }
+  return data as Role3Quiz;
+}
+
+export async function publishSavedQuiz(documentId: string): Promise<Role3Quiz> {
+  const res = await fetch(`${getApiBase()}/api/quizzes/${documentId}/publish`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to publish quiz");
+  }
+  return data as Role3Quiz;
+}
+
+export async function saveQuizDraft(documentId: string, quiz: Role3Quiz): Promise<Role3Quiz> {
+  const res = await fetch(`${getApiBase()}/api/quizzes/${documentId}.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(quiz),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to save quiz draft");
+  }
+  return data as Role3Quiz;
+}
+
+export async function fetchQuizAttempts(documentId?: string): Promise<QuizAttemptRecord[]> {
+  const url = new URL(`${getApiBase()}/api/quiz-attempts`);
+  if (documentId) {
+    url.searchParams.set("document_id", documentId);
+  }
+  const res = await fetch(url.toString(), { cache: "no-store" });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to load quiz attempts");
+  }
+  return (data.items || []) as QuizAttemptRecord[];
+}
+
+export async function saveQuizAttempt(record: QuizAttemptRecord): Promise<QuizAttemptRecord> {
+  const res = await fetch(`${getApiBase()}/api/quiz-attempts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(record),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to save quiz attempt");
+  }
+  return data as QuizAttemptRecord;
+}
+
+export async function saveQuizReview(record: Pick<QuizAttemptRecord, "attempt_id" | "document_id" | "teacher_comment" | "status" | "reviewed_by">): Promise<QuizAttemptRecord> {
+  const res = await fetch(`${getApiBase()}/api/quiz-reviews`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(record),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to save quiz review");
+  }
+  return data as QuizAttemptRecord;
 }
 
 export async function uploadRole2Document(params: {
@@ -143,4 +319,3 @@ export async function generateRole3Quiz(params: {
   }
   return data as Role3Quiz;
 }
-
