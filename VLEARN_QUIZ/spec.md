@@ -160,8 +160,8 @@ Ví dụ nguyên văn:
 
 ### Willing users và kế hoạch CP5
 
-- Willing user 1: **Đỗ Duy Đức — học viên**.
-- Willing user 2: **Dương Đức Trung — học viên**.
+- Willing user 1: **Vũ Đăng Huy — học viên**.
+- Willing user 2: **Trần Hoàng Vũ — học viên**.
 - Willing user 3: **Trần Đại Nghĩa — học viên**.
 - Task: nạp một bài giảng, làm quiz và dùng citation/gap map để quyết định phần cần ôn.
 - Ba câu hỏi: điều gì khó hiểu/khó chịu nhất; có tin kết quả không và vì sao; có dùng thật không và vì sao.
